@@ -39,7 +39,7 @@ xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
 ```
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -73,7 +73,7 @@ ropa_pesos_nuevo_redondeo
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -101,7 +101,7 @@ artistas_chilenos_argentinos
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -121,7 +121,7 @@ artistas_favoritos_chilenos_argentinos
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
