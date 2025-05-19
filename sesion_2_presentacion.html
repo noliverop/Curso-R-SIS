@@ -4,7 +4,7 @@
     <title>Curso Capacitación en R</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
-    <meta name="date" content="2025-05-15" />
+    <meta name="date" content="2025-05-19" />
     <script src="sesion_2_presentacion_files/header-attrs-2.29/header-attrs.js"></script>
     <script src="sesion_2_presentacion_files/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="sesion_2_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
@@ -44,7 +44,7 @@ class: center, middle
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -77,7 +77,7 @@ background-position: 50% 0%
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -109,7 +109,7 @@ La fuerza asociada a un objeto en física se calcula mediante la siguiente fórm
 
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -129,7 +129,7 @@ background-position: 50% 0%
 
 
 
-```r
+``` r
 frutas &lt;- c("uva", "pera", "manzana")
 frutas
 ```
@@ -141,7 +141,7 @@ frutas
 --
 
 
-```r
+``` r
 cantidad_frutas &lt;- c(3, 1, 4)
 cantidad_frutas
 ```
@@ -151,7 +151,7 @@ cantidad_frutas
 ```
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -162,7 +162,7 @@ background-position: 50% 0%
 - ¿Qué sucede si mezclamos números con caracteres en un vector?
 
 
-```r
+``` r
 mix &lt;- c("Paula", 1, "Roberto")
 mix
 ```
@@ -176,7 +176,7 @@ mix
 - Con los vectores al igual que con tipos de datos más básicos es importante saber su clase.
 
 
-```r
+``` r
 class(mix)
 ```
 
@@ -189,7 +189,7 @@ class(mix)
 - Otra función útil es la función `str()`,
 
 
-```r
+``` r
 str(mix)
 ```
 
@@ -198,7 +198,7 @@ str(mix)
 ```
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -211,7 +211,7 @@ background-position: 50% 0%
 --
 
 
-```r
+``` r
 cantidad_frutas_para_1_persona &lt;- c(3, 1, 4)
 cantidad_frutas_para_1_persona
 ```
@@ -220,7 +220,7 @@ cantidad_frutas_para_1_persona
 ## [1] 3 1 4
 ```
 
-```r
+``` r
 cantidad_frutas_para_2_persona &lt;- cantidad_frutas_para_1_persona*2
 cantidad_frutas_para_2_persona
 ```
@@ -230,7 +230,7 @@ cantidad_frutas_para_2_persona
 ```
 --
 
-```r
+``` r
 cantidad_frutas_jorge &lt;- c(5, 1, 4)
 cantidad_frutas_pilar &lt;- c(6, 2, 0)
 
@@ -243,14 +243,14 @@ cantidad_frutas_jorge_y_pilar
 ```
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
 # Vectores
 
 
-```r
+``` r
 cantidad_frutas_jorge &lt;- c(5, 1, 4)
 cantidad_frutas_pilar &lt;- c(6, 2, 0, 5)
 
@@ -258,11 +258,11 @@ cantidad_frutas_jorge_y_pilar &lt;- cantidad_frutas_jorge + cantidad_frutas_pila
 ```
 
 ```
-## Warning in cantidad_frutas_jorge + cantidad_frutas_pilar: longitud de objeto
-## mayor no es múltiplo de la longitud de uno menor
+## Warning in cantidad_frutas_jorge + cantidad_frutas_pilar: longer object length
+## is not a multiple of shorter object length
 ```
 
-```r
+``` r
 cantidad_frutas_jorge_y_pilar
 ```
 
@@ -273,7 +273,7 @@ cantidad_frutas_jorge_y_pilar
 **Saber el largo de un vector es muy importante para que no sucedan situaciones como la anterior.**
 --
 
-```r
+``` r
 length(cantidad_frutas_jorge)
 ```
 
@@ -281,7 +281,7 @@ length(cantidad_frutas_jorge)
 ## [1] 3
 ```
 
-```r
+``` r
 length(cantidad_frutas_pilar)
 ```
 
@@ -290,7 +290,7 @@ length(cantidad_frutas_pilar)
 ```
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -302,7 +302,7 @@ background-position: 50% 0%
 --
 
 
-```r
+``` r
 length(cantidad_frutas_jorge) == length(cantidad_frutas_pilar)
 ```
 
@@ -311,7 +311,7 @@ length(cantidad_frutas_jorge) == length(cantidad_frutas_pilar)
 ```
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -322,7 +322,7 @@ background-position: 50% 0%
 Dado que la cantidad de frutas de Pilar es mayor, agreguemos un número más al vector de Jorge. Primero recordemos que:
 
 
-```r
+``` r
 cantidad_frutas_jorge &lt;- c(5, 1, 4)
 cantidad_frutas_jorge
 ```
@@ -334,7 +334,7 @@ cantidad_frutas_jorge
 --
 
 
-```r
+``` r
 cantidad_frutas_jorge &lt;- c(cantidad_frutas_jorge, 2)
 cantidad_frutas_jorge
 ```
@@ -344,7 +344,7 @@ cantidad_frutas_jorge
 ```
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -353,7 +353,7 @@ background-position: 50% 0%
 También, si se requiere, se puede agregar un valor al comienzo de la siguiente forma:
 
 
-```r
+``` r
 cantidad_frutas_jorge &lt;- c(5, 1, 4)
 cantidad_frutas_jorge
 ```
@@ -362,7 +362,7 @@ cantidad_frutas_jorge
 ## [1] 5 1 4
 ```
 
-```r
+``` r
 cantidad_frutas_jorge &lt;- c(2, cantidad_frutas_jorge)
 cantidad_frutas_jorge
 ```
@@ -378,7 +378,7 @@ Prácticamente **todo** es un vector...
 --
 
 
-```r
+``` r
 numero &lt;- 1
 is.vector(numero)
 ```
@@ -388,7 +388,7 @@ is.vector(numero)
 ```
 
 ---
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -402,7 +402,7 @@ background-position: 50% 0%
 2. Utilizando el operador `:`.
 
 
-```r
+``` r
 del_1_20 &lt;- 1:20
 del_1_20
 ```
@@ -415,7 +415,7 @@ del_1_20
 3. Utilizando la función `seq()`.
 
 
-```r
+``` r
 del_1_20_seq &lt;- seq(from=1, to=20, by=1)
 del_1_20_seq
 ```
@@ -424,7 +424,7 @@ del_1_20_seq
 ##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
 ```
 
-```r
+``` r
 del_1_20_seq &lt;- seq(1,20,1)
 del_1_20_seq
 ```
@@ -435,7 +435,7 @@ del_1_20_seq
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -448,7 +448,7 @@ background-position: 50% 0%
 --
 
 
-```r
+``` r
 del_1_50 &lt;- 1:50
 del_1_50
 ```
@@ -464,7 +464,7 @@ En R y al igual que en la mayoría de lenguajes existe el proceso de **indexaci�
 --
 
 
-```r
+``` r
 del_1_50[25]
 ```
 
@@ -478,14 +478,14 @@ del_1_50[25]
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
 # Indexación
 
 
-```r
+``` r
 jugadores_tenis_favoritos &lt;- c("Roger Federer", "Rafael Nadal", "Fernando González", "Marcelo Ríos", "Jannik Sinner",
                                "Carlos Alcaraz")
 ```
@@ -497,7 +497,7 @@ Formas de indexación
 --
 
 
-```r
+``` r
 jugadores_tenis_favoritos[3]
 ```
 
@@ -508,7 +508,7 @@ jugadores_tenis_favoritos[3]
 --
 
 
-```r
+``` r
 jugadores_chilenos &lt;- jugadores_tenis_favoritos[c(3,4)]
 jugadores_chilenos
 ```
@@ -519,7 +519,7 @@ jugadores_chilenos
 --
 
 
-```r
+``` r
 jugadores_chilenos &lt;- jugadores_tenis_favoritos[-c(1,2,5,6)]
 jugadores_chilenos
 ```
@@ -530,7 +530,7 @@ jugadores_chilenos
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -539,7 +539,7 @@ background-position: 50% 0%
 --
 
 
-```r
+``` r
 jugadores_tenis_favoritos == "Carlos Alcaraz"
 ```
 
@@ -549,7 +549,7 @@ jugadores_tenis_favoritos == "Carlos Alcaraz"
 --
 
 
-```r
+``` r
 which(jugadores_tenis_favoritos == "Carlos Alcaraz")
 ```
 
@@ -559,7 +559,7 @@ which(jugadores_tenis_favoritos == "Carlos Alcaraz")
 --
 
 
-```r
+``` r
 jugadores_tenis_favoritos[which(jugadores_tenis_favoritos == "Carlos Alcaraz")]
 ```
 
@@ -569,7 +569,7 @@ jugadores_tenis_favoritos[which(jugadores_tenis_favoritos == "Carlos Alcaraz")]
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -577,7 +577,7 @@ background-position: 50% 0%
 Conozcamos el operador `%in%`.
 --
 
-```r
+``` r
 jugadores_tenis_favoritos &lt;- c("Roger Federer", "Rafael Nadal", "Fernando González", "Marcelo Ríos", "Jannik Sinner",
                                "Carlos Alcaraz")
 jugadores_tenis_espanioles &lt;- c("Rafael Nadal", "Carlos Alcaraz", "Fernando Verdasco")
@@ -588,7 +588,7 @@ jugadores_tenis_espanioles &lt;- c("Rafael Nadal", "Carlos Alcaraz", "Fernando V
 --
 
 
-```r
+``` r
 jugadores_tenis_espanioles %in% jugadores_tenis_favoritos
 ```
 
@@ -599,7 +599,7 @@ jugadores_tenis_espanioles %in% jugadores_tenis_favoritos
 --
 
 
-```r
+``` r
 jugadores_tenis_espanioles[jugadores_tenis_espanioles %in% jugadores_tenis_favoritos]
 ```
 
@@ -614,7 +614,7 @@ jugadores_tenis_espanioles[jugadores_tenis_espanioles %in% jugadores_tenis_favor
 --
 
 
-```r
+``` r
 jugadores_tenis_favoritos[jugadores_tenis_favoritos %in% jugadores_tenis_espanioles]
 ```
 
@@ -624,7 +624,7 @@ jugadores_tenis_favoritos[jugadores_tenis_favoritos %in% jugadores_tenis_espanio
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -633,7 +633,7 @@ background-position: 50% 0%
 --
 
 
-```r
+``` r
 del_1_50 &lt;- 1:50
 del_1_50
 ```
@@ -650,7 +650,7 @@ Crear vector en base al objeto `del_1_50` que incluya solo aquellos números may
 --
 
 
-```r
+``` r
 del_26_50 &lt;- del_1_50[del_1_50 &gt; 25]
 del_26_50
 ```
@@ -665,7 +665,7 @@ Crear vector en base al objeto `del_1_50` que incluya solo aquellos números may
 --
 
 
-```r
+``` r
 del_26_40 &lt;- del_1_50[del_1_50 &gt; 25 &amp; del_1_50 &lt;= 40]
 del_26_40
 ```
@@ -675,7 +675,7 @@ del_26_40
 ```
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -686,7 +686,7 @@ background-position: 50% 0%
 --
 
 
-```r
+``` r
 vector_numeros_pares &lt;- del_1_50[seq(2, length(del_1_50), 2)]
 vector_numeros_pares
 ```
@@ -700,7 +700,7 @@ vector_numeros_pares
 **Mini ejercicio 2:** genere un vector en base al objeto `del_1_50` que incluya sólo los números que son **impares** y también incluya el número 2.
 
 
-```r
+``` r
 vector_numeros_impares_mas_dos &lt;- del_1_50[c(seq(1, length(del_1_50), 2), 2)]
 vector_numeros_impares_mas_dos
 ```
@@ -712,7 +712,7 @@ vector_numeros_impares_mas_dos
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -733,7 +733,7 @@ Para instalar una determinada librería se utiliza la función `install.packages
 --
 
 
-```r
+``` r
 install.packages("guaguas") # para instalar se deben utilizar las comillas!
 ```
 
@@ -750,14 +750,14 @@ Pero... luego de instalar, ¿esto quiere decir que ya podemos utilizar las funci
 Para utilizar o cargar una librería se debe correr el comando o función `library()` de la siguiente manera:
 
 
-```r
+``` r
 library(guaguas) # para cargar una librería ya no necesitamos las comillas!
 ```
 
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -772,7 +772,7 @@ En honor al trabajo nacional, exploraremos una base de datos creada por Riva Qui
 Dado que ya instalamos el paquete, ahora **solo debemos cargarlo**. 
 
 
-```r
+``` r
 library("guaguas")
 ```
 
@@ -783,7 +783,7 @@ Este paquete consiste en proveer *Datos sobre nombres de guaguas (bebés) regist
 
 ---
 
-background-image: url("imagenes/bg.PNG")
+background-image: url("imagenes/bg.png")
 background-size: contain;
 background-position: 50% 0%
 
