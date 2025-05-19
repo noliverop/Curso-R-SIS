@@ -15,3 +15,4 @@ Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesio
 Enunciado de tarea se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_1.html)
 
 ## Clase 3 (22 de mayo)
+Enunciado de tarea
