@@ -43,7 +43,7 @@ xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
 ```
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -76,7 +76,7 @@ background-position: 50% 0%
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -108,7 +108,7 @@ La fuerza asociada a un objeto en física se calcula mediante la siguiente fórm
 
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -140,7 +140,7 @@ cantidad_frutas
 ```
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -172,7 +172,7 @@ str(mix)
 ```
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -201,7 +201,7 @@ cantidad_frutas_jorge_y_pilar
 ```
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -223,7 +223,7 @@ length(cantidad_frutas_pilar)
 ```
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -239,7 +239,7 @@ length(cantidad_frutas_jorge) == length(cantidad_frutas_pilar)
 ```
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -262,7 +262,7 @@ cantidad_frutas_jorge
 ```
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -291,7 +291,7 @@ is.vector(numero)
 ```
 
 ---
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -323,7 +323,7 @@ del_1_20_seq
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -355,7 +355,7 @@ del_1_50[25]
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -391,7 +391,7 @@ jugadores_chilenos
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -415,7 +415,7 @@ jugadores_tenis_favoritos[which(jugadores_tenis_favoritos == "Carlos Alcaraz")]
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -454,7 +454,7 @@ jugadores_tenis_favoritos[jugadores_tenis_favoritos %in% jugadores_tenis_espanio
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -489,7 +489,7 @@ del_26_40
 ```
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -515,7 +515,7 @@ vector_numeros_impares_mas_dos
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -558,7 +558,7 @@ library(guaguas) # para cargar una librería ya no necesitamos las comillas!
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
@@ -583,7 +583,7 @@ Este paquete consiste en proveer *Datos sobre nombres de guaguas (bebés) regist
 
 ---
 
-background-image: url("imagenes/bg.png")
+background-image: url("imagenes/background.png")
 background-size: contain;
 background-position: 50% 0%
 
