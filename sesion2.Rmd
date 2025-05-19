@@ -1,0 +1,192 @@
+---
+title: "Untitled"
+output: ioslides_presentation
+date: "2025-05-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+sesion 2
+---
+# Vectores
+
+--
+
+- Los vectores son la estructura de datos más común en el lenguaje R. 
+
+--
+
+- En palabras sencillas son meramente una lista de valores, ya sean números o caracteres.
+
+--
+
+- Los vectores se crean con la función `c()` que significa combinar valores en un vector.
+
+
+```{r }
+frutas <- c("uva", "pera", "manzana")
+frutas
+```
+
+--
+
+```{r }
+cantidad_frutas <- c(3, 1, 4)
+cantidad_frutas
+```
+
+---
+
+# Vectores
+
+--
+
+- Qué sucede si mezclamos números con caracteres en un vector?
+
+```{r }
+mix <- c("Paula", 1, "Roberto")
+mix
+```
+
+--
+
+- Con los vectores al igual que con tipos de datos más básicos es importante saber su clase.
+
+```{r }
+class(mix)
+```
+
+--
+
+- Otra función útil es la función `str()`,
+
+```{r }
+str(mix)
+```
+
+---
+
+# Vectores
+
+--
+
+- Los vectores también permiten operaciones aritméticas. Por ejemplo:
+
+--
+
+```{r }
+cantidad_frutas_para_1_persona <- c(3, 1, 4)
+cantidad_frutas_para_1_persona
+
+cantidad_frutas_para_2_persona <- cantidad_frutas_para_1_persona*2
+cantidad_frutas_para_2_persona
+```
+
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_pilar <- c(6, 2, 0)
+
+cantidad_frutas_jorge_y_pilar <- cantidad_frutas_jorge + cantidad_frutas_pilar
+cantidad_frutas_jorge_y_pilar
+```
+
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_pilar <- c(6, 2, 0, 5)
+
+cantidad_frutas_jorge_y_pilar <- cantidad_frutas_jorge + cantidad_frutas_pilar
+cantidad_frutas_jorge_y_pilar
+```
+- Saber el largo de un vector es muy importante para que no sucedan situaciones como la anterior.
+
+```{r }
+length(cantidad_frutas_jorge)
+length(cantidad_frutas_pilar)
+```
+
+- Mini ejercicio: como podriamos verificar que el largo de los dos vectores anteriores es el mismo? *Recuerde los operadores lógicos*.
+
+--
+
+```{r }
+length(cantidad_frutas_jorge) == length(cantidad_frutas_pilar)
+```
+
+--
+
+- Dado que la cantidad de frutas de Pilar es mayor, agreguemos un número más al vector de Jorge. Primero recordemos que:
+
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_jorge
+```
+
+--
+
+```{r }
+cantidad_frutas_jorge <- c(cantidad_frutas_jorge, 2)
+cantidad_frutas_jorge
+```
+
+--
+
+- También si se requiere, se puede agregar un valor al comienzo de la siguiente forma:
+
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_jorge
+
+cantidad_frutas_jorge <- c(2, cantidad_frutas_jorge)
+cantidad_frutas_jorge
+```
+
+--
+
+```{r }
+numero <- 1
+is.vector(numero)
+
+```
+
+---
+
+# Generacion de vectores
+
+1. Utilizando la función `c()`.
+
+2. Utilizando el operador $:$.
+
+```{r }
+del_1_20 <- 1:20
+del_1_20
+
+```
+3. Utilizando la función `seq()`.
+
+```{r }
+del_1_20_seq <- seq(from=1, to=20, by=1)
+del_1_20_seq
+
+del_1_20_seq <- seq(1,20,1)
+del_1_20_seq
+```
+
+---
+
+# Indexación
+
+
+
+---
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

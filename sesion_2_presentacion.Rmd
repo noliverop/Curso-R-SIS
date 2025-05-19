@@ -1,0 +1,612 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Sesión 2"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Curso Capacitación en R 
+
+## Sesión 2 
+
+## Más estructuras de datos e introducción a bases de datos
+
+### Mayo 2025
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Repaso sesión 1
+
+--
+
+- ¿Es lo mismo R y R Studio?
+
+--
+
+- ¿Qué tipos de datos podemos utilizar en R?
+
+--
+
+- ¿Para qué sirve la función `class()`?
+
+--
+
+- ¿Cómo accedo a la documentación sobre una determinada función?
+
+--
+
+- ¿Cuál es la utilidad de utilizar scripts en vez de la consola directamente?
+
+--
+
+- ¿Cual es el operador de asignación en R?
+
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Mini ejercicios
+
+--
+
+La fuerza asociada a un objeto en física se calcula mediante la siguiente fórmula: $F = m*a$ donde $F$ es la fuerza ejercida, $m$ es la masa del objeto y $a$ corresponde a la aceleración del objeto.
+
+--
+
+1. Asigne a un objeto el nombre `masa` el valor $12$ y a un objeto llamado `acelaracion` el valor $3$.
+
+--
+
+2. Asigne a un objeto llamado `fuerza` el valor de la multiplicación de los objetos masa y aceleración. Imprima el objeto.
+
+--
+
+3. Modifique el objeto `aceleracion` para que tenga valor $-4$, es decir, ahora acelera hacia el sentido contrario. Imprima el resultado de la fuerza.
+
+--
+
+4. Su compañero o compañera le dice que en vez de escribir `fuerza`, escribió un objeto de la forma `fuerza del objeto` y R le tira un error. Expliqué el error.
+
+--
+
+5. A otro compañero/a le salió bien el ejercicio pero escribió el objeto aceleración como `Aceleración_Del_Objeto`. Explique los errores.
+
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Vectores
+
+--
+
+- Los vectores son la estructura de datos más común en el lenguaje R. 
+
+--
+
+- En palabras sencillas son meramente una lista de valores, ya sean números o caracteres.
+
+--
+
+- Los vectores se crean con la función `c()` que significa combinar valores en un vector.
+
+
+```{r }
+frutas <- c("uva", "pera", "manzana")
+frutas
+```
+
+--
+
+```{r }
+cantidad_frutas <- c(3, 1, 4)
+cantidad_frutas
+```
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Vectores
+
+--
+
+- ¿Qué sucede si mezclamos números con caracteres en un vector?
+
+```{r }
+mix <- c("Paula", 1, "Roberto")
+mix
+```
+
+--
+
+- Con los vectores al igual que con tipos de datos más básicos es importante saber su clase.
+
+```{r }
+class(mix)
+```
+
+--
+
+- Otra función útil es la función `str()`,
+
+```{r }
+str(mix)
+```
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Vectores
+
+--
+
+- Los vectores también permiten operaciones aritméticas. Por ejemplo:
+
+--
+
+```{r }
+cantidad_frutas_para_1_persona <- c(3, 1, 4)
+cantidad_frutas_para_1_persona
+
+cantidad_frutas_para_2_persona <- cantidad_frutas_para_1_persona*2
+cantidad_frutas_para_2_persona
+```
+--
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_pilar <- c(6, 2, 0)
+
+cantidad_frutas_jorge_y_pilar <- cantidad_frutas_jorge + cantidad_frutas_pilar
+cantidad_frutas_jorge_y_pilar
+```
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Vectores
+
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_pilar <- c(6, 2, 0, 5)
+
+cantidad_frutas_jorge_y_pilar <- cantidad_frutas_jorge + cantidad_frutas_pilar
+cantidad_frutas_jorge_y_pilar
+```
+--
+**Saber el largo de un vector es muy importante para que no sucedan situaciones como la anterior.**
+--
+```{r }
+length(cantidad_frutas_jorge)
+length(cantidad_frutas_pilar)
+```
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Vectores
+
+--
+**Mini ejercicio:** como podriamos verificar que el largo de los dos vectores anteriores es el mismo? *Recuerde los operadores lógicos*.
+
+--
+
+```{r }
+length(cantidad_frutas_jorge) == length(cantidad_frutas_pilar)
+```
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Vectores
+
+--
+
+Dado que la cantidad de frutas de Pilar es mayor, agreguemos un número más al vector de Jorge. Primero recordemos que:
+
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_jorge
+```
+
+--
+
+```{r }
+cantidad_frutas_jorge <- c(cantidad_frutas_jorge, 2)
+cantidad_frutas_jorge
+```
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Vectores
+
+También, si se requiere, se puede agregar un valor al comienzo de la siguiente forma:
+
+```{r }
+cantidad_frutas_jorge <- c(5, 1, 4)
+cantidad_frutas_jorge
+
+cantidad_frutas_jorge <- c(2, cantidad_frutas_jorge)
+cantidad_frutas_jorge
+```
+
+--
+
+Prácticamente **todo** es un vector...
+
+--
+
+```{r }
+numero <- 1
+is.vector(numero)
+
+```
+
+---
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Generacion de vectores
+
+--
+1. Utilizando la función `c()`.
+
+--
+
+2. Utilizando el operador `:`.
+
+```{r }
+del_1_20 <- 1:20
+del_1_20
+
+```
+--
+
+3. Utilizando la función `seq()`.
+
+```{r }
+del_1_20_seq <- seq(from=1, to=20, by=1)
+del_1_20_seq
+
+del_1_20_seq <- seq(1,20,1)
+del_1_20_seq
+```
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación
+
+--
+
+¿Han notado que al imprimir (o *printear*) un vector aparecen números en `[ ]`?
+
+--
+
+```{r }
+del_1_50 <- 1:50
+del_1_50
+```
+--
+
+En R y al igual que en la mayoría de lenguajes existe el proceso de **indexación** que permite aislar elementos de un vector u otras estructuras de datos semejantes. Esto sirve ya sea para inspecciones, modificar, etc.
+
+--
+
+```{r }
+del_1_50[25]
+```
+
+--
+
+**Importante:** La indexación en R comienza en $1$, algo **NO** trivial.
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación
+
+```{r }
+jugadores_tenis_favoritos <- c("Roger Federer", "Rafael Nadal", "Fernando González", "Marcelo Ríos", "Jannik Sinner",
+                               "Carlos Alcaraz")
+```
+
+--
+
+Formas de indexación
+
+--
+
+```{r }
+jugadores_tenis_favoritos[3]
+```
+
+--
+
+```{r }
+jugadores_chilenos <- jugadores_tenis_favoritos[c(3,4)]
+jugadores_chilenos
+```
+--
+
+```{r }
+jugadores_chilenos <- jugadores_tenis_favoritos[-c(1,2,5,6)]
+jugadores_chilenos
+```
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación
+
+--
+
+```{r }
+jugadores_tenis_favoritos == "Carlos Alcaraz"
+```
+--
+
+```{r }
+which(jugadores_tenis_favoritos == "Carlos Alcaraz")
+```
+--
+
+```{r }
+jugadores_tenis_favoritos[which(jugadores_tenis_favoritos == "Carlos Alcaraz")]
+```
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación
+Conozcamos el operador `%in%`.
+--
+```{r }
+jugadores_tenis_favoritos <- c("Roger Federer", "Rafael Nadal", "Fernando González", "Marcelo Ríos", "Jannik Sinner",
+                               "Carlos Alcaraz")
+jugadores_tenis_espanioles <- c("Rafael Nadal", "Carlos Alcaraz", "Fernando Verdasco")
+```
+
+¿Cuántos tenistas españoles son parte de mis jugadores favoritos?
+
+--
+
+```{r }
+jugadores_tenis_espanioles %in% jugadores_tenis_favoritos
+```
+
+--
+
+```{r }
+jugadores_tenis_espanioles[jugadores_tenis_espanioles %in% jugadores_tenis_favoritos]
+```
+
+--
+
+¿Cuántos de mis tenistas favoritos son de nacionalidad española?
+
+--
+
+```{r }
+jugadores_tenis_favoritos[jugadores_tenis_favoritos %in% jugadores_tenis_espanioles]
+```
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación
+
+--
+
+```{r }
+del_1_50 <- 1:50
+del_1_50
+```
+
+--
+
+Crear vector en base al objeto `del_1_50` que incluya solo aquellos números mayores a 25.
+
+--
+
+```{r }
+del_26_50 <- del_1_50[del_1_50 > 25]
+del_26_50
+```
+--
+
+Crear vector en base al objeto `del_1_50` que incluya solo aquellos números mayores a 25 **y** menores o iguales a 40.
+
+--
+
+```{r }
+del_26_40 <- del_1_50[del_1_50 > 25 & del_1_50 <= 40]
+del_26_40
+```
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación
+
+**Mini ejercicio 1:** genere un vector en base al objeto `del_1_50` que incluya sólo los números que son **pares**. Primero en responder tiene 5 décimas a sumarse a cualquier tarea. **Hint:** Recuerde la función `seq()` para generar vectores. 
+
+--
+
+```{r }
+vector_numeros_pares <- del_1_50[seq(2, length(del_1_50), 2)]
+vector_numeros_pares
+```
+--
+
+
+**Mini ejercicio 2:** genere un vector en base al objeto `del_1_50` que incluya sólo los números que son **impares** y también incluya el número 2.
+
+```{r }
+vector_numeros_impares_mas_dos <- del_1_50[c(seq(1, length(del_1_50), 2), 2)]
+vector_numeros_impares_mas_dos
+```
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Librerías y repositorios
+
+--
+
+Actualmente existen más de $22406$ paquetes disponibles en el repositorio de paquetes .pur[CRAN] creado por usuarios individuales, instituciones, investigadores, etc.
+
+--
+
+En el transcurso de la capacitación utilizaremos distintos paquetes o librerías que nos aportarán con una mayor cantidad y calidad de funciones y herramientas que el .pur[R base] no posee.
+
+--
+
+Para instalar una determinada librería se utiliza la función `install.packages()` de la siguiente manera:
+
+--
+
+```{r eval=FALSE}
+install.packages("guaguas") # para instalar se deben utilizar las comillas!
+```
+
+--
+
+Si todo funciona bien, veremos la librería en la pestaña .pur[packages] en la zona de utilidades de R Studio. ¿La encuentran?
+
+--
+
+Pero... luego de instalar, ¿esto quiere decir que ya podemos utilizar las funcionalidades de la librería? 
+--
+.red[**NO**]. 
+--
+Para utilizar o cargar una librería se debe correr el comando o función `library()` de la siguiente manera:
+
+```{r eval=FALSE}
+library(guaguas) # para cargar una librería ya no necesitamos las comillas!
+```
+
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Introducción a bases de datos
+
+--
+
+En honor al trabajo nacional, exploraremos una base de datos creada por Riva Quiroga, lingüista chilena y activa participante de LatinR y R-Ladies. Este paquete se llama `guaguas` ya instalado al principio de la sesión. 
+
+--
+
+Dado que ya instalamos el paquete, ahora **solo debemos cargarlo**. 
+
+```{r eval=FALSE}
+library("guaguas")
+```
+
+--
+
+Este paquete consiste en proveer *Datos sobre nombres de guaguas (bebés) registrados en Chile entre 1920 y 2021, según el Servicio de Registro Civil e Identificación. Incluye solo los que fueron inscritos como primer nombre. Este dataset permite explorar tendencias en los nombres registrados durante el último siglo y puede utilizarse como fuente de ejemplos para aprender/enseñar a trabajar con datos.*
+
+
+---
+
+background-image: url("imagenes/bg.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Introducción a bases de datos
+
+Exploremos la base `guaguas` con las siguientes funciones:
+
+--
+
+- `view()`
+
+--
+
+- `str()`
+
+--
+
+- `class`
+
+--
+
+- `dim()`
+
+--
+
+- Operador `$`

@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-05-12" />
+    <script src="sesion_1_presentacion_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="sesion_1_presentacion_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="sesion_1_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="sesion_1_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="sesion_1_presentacion_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="sesion_1_presentacion_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="sesion_1_presentacion_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="sesion_1_presentacion_files/editable-0.2.6/editable.js"></script>
+    <link href="sesion_1_presentacion_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+    <script src="sesion_1_presentacion_files/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="sesion_1_presentacion_files/plotly-binding-4.10.4/plotly.js"></script>
+    <script src="sesion_1_presentacion_files/typedarray-0.1/typedarray.min.js"></script>
+    <script src="sesion_1_presentacion_files/jquery-3.5.1/jquery.min.js"></script>
+    <link href="sesion_1_presentacion_files/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="sesion_1_presentacion_files/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+    <link href="sesion_1_presentacion_files/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="sesion_1_presentacion_files/plotly-main-2.11.1/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Curso Capacitación en R 
+
+## Sesión 1 
+
+## Reglas del juego y nociones iniciales de R y R Studio
+
+### Mayo 2025
+
+
+
+
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+
+
+--
+&lt;br/&gt;
+Bienvenidos a la primera sesión del curso **Introducción a R**. 😄
+
+--
+
+Mi nombre es **Nicolás Olivero** y seré su tutor en este curso.
+
+--
+
+Por favor, cualquier duda, sugerencia, comentario y/o crítica enviar un correo a **nolivero@superdesalud.gob.cl** o hablarme por Teams.
+
+--
+
+.medium-par[Este **ambicioso** curso busca:]
+
+--
+
+.medium-par[*Entregar las nociones básicas en materia de procesos de .red[carga], .red[limpieza], .red[manipulación] y .red[visualización] de bases de datos mediante la utilización de las librerías más relevantes como **dplyr**, **ggplot2** y **R Markdown.** *] 
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Reglas del juego
+
+--
+
+Carácteristicas del curso:
+
+--
+
+- 9 sesiones de 1 hora y media los días jueves de 11 a 12:30 horas.
+
+--
+
+- Las clases utilizarán una presentación y si es que realizamos ejercicios se compartirá el script correspondiente.
+
+--
+
+- Al final de todas las clases (con excepción de la primera) se entregará una tarea que debe ser entregar antes de la siguiente clase. 
+--
+
+- Se puede faltar un máximo de 1 clase sin justificación y 2 con justificación (correo con copia a jefatura). Tres inasistencias significará reprobación.
+
+--
+
+- La principal ventaja de tomar este curso es que tiene como objetivo que cada uno de ustedes sea capaz de **automatizar** algun proceso asociado en su trabajo del día a día. A esto lo llamaremos **Proyecto en R**.
+
+--
+
+- Dado lo anterior, para poder aprobar el curso se deben cumplir **tres** condiciones: cumplir la asistencia requerida, aprobar en promedio las tareas entregadas y realizar el proyecto en R.
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Proyecto en R
+
+--
+
+El proyecto en R tiene dos objetivos:
+
+--
+
+1. *Forzar* a que mantengan el uso constante de R para la resolución de tareas.
+
+--
+
+2. Demostrar en la práctica cómo la utilización de R permite generar procesos más eficientes de trabajo.
+
+--
+
+Tendrán desde hoy hasta la próxima semana para definir un proyecto donde se deben especificar las siguientes características:
+
+--
+
+- Breve descripción de la tarea y cómo actualmente se realiza.
+
+--
+
+- Cantidad de tiempo que requiere esta tarea.
+
+--
+
+- Propuesta de solución (a grandes rasgos).
+
+--
+
+- Luego de generar la propuesta de solución (al final del curso) calcular la ganancia en productividad.
+
+--
+
+.medium-par[**Consejo:** A pesar que este es un curso introductorio... ¡sean **ambiciosos** con su proyecto! 😎]
+
+
+---
+
+background-image: url("imagenes/bg.PNG")
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+.big-par[¿Dudas hasta el momento?]
+
+--
+
+.big-par[¿Qué saben de R? ¿Por qué lo necesitan? 🤓]
+
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# ¿Qué es R?
+
+--
+
+**R** es un lenguaje de programación con enfoque al análisis estadístico desarrollado por investigadores de la Universidad de Auckland en 1993.
+
+--
+
+## ¿Por qué (utilizar) R?
+
+--
+
+- Es gratuito, de código abierto y está disponible en todas las plataformas principales. Por lo tanto, si realiza su análisis en R, cualquiera puede replicarlo fácilmente, sin importar dónde viva o cuánto gane.
+
+--
+
+- **R** tiene una comunidad diversa y acogedora tanto online como reuniones presenciales.
+
+--
+
+- Existe una cantidad **enorme** de paquetes para modelado estadístico, aprendizaje de máquinas, visualización, e importanción y manipulación de datos. Cualquier modelo o gráfico que se busque hacer, **seguramente** alguien ya ha tratado de hacerlo y se puede aprender de ellos.
+
+--
+
+- Potentes herramientas para la comunicación y difusión de resultados como **R Markdown** y **Shiny**.
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+## ¿Por qué (utilizar) R? (continuación)
+
+- Herramientas de vanguardia donde investigadores de diversos ámbitos pueden publicar paquetes en R acompañando sus artículos y papers.
+
+--
+
+- **R** cuenta con un IDE (*integrated development environment*) construido a su medida (R Studio), facilitando su uso y manejo.
+
+--
+
+En mi visión personal:
+
+--
+
+- **R** es un lenguaje que cumple con todos los requisitos que necesita un analista para manejar profundamente datos e información.
+
+--
+
+- Posee una curva de aprendizaje muy abordable. No se necesita ser ni informático ni tener experiencia previa en programación para aprenderlo.
+
+--
+
+- Las herramientas de visualización y de difusión de información en R son de **muy alto nivel**.
+
+--
+
+Pero... **mejor mostrarles algunos casos para que me crean** 😇
+
+---
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de visualización
+&lt;br/&gt;
+
+--
+
+.pull-left[&lt;img src="imagenes/ej_sepal.PNG" width="350"/&gt;]
+
+--
+
+.pull-right[&lt;img src="imagenes/viridis.png" height="300" width="400"/&gt;]
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Más visualización...
+&lt;br/&gt;
+
+--
+
+.pull-left[&lt;img src="imagenes/ej_japon.gif" width="350"/&gt;]
+
+--
+
+.pull-right[&lt;img src="imagenes/ej_gapminder.gif" height="300" width="400"/&gt;]
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Maaaaaás visualización...
+&lt;br/&gt;
+
+--
+
+
+
+
+.center[<div class="plotly html-widget html-fill-item" id="htmlwidget-ab8ffc758f13a2611a3d" style="width:100%;height:400px;"></div>
+<script type="application/json" data-for="htmlwidget-ab8ffc758f13a2611a3d">{"x":{"data":[{"x":[2014,5581,691,278,9270,2602,1107,1463,3820,6223,1056,1328,824,1045,1545,2042,1217,759,620,4797,470,1712,1043,1271,7093,1704,943,926,863,430,1441,863,12057,883,641,706,3633,1803,415,4811,1569,753,12570,579,13206,10957,4513,7670,986,12154,2082,1598],"y":[46.899999999999999,71.299999999999997,52.899999999999999,46.5,49.299999999999997,58.600000000000001,52.5,54.100000000000001,71.200000000000003,72.299999999999997,51.5,60,42.100000000000001,59.399999999999999,48.299999999999997,50.399999999999999,52.299999999999997,48.299999999999997,56.899999999999999,42.700000000000003,43.5,63.100000000000001,54.5,42.399999999999999,73.900000000000006,50.700000000000003,56,48.200000000000003,46.200000000000003,49.600000000000001,56.700000000000003,42.600000000000001,74,58.399999999999999,58,44.700000000000003,55.299999999999997,64.200000000000003,45.700000000000003,52.899999999999999,42.600000000000001,59.399999999999999,50.700000000000003,46.399999999999999,56.700000000000003,72.799999999999997,39.600000000000001,76.400000000000006,65.200000000000003,51.600000000000001,54.799999999999997,65.5],"text":["Country: Nigeria<br />Population (M): 135.03<br />Life Expectancy: 46.9<br />Gdp per capita: 2014","Country: Egypt<br />Population (M): 80.26<br />Life Expectancy: 71.3<br />Gdp per capita: 5581","Country: Ethiopia<br />Population (M): 76.51<br />Life Expectancy: 52.9<br />Gdp per capita: 691","Country: Congo, Dem. Rep.<br />Population (M): 64.61<br />Life Expectancy: 46.5<br />Gdp per capita: 278","Country: South Africa<br />Population (M): 44<br />Life Expectancy: 49.3<br />Gdp per capita: 9270","Country: Sudan<br />Population (M): 42.29<br />Life Expectancy: 58.6<br />Gdp per capita: 2602","Country: Tanzania<br />Population (M): 38.14<br />Life Expectancy: 52.5<br />Gdp per capita: 1107","Country: Kenya<br />Population (M): 35.61<br />Life Expectancy: 54.1<br />Gdp per capita: 1463","Country: Morocco<br />Population (M): 33.76<br />Life Expectancy: 71.2<br />Gdp per capita: 3820","Country: Algeria<br />Population (M): 33.33<br />Life Expectancy: 72.3<br />Gdp per capita: 6223","Country: Uganda<br />Population (M): 29.17<br />Life Expectancy: 51.5<br />Gdp per capita: 1056","Country: Ghana<br />Population (M): 22.87<br />Life Expectancy: 60<br />Gdp per capita: 1328","Country: Mozambique<br />Population (M): 19.95<br />Life Expectancy: 42.1<br />Gdp per capita: 824","Country: Madagascar<br />Population (M): 19.17<br />Life Expectancy: 59.4<br />Gdp per capita: 1045","Country: Cote d'Ivoire<br />Population (M): 18.01<br />Life Expectancy: 48.3<br />Gdp per capita: 1545","Country: Cameroon<br />Population (M): 17.7<br />Life Expectancy: 50.4<br />Gdp per capita: 2042","Country: Burkina Faso<br />Population (M): 14.33<br />Life Expectancy: 52.3<br />Gdp per capita: 1217","Country: Malawi<br />Population (M): 13.33<br />Life Expectancy: 48.3<br />Gdp per capita: 759","Country: Niger<br />Population (M): 12.89<br />Life Expectancy: 56.9<br />Gdp per capita: 620","Country: Angola<br />Population (M): 12.42<br />Life Expectancy: 42.7<br />Gdp per capita: 4797","Country: Zimbabwe<br />Population (M): 12.31<br />Life Expectancy: 43.5<br />Gdp per capita: 470","Country: Senegal<br />Population (M): 12.27<br />Life Expectancy: 63.1<br />Gdp per capita: 1712","Country: Mali<br />Population (M): 12.03<br />Life Expectancy: 54.5<br />Gdp per capita: 1043","Country: Zambia<br />Population (M): 11.75<br />Life Expectancy: 42.4<br />Gdp per capita: 1271","Country: Tunisia<br />Population (M): 10.28<br />Life Expectancy: 73.9<br />Gdp per capita: 7093","Country: Chad<br />Population (M): 10.24<br />Life Expectancy: 50.7<br />Gdp per capita: 1704","Country: Guinea<br />Population (M): 9.95<br />Life Expectancy: 56<br />Gdp per capita: 943","Country: Somalia<br />Population (M): 9.12<br />Life Expectancy: 48.2<br />Gdp per capita: 926","Country: Rwanda<br />Population (M): 8.86<br />Life Expectancy: 46.2<br />Gdp per capita: 863","Country: Burundi<br />Population (M): 8.39<br />Life Expectancy: 49.6<br />Gdp per capita: 430","Country: Benin<br />Population (M): 8.08<br />Life Expectancy: 56.7<br />Gdp per capita: 1441","Country: Sierra Leone<br />Population (M): 6.14<br />Life Expectancy: 42.6<br />Gdp per capita: 863","Country: Libya<br />Population (M): 6.04<br />Life Expectancy: 74<br />Gdp per capita: 12057","Country: Togo<br />Population (M): 5.7<br />Life Expectancy: 58.4<br />Gdp per capita: 883","Country: Eritrea<br />Population (M): 4.91<br />Life Expectancy: 58<br />Gdp per capita: 641","Country: Central African Republic<br />Population (M): 4.37<br />Life Expectancy: 44.7<br />Gdp per capita: 706","Country: Congo, Rep.<br />Population (M): 3.8<br />Life Expectancy: 55.3<br />Gdp per capita: 3633","Country: Mauritania<br />Population (M): 3.27<br />Life Expectancy: 64.2<br />Gdp per capita: 1803","Country: Liberia<br />Population (M): 3.19<br />Life Expectancy: 45.7<br />Gdp per capita: 415","Country: Namibia<br />Population (M): 2.06<br />Life Expectancy: 52.9<br />Gdp per capita: 4811","Country: Lesotho<br />Population (M): 2.01<br />Life Expectancy: 42.6<br />Gdp per capita: 1569","Country: Gambia<br />Population (M): 1.69<br />Life Expectancy: 59.4<br />Gdp per capita: 753","Country: Botswana<br />Population (M): 1.64<br />Life Expectancy: 50.7<br />Gdp per capita: 12570","Country: Guinea-Bissau<br />Population (M): 1.47<br />Life Expectancy: 46.4<br />Gdp per capita: 579","Country: Gabon<br />Population (M): 1.45<br />Life Expectancy: 56.7<br />Gdp per capita: 13206","Country: Mauritius<br />Population (M): 1.25<br />Life Expectancy: 72.8<br />Gdp per capita: 10957","Country: Swaziland<br />Population (M): 1.13<br />Life Expectancy: 39.6<br />Gdp per capita: 4513","Country: Reunion<br />Population (M): 0.8<br />Life Expectancy: 76.4<br />Gdp per capita: 7670","Country: Comoros<br />Population (M): 0.71<br />Life Expectancy: 65.2<br />Gdp per capita: 986","Country: Equatorial Guinea<br />Population (M): 0.55<br />Life Expectancy: 51.6<br />Gdp per capita: 12154","Country: Djibouti<br />Population (M): 0.5<br />Life Expectancy: 54.8<br />Gdp per capita: 2082","Country: Sao Tome and Principe<br />Population (M): 0.2<br />Life Expectancy: 65.5<br />Gdp per capita: 1598"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(68,1,84,1)","opacity":0.69999999999999996,"size":[26.563257959966595,21.682933162225595,21.294439274052486,19.993800414329737,17.415465285445308,17.176439505814113,16.575312518226415,16.192590463440961,15.904001912288507,15.835793370179923,15.151582505337938,14.013802290221911,13.43269861908694,13.270313071236298,13.022511212708375,12.954931641370955,12.177615642717408,11.929468900402734,11.81729579651136,11.695304531173916,11.666416286511661,11.655878960789829,11.592284955470662,11.517271015310156,11.107596772948085,11.096045106748161,11.011597922703537,10.762705476074075,10.68237613566288,10.534042866766962,10.43386486305041,9.7561861206366629,9.7184437061150621,9.5876401292297544,9.2671324970057452,9.032284576359304,8.7672176768208097,8.5011727733892641,8.4590747650733693,7.7897840986939073,7.7559740759860061,7.527517482601854,7.4896775444485151,7.3558404095865013,7.3395199810551031,7.1685278416906453,7.0580063494777265,6.7103602807203897,6.5996119457744395,6.375134306688472,6.2947384480143782,5.2913385826771648],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(68,1,84,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[42952,9066,11978,7007,12779,36319,7409,11416,13172,6873,5186,8948,6025,3822,1202,3548,5728,4173,2749,9645,19329,10611,9809,7321,18009],"y":[78.200000000000003,72.400000000000006,76.200000000000003,72.900000000000006,75.299999999999997,80.700000000000003,71.400000000000006,73.700000000000003,78.599999999999994,75,70.299999999999997,78.299999999999997,72.200000000000003,65.599999999999994,60.899999999999999,70.200000000000003,71.900000000000006,71.799999999999997,72.900000000000006,78.799999999999997,78.700000000000003,76.400000000000006,75.5,72.599999999999994,69.799999999999997],"text":["Country: United States<br />Population (M): 301.14<br />Life Expectancy: 78.2<br />Gdp per capita: 42952","Country: Brazil<br />Population (M): 190.01<br />Life Expectancy: 72.4<br />Gdp per capita: 9066","Country: Mexico<br />Population (M): 108.7<br />Life Expectancy: 76.2<br />Gdp per capita: 11978","Country: Colombia<br />Population (M): 44.23<br />Life Expectancy: 72.9<br />Gdp per capita: 7007","Country: Argentina<br />Population (M): 40.3<br />Life Expectancy: 75.3<br />Gdp per capita: 12779","Country: Canada<br />Population (M): 33.39<br />Life Expectancy: 80.7<br />Gdp per capita: 36319","Country: Peru<br />Population (M): 28.67<br />Life Expectancy: 71.4<br />Gdp per capita: 7409","Country: Venezuela<br />Population (M): 26.08<br />Life Expectancy: 73.7<br />Gdp per capita: 11416","Country: Chile<br />Population (M): 16.28<br />Life Expectancy: 78.6<br />Gdp per capita: 13172","Country: Ecuador<br />Population (M): 13.76<br />Life Expectancy: 75<br />Gdp per capita: 6873","Country: Guatemala<br />Population (M): 12.57<br />Life Expectancy: 70.3<br />Gdp per capita: 5186","Country: Cuba<br />Population (M): 11.42<br />Life Expectancy: 78.3<br />Gdp per capita: 8948","Country: Dominican Republic<br />Population (M): 9.32<br />Life Expectancy: 72.2<br />Gdp per capita: 6025","Country: Bolivia<br />Population (M): 9.12<br />Life Expectancy: 65.6<br />Gdp per capita: 3822","Country: Haiti<br />Population (M): 8.5<br />Life Expectancy: 60.9<br />Gdp per capita: 1202","Country: Honduras<br />Population (M): 7.48<br />Life Expectancy: 70.2<br />Gdp per capita: 3548","Country: El Salvador<br />Population (M): 6.94<br />Life Expectancy: 71.9<br />Gdp per capita: 5728","Country: Paraguay<br />Population (M): 6.67<br />Life Expectancy: 71.8<br />Gdp per capita: 4173","Country: Nicaragua<br />Population (M): 5.68<br />Life Expectancy: 72.9<br />Gdp per capita: 2749","Country: Costa Rica<br />Population (M): 4.13<br />Life Expectancy: 78.8<br />Gdp per capita: 9645","Country: Puerto Rico<br />Population (M): 3.94<br />Life Expectancy: 78.7<br />Gdp per capita: 19329","Country: Uruguay<br />Population (M): 3.45<br />Life Expectancy: 76.4<br />Gdp per capita: 10611","Country: Panama<br />Population (M): 3.24<br />Life Expectancy: 75.5<br />Gdp per capita: 9809","Country: Jamaica<br />Population (M): 2.78<br />Life Expectancy: 72.6<br />Gdp per capita: 7321","Country: Trinidad and Tobago<br />Population (M): 1.06<br />Life Expectancy: 69.8<br />Gdp per capita: 18009"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(59,82,139,1)","opacity":0.69999999999999996,"size":[37.071300274493503,30.530385772108716,24.373531410793372,17.44725635799373,16.89207601891016,15.845337304661243,15.066122027751748,14.610901551499989,12.637431770969043,12.037290724302162,11.734488861413897,11.427684583105821,10.823703647336728,10.762705476074075,10.56913285206582,10.234207584058042,10.047355155739783,9.951120067088576,9.5798215576065981,8.9230362429786734,8.834159597865332,8.5939318524758619,8.4854510420136435,8.2338846047344489,6.9902183206147992],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(59,82,139,1)"}},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4959,2452,3541,2606,1391,31656,3190,2442,11606,7458,23348,944,975,1091,21655,4471,12452,1593,28718,2281,3970,4185,1714,39725,25523,4519,47143,3025,10461,22316,3096,47307,29796],"y":[73,64.700000000000003,70.700000000000003,65.5,64.099999999999994,82.599999999999994,71.700000000000003,74.200000000000003,71,70.599999999999994,78.599999999999994,62.100000000000001,43.799999999999997,63.799999999999997,72.799999999999997,59.5,74.200000000000003,67.299999999999997,78.400000000000006,62.700000000000003,72.400000000000006,74.099999999999994,59.700000000000003,82.200000000000003,80.700000000000003,72.5,80,73.400000000000006,72,75.599999999999994,66.799999999999997,77.599999999999994,75.599999999999994],"text":["Country: China<br />Population (M): 1318.68<br />Life Expectancy: 73<br />Gdp per capita: 4959","Country: India<br />Population (M): 1110.4<br />Life Expectancy: 64.7<br />Gdp per capita: 2452","Country: Indonesia<br />Population (M): 223.55<br />Life Expectancy: 70.7<br />Gdp per capita: 3541","Country: Pakistan<br />Population (M): 169.27<br />Life Expectancy: 65.5<br />Gdp per capita: 2606","Country: Bangladesh<br />Population (M): 150.45<br />Life Expectancy: 64.1<br />Gdp per capita: 1391","Country: Japan<br />Population (M): 127.47<br />Life Expectancy: 82.6<br />Gdp per capita: 31656","Country: Philippines<br />Population (M): 91.08<br />Life Expectancy: 71.7<br />Gdp per capita: 3190","Country: Vietnam<br />Population (M): 85.26<br />Life Expectancy: 74.2<br />Gdp per capita: 2442","Country: Iran<br />Population (M): 69.45<br />Life Expectancy: 71<br />Gdp per capita: 11606","Country: Thailand<br />Population (M): 65.07<br />Life Expectancy: 70.6<br />Gdp per capita: 7458","Country: Korea, Rep.<br />Population (M): 49.04<br />Life Expectancy: 78.6<br />Gdp per capita: 23348","Country: Myanmar<br />Population (M): 47.76<br />Life Expectancy: 62.1<br />Gdp per capita: 944","Country: Afghanistan<br />Population (M): 31.89<br />Life Expectancy: 43.8<br />Gdp per capita: 975","Country: Nepal<br />Population (M): 28.9<br />Life Expectancy: 63.8<br />Gdp per capita: 1091","Country: Saudi Arabia<br />Population (M): 27.6<br />Life Expectancy: 72.8<br />Gdp per capita: 21655","Country: Iraq<br />Population (M): 27.5<br />Life Expectancy: 59.5<br />Gdp per capita: 4471","Country: Malaysia<br />Population (M): 24.82<br />Life Expectancy: 74.2<br />Gdp per capita: 12452","Country: Korea, Dem. Rep.<br />Population (M): 23.3<br />Life Expectancy: 67.3<br />Gdp per capita: 1593","Country: Taiwan<br />Population (M): 23.17<br />Life Expectancy: 78.4<br />Gdp per capita: 28718","Country: Yemen, Rep.<br />Population (M): 22.21<br />Life Expectancy: 62.7<br />Gdp per capita: 2281","Country: Sri Lanka<br />Population (M): 20.38<br />Life Expectancy: 72.4<br />Gdp per capita: 3970","Country: Syria<br />Population (M): 19.31<br />Life Expectancy: 74.1<br />Gdp per capita: 4185","Country: Cambodia<br />Population (M): 14.13<br />Life Expectancy: 59.7<br />Gdp per capita: 1714","Country: Hong Kong, China<br />Population (M): 6.98<br />Life Expectancy: 82.2<br />Gdp per capita: 39725","Country: Israel<br />Population (M): 6.43<br />Life Expectancy: 80.7<br />Gdp per capita: 25523","Country: Jordan<br />Population (M): 6.05<br />Life Expectancy: 72.5<br />Gdp per capita: 4519","Country: Singapore<br />Population (M): 4.55<br />Life Expectancy: 80<br />Gdp per capita: 47143","Country: West Bank and Gaza<br />Population (M): 4.02<br />Life Expectancy: 73.4<br />Gdp per capita: 3025","Country: Lebanon<br />Population (M): 3.92<br />Life Expectancy: 72<br />Gdp per capita: 10461","Country: Oman<br />Population (M): 3.2<br />Life Expectancy: 75.6<br />Gdp per capita: 22316","Country: Mongolia<br />Population (M): 2.87<br />Life Expectancy: 66.8<br />Gdp per capita: 3096","Country: Kuwait<br />Population (M): 2.51<br />Life Expectancy: 77.6<br />Gdp per capita: 47307","Country: Bahrain<br />Population (M): 0.71<br />Life Expectancy: 75.6<br />Gdp per capita: 29796"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(33,144,140,1)","opacity":0.69999999999999996,"size":[71.811023622047244,66.331267970200471,32.669633000434082,29.111608995325685,27.746731126284608,25.958290692071074,22.755493301536205,22.187035106435133,20.536193650949933,20.046207650959818,18.094028845771181,17.92514837240746,15.604089552949251,15.105526274666035,14.880678034969902,14.863163245093681,14.381203626387496,14.096136667325258,14.071326305857303,13.885894318255705,13.520848861207575,13.299701658714087,12.12870680598726,10.061447087580115,9.8638777515259601,9.7222324146590786,9.1121714371084721,8.8718502439151585,8.8246741162782882,8.4643675610489932,8.2847681340200303,8.075660211214764,6.5996119457744395],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(33,144,140,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[32170,8458,30470,33203,28570,28821,15390,10808,36798,27538,20510,33693,22833,9787,18009,33860,36126,37506,10681,35278,18678,33207,49357,7446,14619,40676,5937,25768,9254,36181],"y":[79.400000000000006,71.799999999999997,80.700000000000003,79.400000000000006,80.5,80.900000000000006,75.599999999999994,72.5,79.799999999999997,79.5,78.099999999999994,79.400000000000006,76.5,74,73.299999999999997,80.900000000000006,79.799999999999997,81.700000000000003,73,78.299999999999997,74.700000000000003,79.299999999999997,80.200000000000003,74.900000000000006,75.700000000000003,78.900000000000006,76.400000000000006,77.900000000000006,74.5,81.799999999999997],"text":["Country: Germany<br />Population (M): 82.4<br />Life Expectancy: 79.4<br />Gdp per capita: 32170","Country: Turkey<br />Population (M): 71.16<br />Life Expectancy: 71.8<br />Gdp per capita: 8458","Country: France<br />Population (M): 61.08<br />Life Expectancy: 80.7<br />Gdp per capita: 30470","Country: United Kingdom<br />Population (M): 60.78<br />Life Expectancy: 79.4<br />Gdp per capita: 33203","Country: Italy<br />Population (M): 58.15<br />Life Expectancy: 80.5<br />Gdp per capita: 28570","Country: Spain<br />Population (M): 40.45<br />Life Expectancy: 80.9<br />Gdp per capita: 28821","Country: Poland<br />Population (M): 38.52<br />Life Expectancy: 75.6<br />Gdp per capita: 15390","Country: Romania<br />Population (M): 22.28<br />Life Expectancy: 72.5<br />Gdp per capita: 10808","Country: Netherlands<br />Population (M): 16.57<br />Life Expectancy: 79.8<br />Gdp per capita: 36798","Country: Greece<br />Population (M): 10.71<br />Life Expectancy: 79.5<br />Gdp per capita: 27538","Country: Portugal<br />Population (M): 10.64<br />Life Expectancy: 78.1<br />Gdp per capita: 20510","Country: Belgium<br />Population (M): 10.39<br />Life Expectancy: 79.4<br />Gdp per capita: 33693","Country: Czech Republic<br />Population (M): 10.23<br />Life Expectancy: 76.5<br />Gdp per capita: 22833","Country: Serbia<br />Population (M): 10.15<br />Life Expectancy: 74<br />Gdp per capita: 9787","Country: Hungary<br />Population (M): 9.96<br />Life Expectancy: 73.3<br />Gdp per capita: 18009","Country: Sweden<br />Population (M): 9.03<br />Life Expectancy: 80.9<br />Gdp per capita: 33860","Country: Austria<br />Population (M): 8.2<br />Life Expectancy: 79.8<br />Gdp per capita: 36126","Country: Switzerland<br />Population (M): 7.55<br />Life Expectancy: 81.7<br />Gdp per capita: 37506","Country: Bulgaria<br />Population (M): 7.32<br />Life Expectancy: 73<br />Gdp per capita: 10681","Country: Denmark<br />Population (M): 5.47<br />Life Expectancy: 78.3<br />Gdp per capita: 35278","Country: Slovak Republic<br />Population (M): 5.45<br />Life Expectancy: 74.7<br />Gdp per capita: 18678","Country: Finland<br />Population (M): 5.24<br />Life Expectancy: 79.3<br />Gdp per capita: 33207","Country: Norway<br />Population (M): 4.63<br />Life Expectancy: 80.2<br />Gdp per capita: 49357","Country: Bosnia and Herzegovina<br />Population (M): 4.55<br />Life Expectancy: 74.9<br />Gdp per capita: 7446","Country: Croatia<br />Population (M): 4.49<br />Life Expectancy: 75.7<br />Gdp per capita: 14619","Country: Ireland<br />Population (M): 4.11<br />Life Expectancy: 78.9<br />Gdp per capita: 40676","Country: Albania<br />Population (M): 3.6<br />Life Expectancy: 76.4<br />Gdp per capita: 5937","Country: Slovenia<br />Population (M): 2.01<br />Life Expectancy: 77.9<br />Gdp per capita: 25768","Country: Montenegro<br />Population (M): 0.68<br />Life Expectancy: 74.5<br />Gdp per capita: 9254","Country: Iceland<br />Population (M): 0.3<br />Life Expectancy: 81.8<br />Gdp per capita: 36181"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(93,200,99,1)","opacity":0.69999999999999996,"size":[21.900561725072897,20.723267509556869,19.585238367843317,19.549976658545916,19.237032570609877,16.913752906271775,16.631680820833648,13.8995504136118,12.703378520811723,11.230358326530613,11.210547388219004,11.139246197839341,11.093153596469584,11.069969427753252,11.014530637246384,10.735033311005727,10.472873206727549,10.257914525828445,10.179588570516099,9.4968490538837784,9.4888613724637647,9.4040541901495303,9.1471454647842041,9.1121714371084721,9.0857293695558621,8.9137834950518009,8.6692858810521738,7.7559740759860061,6.5605501740258969,5.8706517650344381],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(93,200,99,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[34435,25185],"y":[81.200000000000003,80.200000000000003],"text":["Country: Australia<br />Population (M): 20.43<br />Life Expectancy: 81.2<br />Gdp per capita: 34435","Country: New Zealand<br />Population (M): 4.12<br />Life Expectancy: 80.2<br />Gdp per capita: 25185"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(253,231,37,1)","opacity":0.69999999999999996,"size":[13.531037685560968,8.9184128195124366],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(253,231,37,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":55.850560398505614,"r":39.850560398505614,"b":70.900788709007898,"l":70.900788709007898},"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":15.276048152760483},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2175.9500000000003,51810.949999999997],"tickmode":"array","ticktext":["0","10000","20000","30000","40000","50000"],"tickvals":[0,10000,20000,30000,40000,50000],"categoryorder":"array","categoryarray":["0","10000","20000","30000","40000","50000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.8190120381901207,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.276048152760483},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.26567040265670405,"zeroline":false,"anchor":"y","title":{"text":"gdpPercap","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.955168119551683}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[37.450000000000003,84.75],"tickmode":"array","ticktext":["40","50","60","70","80"],"tickvals":[40,50,60,70,80],"categoryorder":"array","categoryarray":["40","50","60","70","80"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.8190120381901207,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.276048152760483},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.26567040265670405,"zeroline":false,"anchor":"x","title":{"text":"lifeExp","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.955168119551683}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":12.220838522208389}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"61e078837bb5":{"x":{},"y":{},"size":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"61e078837bb5","visdat":{"61e078837bb5":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>]
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Reportería y difusión
+&lt;br/&gt;
+
+--
+
+.medium-par[Dashboards:]
+
+--
+
+- &lt;https://pkgs.rstudio.com/flexdashboard/articles/examples.html&gt;
+
+--
+
+.medium-par[Boletines de difusión oficiales:]
+
+--
+
+- &lt;https://www.ine.gob.cl/docs/default-source/índice-de-precios-al-consumidor/boletines/español/2025/boletin-índice-de-precios-al-consumidor-enero-2025.pdf?sfvrsn=47290d68_4&gt;
+
+- &lt;https://www.ine.gob.cl/docs/default-source/ocupacion-y-desocupacion/boletines/2025/nacional/ene-nacional-318.pdf?sfvrsn=51dfaa0f_5&gt;
+
+---
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Herramientas de productividad
+
+--
+
+.medium-par[OCR:]
+
+--
+
+- &lt;https://cran.r-project.org/web/packages/tesseract/vignettes/intro.html#Read_from_PDF_files&gt;
+
+--
+
+.medium-par[Otros:]
+
+--
+
+- Clasificación automatizada
+
+--
+
+- Script de limpieza y/o unión de diferentes bases
+
+--
+
+- Generación automatizada de presentaciones
+--
+ (*esta presentación está hecha en R* 😸)
+
+--
+
+- Otros
+
+
+
+---
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+class: center, middle
+
+.center[.big-par[**Importante:** R =/= R Studio]]
+
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+.big-par[Abramos RStudio]
+
+&lt;img src="https://media0.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.webp?cid=ecf05e4764sdgx6wh23uc6xzgr9hh8wm3mjv5c6lr2bqyejp&amp;rid=giphy.webp" width="300" /&gt;
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Interfaz R Studio
+
+.center[&lt;img src="imagenes/rstudio.PNG" width="1000" /&gt;]
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Formas de interactuar en R 
+&lt;br/&gt;
+--
+
+.medium-par[1- **Consola**]
+
+--
+
+&lt;br/&gt; .medium-par[2-  **Script**]
+
+--
+
+¿Se les ocurren razones para utilizar .pur[scripts] en vez de la consola?
+
+--
+
+&lt;br/&gt; .medium-par-red[Orden y reproducibilidad]
+
+--
+
+&lt;br/&gt; Para ejecutar código en *scripts* se puede utilizar el *shortcut* .pur[Ctrl + Enter].
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Primera interacción: R como calculadora
+
+
+```r
+10 + 7 # adición
+```
+
+```
+## [1] 17
+```
+--
+
+```r
+8 * 7 # multiplicación
+```
+
+```
+## [1] 56
+```
+--
+
+```r
+25 / 5 # división
+```
+
+```
+## [1] 5
+```
+--
+
+```r
+6 + 5 * 4 + 3     # sin utilizar paréntesis
+```
+
+```
+## [1] 29
+```
+
+```r
+(6 + 5) * (4 + 3) # utilizando paréntesis
+```
+
+```
+## [1] 77
+```
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Operadores aritméticos 1
+
+
+```r
+3 + 4      # adición
+```
+
+```
+## [1] 7
+```
+
+```r
+5 - 2      # sustracción
+```
+
+```
+## [1] 3
+```
+
+```r
+7 * 7      # multiplicación
+```
+
+```
+## [1] 49
+```
+
+```r
+56 / 8     # división
+```
+
+```
+## [1] 7
+```
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Operadores aritméticos 2
+
+
+```r
+4^3        # Exponenciación 1
+```
+
+```
+## [1] 64
+```
+
+```r
+4**3       # Exponenciación 2
+```
+
+```
+## [1] 64
+```
+
+```r
+56%%5      # ¿Qué hace?
+```
+
+```
+## [1] 1
+```
+
+```r
+10%/%4     # ¿Qué hace?
+```
+
+```
+## [1] 2
+```
+
+---
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+
+# Operadores de comparación 1
+&lt;br/&gt;&lt;br/&gt;
+
+```r
+3 == 3        # igualdad
+```
+
+```
+## [1] TRUE
+```
+
+```r
+3 != 3        # no igualdad
+```
+
+```
+## [1] FALSE
+```
+
+```r
+10 &gt; 14       # mayor a
+```
+
+```
+## [1] FALSE
+```
+
+---
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Operadores de comparación 2
+&lt;br/&gt;&lt;br/&gt;
+
+```r
+10 &lt; 14       # menor a
+```
+
+```
+## [1] TRUE
+```
+
+```r
+20 &gt;= 19      # mayor o igual a
+```
+
+```
+## [1] TRUE
+```
+
+```r
+19 &lt;= 19      # menor o igual a
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Operadores lógicos
+
+
+```r
+TRUE | TRUE       # O
+```
+
+```
+## [1] TRUE
+```
+
+```r
+TRUE | FALSE      # O
+```
+
+```
+## [1] TRUE
+```
+
+```r
+TRUE &amp; TRUE       # Y
+```
+
+```
+## [1] TRUE
+```
+
+```r
+TRUE &amp; FALSE      # Y
+```
+
+```
+## [1] FALSE
+```
+
+```r
+!FALSE             # NO
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Clases básicas de datos 
+
+1. `numeric`: cualquier número real, ie. .pur[1], .pur[3], .pur[4.5], `\(\pi\)`, etc.&lt;br/&gt;&lt;br/&gt;
+
+--
+2. `character`: cadena de caracteres o caracteres individuales, ie. .pur["Hola"], .pur["HoL"], .pur["H"], .pur["Hola buenos días"], .pur["78"] etc.&lt;br/&gt;&lt;br/&gt;
+
+--
+3. `integer`: cualquier número **entero**, ie. .pur[1], .pur[3], .pur[100], .pur[5420], etc.&lt;br/&gt;&lt;br/&gt;
+
+--
+4. `factor`: variables categóricas/cualitativas. Veremos su uso en próximas sesiones.&lt;br/&gt;&lt;br/&gt;
+
+--
+5. `logical`: variables booleanas/lógicas. Pueden tomar los valores .pur[TRUE] o .pur[FALSE].&lt;br/&gt;&lt;br/&gt;
+
+--
+6. `Date / POSIXct`: variables que representan tiempo y fechas de calendario. Pueden tomar los valores como .pur["2025-05-07"] o .pur["2025-05-04 16:11:54 -04"].&lt;br/&gt;&lt;br/&gt;
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Conociendo la primera función: class()
+
+--
+
+La función `class()` recibe un tipo de dato y entrega la clase que lo describe. Por ejemplo:
+
+--
+
+
+```r
+class(2)
+```
+
+```
+## [1] "numeric"
+```
+
+--
+
+
+```r
+class("Lucas")
+```
+
+```
+## [1] "character"
+```
+
+--
+
+Las funciones incluidas en R tanto como las funciones incluidas en paquetes del repositorio CRAN incluyen documentación asociada para entender como funcionan.
+
+--
+
+La forma de acceder a esta documentación es mediante el uso del símbolo `?` antes de la función o utilizando la función `help()`.
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Conociendo la primera función: class()
+
+--
+
+
+```r
+?class()
+```
+
+--
+
+
+```r
+help("class")
+```
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# IMPORTANTE: operador de asignación
+
+--
+
+Todo en .pur[R] es un .pur[objeto] y estos pueden ser prácticamente cualquier cosa, desde un número, letras, palabras, o incluso bases de datos enteras, gráficos complejos, summary/resumen/output de análisis estadístico, etc.
+
+--
+
+El operador de asignación está compuesto por el símbolo *menor a* `&lt;` y un guión `-`, es decir, `&lt;-`.
+
+--
+
+
+```r
+a &lt;- 4
+```
+
+--
+
+Asignando variables a estos objetos podemos realizar las operaciones vistas anteriormente.
+
+--
+
+
+```r
+b &lt;- 5
+
+c &lt;- a + b
+
+c
+```
+
+```
+## [1] 9
+```
+
+--
+
+¿Qué está ocurriendo en la parte de ambiente de R Studio cuando asignan objetos?
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Juguemos un poco con asignaciones
+
+
+.pull-left[
+### 🧐; Probar
+
+.can-edit.key-likes[
+
+]
+]
+
+
+.pull-right[
+### 😯; ¿Qué entrega?
+
+.can-edit.key-dislikes[
+
+]
+]
+
+---
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Librerías y repositorios
+
+--
+
+Actualmente existen más de 22406 paquetes disponibles en el repositorio de paquetes .pur[CRAN] creado por usuarios individuales, instituciones, investigadores, etc.
+
+--
+
+En el transcurso de la capacitación utilizaremos distintos paquetes o librerías que nos aportarán con una mayor cantidad y calidad de funciones y herramientas que el .pur[R base] no posee.
+
+--
+
+Para instalar una determinada librería se utiliza la función `install.packages()` de la siguiente manera:
+
+--
+
+
+```r
+install.packages("tidyverse") # para instalar se deben utilizar las comillas!
+```
+
+--
+
+Si todo funciona bien, veremos la librería en la pestaña .pur[packages] en la zona de utilidades de R Studio. ¿La encuentran?
+
+--
+
+Pero... luego de instalar, ¿esto quiere decir que ya podemos utilizar las funcionalidades de la librería? 
+--
+.red[**NO**]. 
+--
+Para utilizar o cargar una librería se debe correr el comando o función `library()` de la siguiente manera:
+
+
+```r
+library(tidyverse) # para cargar una librería ya no necesitamos las comillas!
+```
+
+---
+
+background-image: url("imagenes/bg.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Consejos finales
+
+--
+
+- No se asusten si al correr algún código ven muchas cosas .red[rojas]. ¡Equivocarse es lo mejor que les puede pasar para así aprender y saber efectivamente lo que sucede dentro del programa!
+
+--
+
+- No ocupen Chatgpt u otro software de inteligencia artificial como primera opción. Es mejor googlear, buscar y leer la documentación y a otras personas antes que directamente preguntarle a una IA. Las IA's aún se equivocan mucho y puede que les entreguen un código que funcione, pero puede que no sea necesariamente el más eficiente o utilice funciones engorrosas y equívocas.
+
+--
+
+- Traten de al menos 10 minutos todos los días abrir un archivo en R Studio. Piensen que les gustaría hacer con él o qué requieren procesar o analizar. Traten de hacerlo, equivóquense y durante el curso vamos solucionando esas dudas.
+
+--
+
+- ¡Pásenlo bien y disfruten el curso! La idea es que aprendan **R**, lo utilicen y puedan hacer más eficiente algún proceso de su día a día y así tener más tiempo para dedicarle a otras cosas.
+--
+💻
+--
+👨‍👩‍👦‍👦 
+--
+⚽😴
+--
+🍻
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
