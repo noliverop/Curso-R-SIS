@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-06-05" />
+    <script src="tarea_1_solucion_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="tarea_1_solucion_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="tarea_1_solucion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="tarea_1_solucion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="tarea_1_solucion_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="tarea_1_solucion_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="tarea_1_solucion_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="tarea_1_solucion_files/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Tarea 1 Soluciones
+
+## Plazo: 23 de mayo 
+
+
+
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1: Vectores
+
+1.- Genere un vector con los siguientes `\(4\)` elementos (llame a este objeto como usted desee): `\(20340\)`, `\(1000\)`, `\(2\)`, `\(300\)`. Imprima el objeto.
+
+``` r
+ropa_dolares &lt;- c(20340,1000,2,300)
+ropa_dolares
+```
+
+```
+## [1] 20340  1000     2   300
+```
+--
+2.- Asuma que el vector creado en el punto 1 consiste en valores de ropa en **dólares**. Genere otro vector (llámelo como usted quiera) que refleje los mismos valores pero ahora en pesos chilenos. Utilice el siguiente tipo de cambio: `\(1 \ dólar = 939.42 \ pesos \ chilenos\)`. Imprima el objeto.
+
+``` r
+ropa_pesos &lt;- ropa_dolares*939.42
+ropa_pesos
+```
+
+```
+## [1] 19107802.80   939420.00     1878.84   281826.00
+```
+---
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+3.- Asuma que olvidó agregar un quinto valor y sexto valor al vector creado en el punto 2. Genere un nuevo vector (llámelo como usted quiera) basado en el vector del punto 2 donde se agreguen los valores `\(5000\)` y `\(700\)`. Imprima este objeto.
+
+``` r
+ropa_pesos_nuevo &lt;- c(ropa_pesos,5000,700)
+ropa_pesos_nuevo
+```
+
+```
+## [1] 19107802.80   939420.00     1878.84   281826.00     5000.00      700.00
+```
+--
+4.- Imprima el largo del vector generado en el punto 3.
+
+``` r
+length(ropa_pesos_nuevo)
+```
+
+```
+## [1] 6
+```
+--
+5.- Lea la documentación sobre la función `round()` y utilícela para crear un nuevo vector (llámelo como usted quiera) basado en el creado en el punto 3 pero que todos sus valores estén redondeados a solamente `\(1\)` decimal. Imprima este nuevo objeto.
+
+``` r
+ropa_pesos_nuevo_redondeo &lt;- round(ropa_pesos_nuevo,1)
+ropa_pesos_nuevo_redondeo
+```
+
+```
+## [1] 19107802.8   939420.0     1878.8   281826.0     5000.0      700.0
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2: Vectores e indexación
+
+Cree los siguientes vectores de la siguiente manera:
+
+
+``` r
+artistas_chilenos &lt;- c("Los Jaivas", "Los Tres", "Los Prisioneros", "La Ley", "Los Prisioneros", "La Ley", "Los Bunkers")
+artistas_argentinos &lt;- c("Soda Stereo", "Charly García", "Fito Páez", "Sandro")
+```
+
+1.- Vea la documentación de la función `unique()`. ¿Para qué sirve esta función? Escriba su respuesta en forma de comentario en su script.
+
+--
+
+2.- Como puede ver, en el vector de artistas chilenos existen artistas repetidos. Sobreescriba este vector eliminando los artistas repetidos. Utilice indexación y el operador `-`. Imprima el vector de artistas chilenos.
+
+``` r
+artistas_chilenos &lt;- artistas_chilenos[-c(5,6)]
+artistas_chilenos
+```
+
+```
+## [1] "Los Jaivas"      "Los Tres"        "Los Prisioneros" "La Ley"         
+## [5] "Los Bunkers"
+```
+---
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+3.- Ahora que no debiese tener artistas repetidos en ninguno de los dos vectores, una los vectores en uno solo y llámelo `artistas_chilenos_argentinos`. Imprima el objeto.
+
+``` r
+artistas_chilenos_argentinos &lt;- c(artistas_chilenos,artistas_argentinos)
+artistas_chilenos_argentinos
+```
+
+```
+## [1] "Los Jaivas"      "Los Tres"        "Los Prisioneros" "La Ley"         
+## [5] "Los Bunkers"     "Soda Stereo"     "Charly García"   "Fito Páez"      
+## [9] "Sandro"
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2: Vectores e indexación
+
+Considere el siguiente vector que contiene artistas favoritos de cualquier nacionalidad:
+
+``` r
+artistas_favoritos &lt;- c("Charly García", "Pink Floyd", "Los Jaivas", "The Beatles","Soda Stereo", "Hozier")
+```
+
+4.- Genere un nuevo objeto llamado `artistas_favoritos_chilenos_argentinos` que sólo contenga los artistas favoritos que sean chilenos o argentinos. **Hint:** Use indexación y un operador de vectores visto en la sesión 2. Imprima este objeto.
+
+
+``` r
+artistas_favoritos_chilenos_argentinos &lt;- artistas_favoritos[artistas_favoritos %in% artistas_chilenos_argentinos]
+artistas_favoritos_chilenos_argentinos
+```
+
+```
+## [1] "Charly García" "Los Jaivas"    "Soda Stereo"
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3: Verdadero o Falso
+
+Responda Verdadero o Falso como comentario en su script.
+
+1.- Las licencias para usar el lenguaje R se compran a la empresa neozelandesa que construyó este lenguaje.
+
+--
+
+**Respuesta:** Falso.
+
+--
+
+2.- Si se desea comprobar que un número, caracter, o vector **es distinto** a otro dato se puede utilizar el operador lógico `!==`.
+
+--
+
+**Respuesta:** Falso.
+
+--
+
+3.- Una variable lógica `TRUE` asociada mediante el operador **O** (también llamado *disyunción*) a otra variable lógica `FALSE` resulta en un valor `TRUE`.
+
+--
+
+**Respuesta:** Verdadero.
+
+--
+
+4.- Si se corre la función `class()` con el argumento `"3"`, es decir, `class("3")`, la consola arrojará `numeric`. 
+
+--
+
+**Respuesta:** Falso.
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+---
+title: "Notas Tarea 1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## Código que hace una base de datos con las notas
+
+
+```{r message=FALSE}
+
+library(dplyr)
+
+nombres <- c("Ricardo Gonzalez", "Cecilia Carmona", "Benedicto Romero",
+             "Hermman Bauer", "Leontina Quiñones", "Nelson Hermosilla",
+             "Felipe Hernandez", "Cristina Dubournais", "Maria Luisa Ubeda")
+
+pregunta_1 <- c(1.5,2,2,2,2,1.8,1.8,1.2,2)
+
+
+pregunta_2 <- c(0.7,1.5,1.5,2,1.5,1.5,1.5,1.5,2)
+
+
+pregunta_3 <- c(1,1.5,1.5,1.5,2,2,2,1.5,1.5)
+
+tarea_1_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
+
+tarea_1_df <- tarea_1_df |>
+  mutate(total_puntaje = pregunta_1 + pregunta_2 + pregunta_3) |>
+  mutate(nota = total_puntaje + 1) |>
+  arrange(nombres)
+
+
+```
+
+## Tabla de notas
+
+```{r message=FALSE, warning=FALSE}
+library(kableExtra)
+
+tarea_1_df |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+

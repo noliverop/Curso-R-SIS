@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-06-05" />
+    <script src="sesion_3_presentacion_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="sesion_3_presentacion_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="sesion_3_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="sesion_3_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="sesion_3_presentacion_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="sesion_3_presentacion_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="sesion_3_presentacion_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="sesion_3_presentacion_files/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Curso Capacitación en R 
+
+## Sesión 3 
+
+## Bases de datos 1 (tratamiento y análisis)
+
+### Junio 2025
+
+
+
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Introducción a bases de datos
+
+--
+
+En honor al trabajo nacional, exploraremos una base de datos creada por Riva Quiroga, lingüista chilena y activa participante de LatinR y R-Ladies. Este paquete se llama `guaguas` ya instalado al principio de la sesión. 
+
+--
+
+Dado que ya instalamos el paquete, ahora **solo debemos cargarlo**. 
+
+
+``` r
+library("guaguas")
+```
+
+--
+
+Este paquete consiste en proveer *Datos sobre nombres de guaguas (bebés) registrados en Chile entre 1920 y 2021, según el Servicio de Registro Civil e Identificación. Incluye solo los que fueron inscritos como primer nombre. Este dataset permite explorar tendencias en los nombres registrados durante el último siglo y puede utilizarse como fuente de ejemplos para aprender/enseñar a trabajar con datos.*
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Introducción a bases de datos
+
+Exploremos la base `guaguas` con las siguientes funciones:
+
+--
+
+- `View()`
+
+--
+
+- `glimpse()`
+
+--
+
+- `str()`
+
+--
+
+- `class`
+
+--
+
+- `dim()`
+
+--
+
+- `names()`
+
+--
+
+- Operador `$`
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación 
+
+--
+
+- Las bases de datos a diferencia de los vectores vistos en la sesión pasada se 
+pueden conceptualizar como una estructura matricial donde sus columnas pueden ser 
+de distinto tipo respecto a las otras.
+
+--
+
+- Si tenemos el siguiente vector, lo podiamos indexar de la siguiente forma:
+
+
+``` r
+vector_ejemplo &lt;- c(-1,0,1)
+vector_ejemplo[3]
+```
+
+```
+## [1] 1
+```
+
+- ¿Qué ocurre si hacemos lo mismo con una base de datos?
+
+--
+
+
+``` r
+head(guaguas[3],3) 
+```
+
+```
+## # A tibble: 3 × 1
+##   sexo 
+##   &lt;chr&gt;
+## 1 F    
+## 2 M    
+## 3 M
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación 
+
+--
+
+
+``` r
+head(guaguas[3,],3) 
+```
+
+```
+## # A tibble: 1 × 5
+##    anio nombre sexo      n proporcion
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;
+## 1  1920 Juan   M       636     0.0312
+```
+
+--
+
+
+``` r
+head(guaguas[,3],3) 
+```
+
+```
+## # A tibble: 3 × 1
+##   sexo 
+##   &lt;chr&gt;
+## 1 F    
+## 2 M    
+## 3 M
+```
+
+--
+
+
+``` r
+guaguas[1,4]
+```
+
+```
+## # A tibble: 1 × 1
+##       n
+##   &lt;dbl&gt;
+## 1  2130
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación 
+
+--
+
+Para indexar data frames se incluyen dos vectores: el primero es el asociado a 
+filas y el segundo es el asociado a las columnas.
+
+--
+
+
+``` r
+guaguas[1:5,c(2,4)]
+```
+
+```
+## # A tibble: 5 × 2
+##   nombre     n
+##   &lt;chr&gt;  &lt;dbl&gt;
+## 1 María   2130
+## 2 José     984
+## 3 Juan     636
+## 4 Luis     631
+## 5 Rosa     426
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+Para el tratamiento de bases de datos utilizaremos una de las librerías 
+estándar en esta materia llamada `dplyr`.
+
+--
+
+
+``` r
+install.packages("dplyr") # Instala la librería 
+```
+
+--
+
+
+``` r
+library(dplyr) # Carga la librería
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+Esta librería funciona asociando funciones relevantes a verbos.
+
+--
+
+### Verbos relevantes para FILAS
+
+- `filter()`: significa filtrar. Permite mantener (o quitar) filas según los valores
+de las columnas. El primer argumento es el data frame y los argumentos subsiguientes
+son las condiciones que se deben cumplir.
+--
+
+``` r
+filter(guaguas, nombre == "Nicolás") 
+```
+
+```
+## # A tibble: 105 × 5
+##     anio nombre  sexo      n proporcion
+##    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1  1920 Nicolás M        17   0.000834
+##  2  1921 Nicolás M        33   0.000715
+##  3  1922 Nicolás M        46   0.000946
+##  4  1923 Nicolás M        31   0.000612
+##  5  1924 Nicolás M        36   0.000650
+##  6  1925 Nicolás M        41   0.000711
+##  7  1926 Nicolás M        66   0.00108 
+##  8  1927 Nicolás M        54   0.000764
+##  9  1928 Nicolás M        83   0.000875
+## 10  1929 Nicolás M        83   0.000908
+## # ℹ 95 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `arrange()`: significa ordenar. Permite cambiar el orden de las filas en base 
+al valor de las columnas. Toma un data frame y un set de columnas a ordenar.
+--
+
+``` r
+arrange(guaguas, -anio, desc(n), nombre) 
+```
+
+```
+## # A tibble: 858,782 × 5
+##     anio nombre   sexo      n proporcion
+##    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1  2021 Mateo    M      3267     0.0184
+##  2  2021 Emma     F      2352     0.0132
+##  3  2021 Sofía    F      2251     0.0126
+##  4  2021 Isabella F      2155     0.0121
+##  5  2021 Lucas    M      2054     0.0115
+##  6  2021 Emilia   F      2044     0.0115
+##  7  2021 Agustín  M      1972     0.0111
+##  8  2021 Benjamín M      1935     0.0109
+##  9  2021 Agustina F      1816     0.0102
+## 10  2021 Santiago M      1809     0.0102
+## # ℹ 858,772 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `distinct()`: significa distinguir. Permite encontrar filas únicas en el data frame.
+--
+
+``` r
+distinct(guaguas) # Carga la librería
+```
+
+```
+## # A tibble: 858,782 × 5
+##     anio nombre sexo      n proporcion
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1  1920 María  F      2130     0.104 
+##  2  1920 José   M       984     0.0483
+##  3  1920 Juan   M       636     0.0312
+##  4  1920 Luis   M       631     0.0310
+##  5  1920 Rosa   F       426     0.0209
+##  6  1920 Ana    F       340     0.0167
+##  7  1920 Manuel M       326     0.0160
+##  8  1920 Olga   F       289     0.0142
+##  9  1920 Carlos M       277     0.0136
+## 10  1920 Pedro  M       269     0.0132
+## # ℹ 858,772 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `distinct()`: significa distinguir. Permite encontrar filas únicas en el data frame.
+--
+
+``` r
+distinct(guaguas, nombre, n) 
+```
+
+```
+## # A tibble: 333,772 × 2
+##    nombre     n
+##    &lt;chr&gt;  &lt;dbl&gt;
+##  1 María   2130
+##  2 José     984
+##  3 Juan     636
+##  4 Luis     631
+##  5 Rosa     426
+##  6 Ana      340
+##  7 Manuel   326
+##  8 Olga     289
+##  9 Carlos   277
+## 10 Pedro    269
+## # ℹ 333,762 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `distinct()`: significa distinguir. Permite encontrar filas únicas en el data frame.
+--
+
+``` r
+distinct(guaguas, nombre, n, .keep_all = TRUE) 
+```
+
+```
+## # A tibble: 333,772 × 5
+##     anio nombre sexo      n proporcion
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1  1920 María  F      2130     0.104 
+##  2  1920 José   M       984     0.0483
+##  3  1920 Juan   M       636     0.0312
+##  4  1920 Luis   M       631     0.0310
+##  5  1920 Rosa   F       426     0.0209
+##  6  1920 Ana    F       340     0.0167
+##  7  1920 Manuel M       326     0.0160
+##  8  1920 Olga   F       289     0.0142
+##  9  1920 Carlos M       277     0.0136
+## 10  1920 Pedro  M       269     0.0132
+## # ℹ 333,762 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `mutate()`: significa mutar. Permite añadir nuevas columnas en función de las
+columnas ya existentes.
+--
+
+``` r
+guaguas |&gt;
+  mutate(proporcion_porcentual = proporcion*100)
+```
+
+```
+## # A tibble: 858,782 × 6
+##     anio nombre sexo      n proporcion proporcion_porcentual
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;                 &lt;dbl&gt;
+##  1  1920 María  F      2130     0.104                  10.4 
+##  2  1920 José   M       984     0.0483                  4.83
+##  3  1920 Juan   M       636     0.0312                  3.12
+##  4  1920 Luis   M       631     0.0310                  3.10
+##  5  1920 Rosa   F       426     0.0209                  2.09
+##  6  1920 Ana    F       340     0.0167                  1.67
+##  7  1920 Manuel M       326     0.0160                  1.60
+##  8  1920 Olga   F       289     0.0142                  1.42
+##  9  1920 Carlos M       277     0.0136                  1.36
+## 10  1920 Pedro  M       269     0.0132                  1.32
+## # ℹ 858,772 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `select()`: significa seleccionar. Permite seleccionar variables, incluso con 
+operaciones.
+--
+
+``` r
+guaguas |&gt;
+  select(anio,n,proporcion)
+```
+
+```
+## # A tibble: 858,782 × 3
+##     anio     n proporcion
+##    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1  1920  2130     0.104 
+##  2  1920   984     0.0483
+##  3  1920   636     0.0312
+##  4  1920   631     0.0310
+##  5  1920   426     0.0209
+##  6  1920   340     0.0167
+##  7  1920   326     0.0160
+##  8  1920   289     0.0142
+##  9  1920   277     0.0136
+## 10  1920   269     0.0132
+## # ℹ 858,772 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `rename()`: significa renombrar. Permite cambiar el nombre a variables, incluso
+con operaciones.
+--
+
+``` r
+guaguas |&gt;
+  rename(cantidad = n)
+```
+
+```
+## # A tibble: 858,782 × 5
+##     anio nombre sexo  cantidad proporcion
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1  1920 María  F         2130     0.104 
+##  2  1920 José   M          984     0.0483
+##  3  1920 Juan   M          636     0.0312
+##  4  1920 Luis   M          631     0.0310
+##  5  1920 Rosa   F          426     0.0209
+##  6  1920 Ana    F          340     0.0167
+##  7  1920 Manuel M          326     0.0160
+##  8  1920 Olga   F          289     0.0142
+##  9  1920 Carlos M          277     0.0136
+## 10  1920 Pedro  M          269     0.0132
+## # ℹ 858,772 more rows
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `relocate()`: significa trasladar. Permite trasladar variables del data frame.
+--
+
+``` r
+guaguas |&gt;
+  relocate(nombre,sexo)
+```
+
+```
+## # A tibble: 858,782 × 5
+##    nombre sexo   anio     n proporcion
+##    &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1 María  F      1920  2130     0.104 
+##  2 José   M      1920   984     0.0483
+##  3 Juan   M      1920   636     0.0312
+##  4 Luis   M      1920   631     0.0310
+##  5 Rosa   F      1920   426     0.0209
+##  6 Ana    F      1920   340     0.0167
+##  7 Manuel M      1920   326     0.0160
+##  8 Olga   F      1920   289     0.0142
+##  9 Carlos M      1920   277     0.0136
+## 10 Pedro  M      1920   269     0.0132
+## # ℹ 858,772 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Uso de pipes
+
+
+``` r
+arrange(
+  select(
+    mutate(
+      filter(
+        guaguas, 
+        nombre == "Nicolás"
+      ),
+      proporcion_porcentual = proporcion*100
+    ),
+    anio,nombre,proporcion_porcentual
+  ),
+  desc(anio)
+)
+```
+
+```
+## # A tibble: 105 × 3
+##     anio nombre  proporcion_porcentual
+##    &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
+##  1  2021 Nicolás              0.461   
+##  2  2020 Nicolás              0.502   
+##  3  2019 Nicolás              0.539   
+##  4  2018 Nicolás              0.570   
+##  5  2017 Nicolás              0.558   
+##  6  2016 Nicolás              0.664   
+##  7  2015 Nicolás              0.595   
+##  8  2014 Nicolás              0.613   
+##  9  2014 Nicolás              0.000397
+## 10  2013 Nicolás              0.666   
+## # ℹ 95 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Uso de pipes
+
+
+``` r
+guaguas_1 &lt;- filter(guaguas, nombre == "Nicolás")
+guaguas_1 &lt;- mutate(guaguas_1, proporcion_porcentual = proporcion*100)
+guaguas_1 &lt;- select(guaguas_1, anio,nombre,proporcion_porcentual)
+guaguas_1 &lt;-arrange(guaguas_1,desc(anio))
+
+guaguas_1
+```
+
+```
+## # A tibble: 105 × 3
+##     anio nombre  proporcion_porcentual
+##    &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
+##  1  2021 Nicolás              0.461   
+##  2  2020 Nicolás              0.502   
+##  3  2019 Nicolás              0.539   
+##  4  2018 Nicolás              0.570   
+##  5  2017 Nicolás              0.558   
+##  6  2016 Nicolás              0.664   
+##  7  2015 Nicolás              0.595   
+##  8  2014 Nicolás              0.613   
+##  9  2014 Nicolás              0.000397
+## 10  2013 Nicolás              0.666   
+## # ℹ 95 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Operador Pipe |&gt;
+
+--
+
+El operador pipe (de tubería o tubo) `|&gt;` toma lo que tiene a la izquierda y 
+lo pasa a la función a su derecha. La forma más fácil de verbalizarlo es utilizando 
+la palabra **dado `\(x\)` entonces**.
+
+
+``` r
+guaguas_nicolas &lt;- guaguas |&gt;
+  filter(nombre == "Nicolás") |&gt;
+  mutate(proporcion_porcentual = proporcion*100) |&gt;
+  select(anio,nombre,proporcion_porcentual) |&gt; 
+  arrange(desc(anio))
+
+guaguas_nicolas
+```
+
+```
+## # A tibble: 105 × 3
+##     anio nombre  proporcion_porcentual
+##    &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
+##  1  2021 Nicolás              0.461   
+##  2  2020 Nicolás              0.502   
+##  3  2019 Nicolás              0.539   
+##  4  2018 Nicolás              0.570   
+##  5  2017 Nicolás              0.558   
+##  6  2016 Nicolás              0.664   
+##  7  2015 Nicolás              0.595   
+##  8  2014 Nicolás              0.613   
+##  9  2014 Nicolás              0.000397
+## 10  2013 Nicolás              0.666   
+## # ℹ 95 more rows
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

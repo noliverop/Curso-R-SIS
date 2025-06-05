@@ -1,0 +1,460 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Sesión 3"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Curso Capacitación en R 
+
+## Sesión 3 
+
+## Bases de datos 1 (tratamiento y análisis)
+
+### Junio 2025
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Introducción a bases de datos
+
+--
+
+En honor al trabajo nacional, exploraremos una base de datos creada por Riva Quiroga, lingüista chilena y activa participante de LatinR y R-Ladies. Este paquete se llama `guaguas` ya instalado al principio de la sesión. 
+
+--
+
+Dado que ya instalamos el paquete, ahora **solo debemos cargarlo**. 
+
+```{r }
+library("guaguas")
+```
+
+--
+
+Este paquete consiste en proveer *Datos sobre nombres de guaguas (bebés) registrados en Chile entre 1920 y 2021, según el Servicio de Registro Civil e Identificación. Incluye solo los que fueron inscritos como primer nombre. Este dataset permite explorar tendencias en los nombres registrados durante el último siglo y puede utilizarse como fuente de ejemplos para aprender/enseñar a trabajar con datos.*
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Introducción a bases de datos
+
+Exploremos la base `guaguas` con las siguientes funciones:
+
+--
+
+- `View()`
+
+--
+
+- `glimpse()`
+
+--
+
+- `str()`
+
+--
+
+- `class`
+
+--
+
+- `dim()`
+
+--
+
+- `names()`
+
+--
+
+- Operador `$`
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación 
+
+--
+
+- Las bases de datos a diferencia de los vectores vistos en la sesión pasada se 
+pueden conceptualizar como una estructura matricial donde sus columnas pueden ser 
+de distinto tipo respecto a las otras.
+
+--
+
+- Si tenemos el siguiente vector, lo podiamos indexar de la siguiente forma:
+
+```{r }
+vector_ejemplo <- c(-1,0,1)
+vector_ejemplo[3]
+```
+
+- ¿Qué ocurre si hacemos lo mismo con una base de datos?
+
+--
+
+```{r }
+head(guaguas[3],3) 
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación 
+
+--
+
+```{r }
+head(guaguas[3,],3) 
+```
+
+--
+
+```{r }
+head(guaguas[,3],3) 
+```
+
+--
+
+```{r }
+guaguas[1,4]
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Indexación 
+
+--
+
+Para indexar data frames se incluyen dos vectores: el primero es el asociado a 
+filas y el segundo es el asociado a las columnas.
+
+--
+
+```{r }
+guaguas[1:5,c(2,4)]
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+Para el tratamiento de bases de datos utilizaremos una de las librerías 
+estándar en esta materia llamada `dplyr`.
+
+--
+
+```{r eval=F}
+install.packages("dplyr") # Instala la librería 
+```
+
+--
+
+```{r }
+library(dplyr) # Carga la librería
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+Esta librería funciona asociando funciones relevantes a verbos.
+
+--
+
+### Verbos relevantes para FILAS
+
+- `filter()`: significa filtrar. Permite mantener (o quitar) filas según los valores
+de las columnas. El primer argumento es el data frame y los argumentos subsiguientes
+son las condiciones que se deben cumplir.
+--
+```{r }
+filter(guaguas, nombre == "Nicolás") 
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `arrange()`: significa ordenar. Permite cambiar el orden de las filas en base 
+al valor de las columnas. Toma un data frame y un set de columnas a ordenar.
+--
+```{r }
+arrange(guaguas, -anio, desc(n), nombre) 
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `distinct()`: significa distinguir. Permite encontrar filas únicas en el data frame.
+--
+```{r }
+distinct(guaguas) # Carga la librería
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `distinct()`: significa distinguir. Permite encontrar filas únicas en el data frame.
+--
+```{r }
+distinct(guaguas, nombre, n) 
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para FILAS
+
+- `distinct()`: significa distinguir. Permite encontrar filas únicas en el data frame.
+--
+```{r }
+distinct(guaguas, nombre, n, .keep_all = TRUE) 
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `mutate()`: significa mutar. Permite añadir nuevas columnas en función de las
+columnas ya existentes.
+--
+```{r }
+guaguas |>
+  mutate(proporcion_porcentual = proporcion*100)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `select()`: significa seleccionar. Permite seleccionar variables, incluso con 
+operaciones.
+--
+```{r }
+guaguas |>
+  select(anio,n,proporcion)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `rename()`: significa renombrar. Permite cambiar el nombre a variables, incluso
+con operaciones.
+--
+```{r }
+guaguas |>
+  rename(cantidad = n)
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Verbos relevantes para COLUMNAS
+
+- `relocate()`: significa trasladar. Permite trasladar variables del data frame.
+--
+```{r }
+guaguas |>
+  relocate(nombre,sexo)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Uso de pipes
+
+```{r }
+arrange(
+  select(
+    mutate(
+      filter(
+        guaguas, 
+        nombre == "Nicolás"
+      ),
+      proporcion_porcentual = proporcion*100
+    ),
+    anio,nombre,proporcion_porcentual
+  ),
+  desc(anio)
+)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Uso de pipes
+
+```{r }
+
+guaguas_1 <- filter(guaguas, nombre == "Nicolás")
+guaguas_1 <- mutate(guaguas_1, proporcion_porcentual = proporcion*100)
+guaguas_1 <- select(guaguas_1, anio,nombre,proporcion_porcentual)
+guaguas_1 <-arrange(guaguas_1,desc(anio))
+
+guaguas_1
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tratamiento
+
+--
+
+### Operador Pipe |>
+
+--
+
+El operador pipe (de tubería o tubo) `|>` toma lo que tiene a la izquierda y 
+lo pasa a la función a su derecha. La forma más fácil de verbalizarlo es utilizando 
+la palabra **dado $x$ entonces**.
+
+```{r }
+
+guaguas_nicolas <- guaguas |>
+  filter(nombre == "Nicolás") |>
+  mutate(proporcion_porcentual = proporcion*100) |>
+  select(anio,nombre,proporcion_porcentual) |> 
+  arrange(desc(anio))
+
+guaguas_nicolas
+```
