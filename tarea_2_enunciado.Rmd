@@ -1,0 +1,181 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Tarea 2"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Tarea 2
+
+## Plazo: 13 de junio con puntaje extra o 16 de junio sin extra
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Preámbulo 
+
+Para resolver esta tarea se utilizarán dos bases de datos incluidas en el 
+paquete `dplyr`. Ya que este paquete lo instalamos en la sesión 3 recuerde que
+para utilizarlo solo debe cargarlo,
+
+Las bases a utilizar serán `starwars` y `storms`. La primera contiene información 
+sobre los personajes de las películas del universo Star Wars y la segunda 
+contiene información histórica de tormentas desde 1975 a 2022. 
+
+Esta tarea será un poco más difícil que la anterior ya que uds deberán crear
+de cero su script. Por favor sea ordenado y utilice tantos comentarios sean
+necesarios para que se acostumbren a que su trabajo sea autoexplicativo.
+
+Antes de escribir la respuesta a cada pregunta, debe escribir como comentario
+en la línea anterior, el numeral que está respondiendo. Por ejemplo:
+
+```{r }
+# Pregunta 2.1 o Pregunta 2: 1, o como usted prefiera
+hola <- "hola"
+```
+
+La primera pregunta de esta tarea consiste en que ustedes agreguen ordenadamente
+cosas a su script. Cualquier duda o consulta por favor hacerla directamente a mí 
+o por Teams.
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 1 (orden y carga de objetos)
+
+1.- Genere un nuevo script (archivo R) llamado `NOMBRE_tarea_2.R`. Por ejemplo, si
+usted se llama Nicolás, el nombre de su script debe ser: `nicolas_tarea_2.R`.
+
+2.- En las primeras líneas de su script escriba como comentarios (recordar el 
+símbolo `#`) la siguiente información: `Tarea 2`, `Nombre: (poner su nombre)` y 
+`Plazo: 13 de junio`
+
+3.- Después de los comentarios iniciales escritos del punto dos, escriba el código
+para cargar la librería `dplyr`.
+
+```{r include=FALSE}
+library(dplyr)
+```
+
+4.- Asigne las bases `starwars` y `storms` a dos objetos con el nombre que usted prefiera. Si cargó
+correctamente la librería en el punto 3 puede asignar las bases de la siguiente 
+forma:
+
+```{r }
+nombre_que_usted_prefiera <- starwars
+otro_nombre_que_usted_prefiera <- storms
+```
+
+Puede comprobar que las bases fueron correctamente asignadas mirando la parte
+superior derecha de R Studio en la pestaña `Environment` ya que ahí estarán 
+los objetos creados.
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 2 (características de las bases)
+
+1.- Compruebe con la función `class()` que los objetos que usted creó 
+corresponden a `data frames` o `tibbles`. Recuerde que los tibbles son homólogos 
+a los data frames. 
+
+```{r include=FALSE}
+class(nombre_que_usted_prefiera)
+class(otro_nombre_que_usted_prefiera)
+```
+
+2.- Imprima las dimensiones de cada una de las bases. Recuerde la función asociada 
+a *dimensiones* vista en la tercera sesión.
+
+```{r include=FALSE}
+dim(nombre_que_usted_prefiera)
+dim(otro_nombre_que_usted_prefiera)
+```
+
+3.- Imprima los nombres de las columnas para cada base.
+
+```{r include=FALSE}
+names(nombre_que_usted_prefiera)
+names(otro_nombre_que_usted_prefiera)
+```
+
+4.- En el objeto que asignó la base de `starwars` suponga que usted necesita
+acceder solamente a la columna `species`. ¿Cómo lo haría? Imprima sólo esta columna.
+Puede utilizar indexación o el operador específico visto en la sesión 3.
+
+```{r include=FALSE}
+nombre_que_usted_prefiera$species
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 3 (gramática de manipulación de datos)
+
+Para estas dos preguntas utilice las funciones asociadas a verbos vistas en 
+la sesión 3 y el operador **pipe**. Recuerde que el operador **pipe** es `|>`.
+
+1.- Haga las siguientes operaciones en el objeto que contiene la base de `starwars`:
+**seleccione** solamente las columnas llamadas `name`, `height`, `mass`, `gender`,
+`homeworld` y `species`; luego **filtre** la base para que sólo contemple aquellas
+especies (`species`) que son humanas; finalmente **ordene** la base según la columna `height` de mayor a menor.
+
+```{r include=FALSE}
+nombre_que_usted_prefiera |>
+  select(name, height, mass, gender, homeworld, species) |>
+  filter(species == "Human") |>
+  arrange(desc(height))
+```
+
+2.- Haga las siguientes operaciones en el objeto que contiene la base de `storms`:
+excluya las columnas `category` y `tropicalstorm_force_diameter`;
+luego **filtre** la base para que sólo contenga información asociada al año (`year`) $1993$;
+luego cree una nueva columna llamada `wind_corregida` que consista en multiplicar por 100 la
+columna `wind`; finalmente ordene la base según la columna `pressure` de menor a mayor.
+
+```{r include=FALSE}
+otro_nombre_que_usted_prefiera |>
+  select(-category, -tropicalstorm_force_diameter) |>
+  filter(year == 1993) |>
+  mutate(wind_corregida = wind*100) |>
+  arrange(pressure)
+```
