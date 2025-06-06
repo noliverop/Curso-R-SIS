@@ -23,3 +23,6 @@ Notas de la tarea 1 se pueden ver en este [link](https://noliverop.github.io/Cur
 ## Clase 3 (5 de junio)
 ### Bases de datos 1 (tratamiento y análisis)
 Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesion_3_presentacion.html)
+
+### Tarea 2 (plazo 13 de junio)
+Enunciado de tarea 2 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_2_enunciado.html)
