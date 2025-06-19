@@ -1,0 +1,472 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Sesión 3"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Curso Capacitación en R 
+
+## Sesión 4 
+
+## Bases de datos 2 (tratamiento y análisis)
+
+### Junio 2025
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+--
+
+Primero carguemos la librería `dplyr` y asignemos un objeto que contenga la base `starwars`.
+
+```{r }
+library(dplyr)
+df_starwars <- starwars
+```
+
+Pregunta: Filtrar la base por color de piel que sea `light` y color 
+de ojos `brown`. Luego, ordenar (de mayor a menor) por `height` y
+`mass`. Finalmente sólo muestre las columnas:
+`name`,`height`, `mass`, `skin_color` y `eye_color`.
+
+```{r }
+df_starwars |>
+  filter(skin_color == "light" & eye_color == "brown") |>
+  arrange(desc(height), desc(mass)) |>
+  select(name, height, mass, skin_color, eye_color)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+El código de la slide anterior entrega el resultado de los procedimientos. Pero 
+**NO** guarda los resultados en un objeto. Si se quiere guardar el objeto, este **DEBE**
+asignarse ya sea mediante dos opciones.
+
+--
+
+La primera es **sobreescribir** el objeto `df_starwars`:
+
+```{r }
+df_starwars <- df_starwars |>
+  filter(skin_color == "light" & eye_color == "brown") |>
+  arrange(desc(height), desc(mass)) |>
+  select(name, height, mass, skin_color, eye_color)
+```
+
+--
+
+La segunda opción es generar **otro** objeto:
+
+```{r }
+df_starwars <- starwars
+
+starwars_piel_y_ojos <- df_starwars |>
+  filter(skin_color == "light" & eye_color == "brown") |>
+  arrange(desc(height), desc(mass)) |>
+  select(name, height, mass, skin_color, eye_color)
+```
+
+**Recomendación:** siempre trate de mantener su base madre sin modificaciones. 
+Si necesita limpiarla, cambiarla, etc., *eficientemente* genere nuevos objetos de acuerdo a sus
+necesidades.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Lidiemos con los **NA**.
+
+```{r }
+ejemplo <- c(1,2,NA,4)
+
+is.na(ejemplo)
+```
+
+--
+
+El código anterior nos permite saber si el vector contiene valores **NA**. Ahora,
+identifiquémoslos.
+
+```{r }
+which(is.na(ejemplo) == TRUE)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Veámos que ocurre si lo utilizamos en una base de datos.
+
+```{r }
+is.na(starwars_piel_y_ojos)
+```
+--
+```{r }
+which(is.na(starwars_piel_y_ojos) == TRUE)
+```
+
+No es muy útil. Mejor utilzarlo por columna. 
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+```{r }
+which(is.na(starwars_piel_y_ojos$mass) == TRUE)
+```
+
+--
+
+Confirmemos
+
+```{r }
+starwars_piel_y_ojos$mass[c(4,5,7)]
+```
+
+--
+
+También de forma rápida se puede conocer si alguna columna posee **al menos** un **NA**.
+
+```{r }
+anyNA(starwars_piel_y_ojos$mass)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Formas de reemplazar valores NA.
+
+--
+
+Utilizando `if_else`:
+
+```{r }
+starwars_piel_y_ojos_sin_NA <- starwars_piel_y_ojos |>
+  mutate(mass = if_else(is.na(mass) == TRUE, 0,mass))
+
+starwars_piel_y_ojos_sin_NA
+```
+
+La función `if_else` funciona de la siguiente manera:
+
+*if_else(condition, true, false, missing = NULL,...)*
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Si una determinada condición se activa cuando es `TRUE` no es necesario escribir 
+`== TRUE`. Por ejemplo, para el caso anterior, podemos escribirlo de la siguiente 
+forma:
+
+```{r }
+starwars_piel_y_ojos_sin_NA <- starwars_piel_y_ojos |>
+  mutate(mass = if_else(is.na(mass), 0,mass)) # no necesité escribir == TRUE
+
+starwars_piel_y_ojos_sin_NA
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+También se puede utilizar indexación en una columna en particular:
+
+```{r }
+starwars_piel_y_ojos$mass[is.na(starwars_piel_y_ojos$mass)] <- 0
+
+starwars_piel_y_ojos
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+O también en la base entera (miren la columna `height`):
+
+```{r }
+starwars_piel_y_ojos <- df_starwars |> # vuelvo a generar el objeto starwars_piel_y_ojos
+  filter(skin_color == "light" & eye_color == "brown") |>
+  arrange(desc(height), desc(mass)) |>
+  select(name, height, mass, skin_color, eye_color)
+
+starwars_piel_y_ojos[is.na(starwars_piel_y_ojos)] <- 0 # asigno todos los NA a 0
+
+starwars_piel_y_ojos # imprimo
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Deshagámosnos de las filas que contengan **NA**.
+
+```{r }
+starwars_piel_y_ojos_sin_NA <- df_starwars |> # vuelvo a generar el objeto starwars_piel_y_ojos
+  filter(skin_color == "light" & eye_color == "brown") |>
+  arrange(desc(height), desc(mass)) |>
+  select(name, height, mass, skin_color, eye_color) |>
+  filter(is.na(mass) == FALSE)
+
+starwars_piel_y_ojos_sin_NA
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Si en una condición quiero lo que sucede cuando esta **NO** se cumple, puedo utilizar 
+el operador `!` y acortar la escritura de código.
+
+```{r }
+starwars_piel_y_ojos_sin_NA <- df_starwars |> # vuelvo a generar el objeto starwars_piel_y_ojos
+  filter(skin_color == "light" & eye_color == "brown") |>
+  arrange(desc(height), desc(mass)) |>
+  select(name, height, mass, skin_color, eye_color) |>
+  filter(!is.na(mass)) # operador !
+
+starwars_piel_y_ojos_sin_NA
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+Volvamos a nuestra base con **NA**. 
+```{r }
+starwars_piel_y_ojos <- df_starwars |> # vuelvo a generar el objeto starwars_piel_y_ojos
+  filter(skin_color == "light" & eye_color == "brown") |>
+  arrange(desc(height), desc(mass)) |>
+  select(name, height, mass, skin_color, eye_color)
+```
+
+--
+Hagamos lo siguiente: construyamos una base desde `starwars_piel_y_ojos` donde 
+se cambie el valor de `mass` si el personaje es `Poe Dameron` por $75$, imprima el objeto.
+
+```{r }
+starwars_piel_y_ojos_poe <- starwars_piel_y_ojos |> 
+  mutate(mass = if_else(name == "Poe Dameron", 75, mass))
+
+starwars_piel_y_ojos_poe
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Ahora, eliminemos las filas que tengan **NA** en las columnas `height` y `mass`.
+
+```{r }
+starwars_piel_y_ojos_poe_sin_na <- starwars_piel_y_ojos_poe |> 
+  filter(!is.na(mass) & !is.na(height))
+
+starwars_piel_y_ojos_poe_sin_na
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejemplos de tratamiento y análisis
+
+Utilizar proposiciones lógicas complejas puede llevar a errores o confusiones 
+en su código. Si usted no está 100% seguro de como funcionará una determinada 
+condición es preferible descomponerla y hacerla de forma ordenada.
+
+```{r }
+starwars_piel_y_ojos_poe_sin_na <- starwars_piel_y_ojos_poe |> 
+  filter(!is.na(mass)) |>
+  filter(!is.na(height))
+
+starwars_piel_y_ojos_poe_sin_na
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Más herramientas de análisis
+
+Otra herramienta relevante para analizar información es la capacidad de     
+**agrupamiento.** Esto se puede realizar mediante la función `group_by()`.
+```{r }
+df_starwars |> 
+  relocate(species) |>
+  group_by(species) 
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Más herramientas de análisis
+
+Por si sola la función `group_by()` no cambia los datos pero tiene un efecto 
+en las operaciones subsiguientes. Una de las funciones más útiles al tener datos
+agrupados es `summarise()` o también `summarize()` (hacen lo mismo).
+
+Esta función crea un **nuevo** data frame con cada fila retornando una combinación 
+de las variables agrupadas. Algunas funciones que se pueden utilizar son: `mean()`,
+`median()`,`sum()`, `sd()`, `min()`, `max()`, `n()`, `n_distinct()`, `any()`, `all()`, entre 
+otras.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Más herramientas de análisis
+
+```{r }
+df_starwars |> 
+  group_by(species) |>
+  summarise(
+    cantidad_por_especie = n(),
+    max_altura = max(height),
+    min_masa = min(mass),
+    alguno_proveniente_de_tatooine = any(homeworld == "Tatooine")
+  )
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Más herramientas de análisis
+
+```{r }
+df_starwars |> 
+  group_by(species) |>
+  summarise(
+    suma_de_masas = sum(mass)
+  ) |>
+  filter(species == "Droid" | species == "Human")
+```
+
+**¿Extraño o no?**
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Más herramientas de análisis
+
+```{r }
+df_starwars |> 
+  group_by(species) |>
+  summarise(
+    suma_de_masas = sum(mass, na.rm = TRUE)
+  ) |>
+  filter(species == "Droid" | species == "Human")
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Más herramientas de análisis
+
+Muchas funciones poseen el argumento `na.rm = FALSE` que provoca que al utilizarlas
+no se quiten los valores `NA` al evaluarlas. Esto produce problemas ya que no se pueden
+calcular objetos de diferente naturaleza.
+
+```{r }
+ej_vector <- c(10,5,NA)
+sum(ej_vector)
+10 + 5 + NA
+sum(ej_vector, na.rm = TRUE)
+```
+Al cambiar este argumento a `TRUE` se puede llevar a cabo el análisis sin considerar
+los `NA` y de esta forma calcular lo que se requiere.
