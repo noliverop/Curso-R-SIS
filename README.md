@@ -26,3 +26,10 @@ Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesio
 
 ### Tarea 2 (plazo 13 de junio)
 Enunciado de tarea 2 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_2_enunciado.html)
+
+## Clase 4 (19 de junio)
+### Bases de datos 2 (tratamiento y análisis)
+Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesion_4_presentacion.html)
+
+### Tarea 3 (plazo 27 de junio)
+Enunciado de tarea 3 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_3_enunciado.html)
