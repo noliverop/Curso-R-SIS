@@ -1,0 +1,58 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Tarea 4"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Tarea 4
+
+## Plazo: 4 de julio con puntaje extra o 7 de julio sin extra
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio
+
+En esta tarea deberán hacer un script donde carguen correctamente una base de datos
+a su elección. La idea es que practiquen la importación de bases y puedan ir 
+viendo las complicaciones que pueden surgir en el camino. 
+
+- Si el código para cargar la base está correcto tendrán automáticamente un $5$ como
+nota de la tarea.
+- Si además de importar también realizan algunas correcciones o modifican la base 
+utilizando las herramientas que hemos visto en el curso tendrán puntaje extra. Me basaré 
+en la complejidad o cantidad de programación que hagan a la base importada para darles 
+mayor nota y así acercarse al $7$.
+- ¡Éxito!
