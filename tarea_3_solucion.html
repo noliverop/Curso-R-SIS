@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-07-03" />
+    <script src="tarea_3_solucion_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="tarea_3_solucion_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="tarea_3_solucion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="tarea_3_solucion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="tarea_3_solucion_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="tarea_3_solucion_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="tarea_3_solucion_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="tarea_3_solucion_files/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Tarea 3 Soluciones
+
+## Plazo: 27 de junio con puntaje extra o 30 de junio sin extra
+
+
+
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Preámbulo 
+
+Esta tarea, al igual que en la anterior deberán crear
+de cero su script. Por favor sea ordenado y utilice tantos comentarios sean
+necesarios para que se acostumbren a que su trabajo sea autoexplicativo.
+
+Recuerde que antes de escribir la respuesta a cada pregunta, debe escribir como comentario
+en la línea anterior, el numeral que está respondiendo. Por ejemplo:
+
+
+``` r
+# Pregunta 2.1 o Pregunta 2: 1, o como usted prefiera
+hola &lt;- "hola"
+```
+
+Si entregan una respuesta sin antes haber puesto como comentario el numeral en 
+la línea anterior tendrán una penalización de **1 décima**.
+
+Todas las preguntas utilizarán la librería `dplyr` y una nueva librería llamada 
+`gapminder` que contiene información de 142 países asociada a expectativa de vida, PIB
+per cápita, población, etc. Dado que esta librería aún no la hemos utilizado en clases, deben
+instalarla primero para poder cargarla. ¡Recuerden la función para instalar librerías y 
+recuerden poner el nombre en apóstrofes! A su vez, recuerden cargar las dos librerías
+para poder utilizar las funciones que contienen.
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 1 (Acciones típicas al enfrentarse a nuevas bases)
+
+Primero cargue las librerías `dplyr` y `gapminder`. El paquete gapminder posee 
+dos bases de datos. La primera se llama de la misma forma que la librería, es decir, 
+`gapminder` y la segunda se llama `gapminder_unfiltered`. En todos 
+los ejercicios de esta tarea utilizaremos la **primera base**. 
+
+1.- Asigne la base `gapminder` a un objeto y llámelo `paises`.
+
+
+``` r
+library(dplyr)
+library(gapminder)
+paises &lt;- gapminder
+```
+
+2.- Imprima las dimensiones del objeto `paises`.
+
+``` r
+dim(paises)
+```
+
+```
+## [1] 1704    6
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 1 (Acciones típicas al enfrentarse a nuevas bases)
+
+3.- Imprima el nombre de las columnas del objeto `paises`.
+
+``` r
+names(paises)
+```
+
+```
+## [1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"
+```
+4.- Demuestre de la manera en que usted prefiera (debe ser por medio de código eso sí),
+que la base `paises` no contiene elementos **NA**.
+
+
+``` r
+anyNA(paises)
+```
+
+```
+## [1] FALSE
+```
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 2 (Más pipes y verbos de análisis)
+
+Mediante el uso de pipes y los verbos vistos en clases haga lo siguiente.
+
+1.- Filtre la base `paises` por aquellos países que forman parte del continente americano y
+mantengan solo la información asociada al año 2007. Luego quite las columnas `continent` y 
+`lifeExp`. Luego genere una nueva variable que corresponda a la multiplicación de 
+`gdpPercap` y `pop`, y llámela `pib`. Finalmente, ordene la base por la columna `pib`
+de mayor a menor. ¿En qué puesto está Chile?
+
+
+``` r
+paises |&gt; 
+  filter(year == 1997 &amp; continent == "Americas") |&gt;
+  select(-continent,-lifeExp) |&gt;
+  mutate(pib = gdpPercap*pop) |&gt;
+  arrange(desc(pib))
+```
+
+```
+## # A tibble: 25 × 5
+##    country        year       pop gdpPercap     pib
+##    &lt;fct&gt;         &lt;int&gt;     &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+##  1 United States  1997 272911760    35767. 9.76e12
+##  2 Brazil         1997 168546719     7958. 1.34e12
+##  3 Mexico         1997  95895146     9767. 9.37e11
+##  4 Canada         1997  30305843    28955. 8.78e11
+##  5 Argentina      1997  36203463    10967. 3.97e11
+##  6 Colombia       1997  37657830     6117. 2.30e11
+##  7 Venezuela      1997  22374398    10165. 2.27e11
+##  8 Chile          1997  14599929    10118. 1.48e11
+##  9 Peru           1997  24748122     5838. 1.44e11
+## 10 Ecuador        1997  11911819     7429. 8.85e10
+## # ℹ 15 more rows
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 2 (Más pipes y verbos de análisis)
+
+2.- Partiendo desde la base original de `paises`, es decir con todas las columnas
+originales, quite las columnas `pop` y `gdpPercap`. Luego, genere una nueva columna 
+llamada `es_de_america` que tomará el valor `\(1\)` si el país es americano y `\(0\)` si 
+no es americano (¡recuerde la función `if_else`!). Luego, filtre la base para mantener solo los 
+países que tengan el valor `\(0\)` en la columna `es_de_america` (es decir, que no sean americanos). Finalmente, ordene la base según la expectativa de vida (`lifeExp`) de menor a mayor. ¿Cuál es el país con peor
+expectativa de vida y en qué año fue?
+
+
+``` r
+paises |&gt; 
+  select(-pop,-gdpPercap) |&gt;
+  mutate(es_de_america = if_else(continent == "Americas",1,0)) |&gt;
+  filter(es_de_america == 0) |&gt;
+  arrange(lifeExp)
+```
+
+```
+## # A tibble: 1,404 × 5
+##    country      continent  year lifeExp es_de_america
+##    &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Rwanda       Africa     1992    23.6             0
+##  2 Afghanistan  Asia       1952    28.8             0
+##  3 Gambia       Africa     1952    30               0
+##  4 Angola       Africa     1952    30.0             0
+##  5 Sierra Leone Africa     1952    30.3             0
+##  6 Afghanistan  Asia       1957    30.3             0
+##  7 Cambodia     Asia       1977    31.2             0
+##  8 Mozambique   Africa     1952    31.3             0
+##  9 Sierra Leone Africa     1957    31.6             0
+## 10 Burkina Faso Africa     1952    32.0             0
+## # ℹ 1,394 more rows
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 3 (Estadísticas descriptivas con `group_by()` y `summarise`)
+
+1.- Utilizando como punto de partida la base original, es decir, `paises`, fíltrela
+para mantener solamente los registros asociados al año 2007. Luego agrupe la base 
+por continente. Utilizando la función `summarise()` muestre las estadísticas asociadas a
+número de casos (recuerde la función `n()`) y el promedio o media de la expectativa de vida (utilíce la función `mean()` sobre `lifeExp`) (puede poner el nombre que usted prefiera a estas columnas de estadísticas). Finalmente ordene esta nueva base por el promedio de la 
+expectativa de vida de mayor a menor. ¿Qué continente posee la mayor expectativa de vida?
+
+
+``` r
+paises |&gt; 
+  filter(year == 1997) |&gt;
+  group_by(continent) |&gt;
+  summarise(
+    casos = n(),
+    promedio_exp = mean(lifeExp)
+    ) |&gt;
+  arrange(desc(promedio_exp))
+```
+
+```
+## # A tibble: 5 × 3
+##   continent casos promedio_exp
+##   &lt;fct&gt;     &lt;int&gt;        &lt;dbl&gt;
+## 1 Oceania       2         78.2
+## 2 Europe       30         75.5
+## 3 Americas     25         71.2
+## 4 Asia         33         68.0
+## 5 Africa       52         53.6
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Pregunta 3 (Estadísticas descriptivas con `group_by()` y `summarise`)
+
+2.- Utilizando como punto de partida la base original, es decir, `paises`, agrupe la base 
+por continente y por año (esto lo pueden hacer utilizando la función `group_by()` e incluyendo las
+columnas a agrupar separadas por una coma). Utilizando la función `summarise()` muestre la estadística que entregue 
+el valor máximo (recordar función `max()`) de la variable `gdpPercap`. Finalmente ordene esta nueva base por el valor 
+máximo de `gdpPercap` de mayor a menor. ¿A qué continente y en que año se encuentra el máximo valor de PIB per cápita
+(`gdpPercap`)?
+
+
+``` r
+paises |&gt; 
+  group_by(continent, year) |&gt;
+  summarise(
+    max_gdppercapita = max(gdpPercap)
+    ) |&gt;
+  arrange(desc(max_gdppercapita))
+```
+
+```
+## # A tibble: 60 × 3
+## # Groups:   continent [5]
+##    continent  year max_gdppercapita
+##    &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;
+##  1 Asia       1957          113523.
+##  2 Asia       1972          109348.
+##  3 Asia       1952          108382.
+##  4 Asia       1962           95458.
+##  5 Asia       1967           80895.
+##  6 Asia       1977           59265.
+##  7 Europe     2007           49357.
+##  8 Asia       2007           47307.
+##  9 Europe     2002           44684.
+## 10 Americas   2007           42952.
+## # ℹ 50 more rows
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-07-03" />
+    <script src="sesion_6_presentacion_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="sesion_6_presentacion_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="sesion_6_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="sesion_6_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="sesion_6_presentacion_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="sesion_6_presentacion_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="sesion_6_presentacion_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="sesion_6_presentacion_files/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Curso Capacitación en R 
+
+## Sesión 6 
+
+## Bases de datos 4 (Unión y transformación de Bases de Datos)
+
+### Julio 2025
+
+
+
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+&lt;br/&gt;
+&lt;br/&gt;
+.center[&lt;img src="imagenes/union1.png"  /&gt;]
+
+--
+
+.center[&lt;img src="imagenes/union2.png"  /&gt;]
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+.pull-left[&lt;img src="imagenes/union3.png" /&gt;]
+
+--
+
+.pull-right[&lt;img src="imagenes/union4.png" /&gt;]
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+.center[&lt;img src="imagenes/union5.png"  /&gt;]
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+Diagrama de resumen:
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+.center[&lt;img src="imagenes/union6.png"  /&gt;]
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+Veamos algunos ejemplos:
+
+
+``` r
+library(dplyr)
+miembros_banda &lt;- band_members
+instrumentos_banda &lt;- band_instruments
+instrumentos2_banda &lt;- band_instruments2
+```
+
+--
+
+
+``` r
+inner_example1 &lt;- miembros_banda |&gt;
+  inner_join(instrumentos_banda)
+```
+
+```
+## Joining with `by = join_by(name)`
+```
+
+``` r
+inner_example1
+```
+
+```
+## # A tibble: 2 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+Veamos algunos ejemplos:
+
+
+``` r
+left_example1 &lt;- miembros_banda |&gt;
+  left_join(instrumentos_banda)
+left_example1
+```
+
+```
+## # A tibble: 3 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass
+```
+
+--
+
+
+``` r
+right_example1 &lt;- miembros_banda |&gt;
+  right_join(instrumentos_banda)
+right_example1
+```
+
+```
+## # A tibble: 3 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass  
+## 3 Keith &lt;NA&gt;    guitar
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+
+``` r
+full_example1 &lt;- miembros_banda |&gt;
+  full_join(instrumentos_banda)
+full_example1
+```
+
+```
+## # A tibble: 4 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass  
+## 4 Keith &lt;NA&gt;    guitar
+```
+
+--
+A pesar de los ejemplos anteriores que el lenguaje infiere correctamente qué llave 
+utilizar para unir las bases, es recomendable siempre **explicitar** la llave utilizada.
+
+
+``` r
+inner_example2 &lt;- miembros_banda |&gt;
+  inner_join(instrumentos_banda, by = join_by(name))
+inner_example2
+```
+
+```
+## # A tibble: 2 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+
+``` r
+full_example2 &lt;- miembros_banda |&gt;
+  full_join(instrumentos2_banda, by = join_by(name == artist))
+full_example2
+```
+
+```
+## # A tibble: 4 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass  
+## 4 Keith &lt;NA&gt;    guitar
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+Otros tipos de ejemplos:
+
+
+``` r
+df1 &lt;- tibble(x = 1:3) # recuerden que un tibble es un data frame
+df2 &lt;- tibble(x = c(1, 1, 2), y = c("first", "second", "third"))
+df1
+```
+
+```
+## # A tibble: 3 × 1
+##       x
+##   &lt;int&gt;
+## 1     1
+## 2     2
+## 3     3
+```
+
+``` r
+df2
+```
+
+```
+## # A tibble: 3 × 2
+##       x y     
+##   &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 first 
+## 2     1 second
+## 3     2 third
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+
+``` r
+df1_df_2_left &lt;- df1 |&gt;
+  left_join(df2, by = join_by(x))
+df1_df_2_left
+```
+
+```
+## # A tibble: 4 × 2
+##       x y     
+##   &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 first 
+## 2     1 second
+## 3     2 third 
+## 4     3 &lt;NA&gt;
+```
+--
+
+
+``` r
+df3 &lt;- tibble(x = c(1, 1, 1, 3))
+df3
+```
+
+```
+## # A tibble: 4 × 1
+##       x
+##   &lt;dbl&gt;
+## 1     1
+## 2     1
+## 3     1
+## 4     3
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Uniones de Bases de Datos
+
+
+``` r
+df3_df2_left &lt;- df3 |&gt; 
+  left_join(df2, by = join_by(x))
+```
+
+```
+## Warning in left_join(df3, df2, by = join_by(x)): Detected an unexpected many-to-many relationship between `x` and `y`.
+## ℹ Row 1 of `x` matches multiple rows in `y`.
+## ℹ Row 1 of `y` matches multiple rows in `x`.
+## ℹ If a many-to-many relationship is expected, set `relationship =
+##   "many-to-many"` to silence this warning.
+```
+
+``` r
+df3_df2_left
+```
+
+```
+## # A tibble: 7 × 2
+##       x y     
+##   &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 first 
+## 2     1 second
+## 3     1 first 
+## 4     1 second
+## 5     1 first 
+## 6     1 second
+## 7     3 &lt;NA&gt;
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Otras funciones de unión
+
+Dos funciones que tambíen son útiles de conocer son: `rbind()` y `cbind()`.
+
+
+``` r
+df1 &lt;- data.frame(team=c('A', 'A', 'B', 'B', 'C'),
+                  points=c(22, 25, 30, 43, 19))
+
+df1
+```
+
+```
+##   team points
+## 1    A     22
+## 2    A     25
+## 3    B     30
+## 4    B     43
+## 5    C     19
+```
+
+
+``` r
+df2 &lt;- data.frame(team=c('D', 'D', 'E', 'F', 'F'),
+                  points=c(11, 36, 29, 22, 30))
+
+df2
+```
+
+```
+##   team points
+## 1    D     11
+## 2    D     36
+## 3    E     29
+## 4    F     22
+## 5    F     30
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Otras funciones de unión
+
+
+``` r
+new_df &lt;- rbind(df1, df2)
+
+new_df
+```
+
+```
+##    team points
+## 1     A     22
+## 2     A     25
+## 3     B     30
+## 4     B     43
+## 5     C     19
+## 6     D     11
+## 7     D     36
+## 8     E     29
+## 9     F     22
+## 10    F     30
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Otras funciones de unión
+
+
+``` r
+new_df &lt;- cbind(df1, df2)
+
+new_df
+```
+
+```
+##   team points team points
+## 1    A     22    D     11
+## 2    A     25    D     36
+## 3    B     30    E     29
+## 4    B     43    F     22
+## 5    C     19    F     30
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+library(tidyverse)
+```
+
+--
+
+
+``` r
+table1
+```
+
+```
+## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+table2
+```
+
+```
+## # A tibble: 12 × 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+table3
+```
+
+```
+## # A tibble: 6 × 3
+##   country      year rate             
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+¿Qué hace que un dataset sea *tidy (ordenado)*?
+
+--
+
+**1.- Cada variable (o campo) es una columna; cada columna es una variable (o campo).**
+
+--
+
+**2.- Cada observación es una fila; cada fila es una observación.**
+
+--
+
+**3.- Cada valor es una celda; cada celda es un valor.**
+
+--
+
+.center[&lt;img src="imagenes/tidy1.png"  /&gt;]
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+Ventajas de utilizar data que sea **tidy**:
+
+--
+
+1. Es una ventaja escoger una forma consistente de almacenar información. Si se 
+tiene una estructura de datos consistente, es más facil aprender las herramientas 
+que funcionan en ella debido a que existe una uniformidad subyacente.
+
+--
+
+2. Es una ventaja posicionar variables en columnas ya que permite exprimir 
+la capacidad natural de R en términos de vectores. Recordar que la mayoría de funciones en R
+funcionan con vectores.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+La librería `tidy` incluida en la librería `tidyverse` contiene funciones relevantes 
+que permiten transformar bases de datos de forma simple y consistente.
+
+--
+
+Veremos en particular, dos funciones: `pivot_longer()` y `pivot_wider()`. Analicemos 
+primero la base `billboard` incluida en la librería `tidyr`.
+
+
+``` r
+billboard
+```
+
+```
+## # A tibble: 317 × 79
+##    artist     track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
+##    &lt;chr&gt;      &lt;chr&gt; &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 2 Pac      Baby… 2000-02-26      87    82    72    77    87    94    99    NA
+##  2 2Ge+her    The … 2000-09-02      91    87    92    NA    NA    NA    NA    NA
+##  3 3 Doors D… Kryp… 2000-04-08      81    70    68    67    66    57    54    53
+##  4 3 Doors D… Loser 2000-10-21      76    76    72    69    67    65    55    59
+##  5 504 Boyz   Wobb… 2000-04-15      57    34    25    17    17    31    36    49
+##  6 98^0       Give… 2000-08-19      51    39    34    26    26    19     2     2
+##  7 A*Teens    Danc… 2000-07-08      97    97    96    95   100    NA    NA    NA
+##  8 Aaliyah    I Do… 2000-01-29      84    62    51    41    38    35    35    38
+##  9 Aaliyah    Try … 2000-03-18      59    53    38    28    21    18    16    14
+## 10 Adams, Yo… Open… 2000-08-26      76    76    74    69    68    67    61    58
+## # ℹ 307 more rows
+## # ℹ 68 more variables: wk9 &lt;dbl&gt;, wk10 &lt;dbl&gt;, wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;,
+## #   wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;, wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;, wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;,
+## #   wk19 &lt;dbl&gt;, wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;, wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;,
+## #   wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;, wk29 &lt;dbl&gt;, wk30 &lt;dbl&gt;,
+## #   wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;, wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;,
+## #   wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, …
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+billboard |&gt; 
+  pivot_longer(
+    cols = starts_with("wk"), # columnas a pivotear
+    names_to = "week", # nombra la variable que ahora contiene las ex-columnas
+    values_to = "rank" # nombra la variable que ahora contiene los valores
+  )
+```
+
+```
+## # A tibble: 24,092 × 5
+##    artist track                   date.entered week   rank
+##    &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk1      87
+##  2 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk2      82
+##  3 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk3      72
+##  4 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk4      77
+##  5 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk5      87
+##  6 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk6      94
+##  7 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk7      99
+##  8 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk8      NA
+##  9 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk9      NA
+## 10 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk10     NA
+## # ℹ 24,082 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+Analicemos un ejemplo dentro de la base:
+
+
+``` r
+billboard |&gt; 
+  filter(track == "Baby Don't Cry (Keep...")
+```
+
+```
+## # A tibble: 1 × 79
+##   artist track      date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
+##   &lt;chr&gt;  &lt;chr&gt;      &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 2 Pac  Baby Don'… 2000-02-26      87    82    72    77    87    94    99    NA
+## # ℹ 68 more variables: wk9 &lt;dbl&gt;, wk10 &lt;dbl&gt;, wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;,
+## #   wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;, wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;, wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;,
+## #   wk19 &lt;dbl&gt;, wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;, wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;,
+## #   wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;, wk29 &lt;dbl&gt;, wk30 &lt;dbl&gt;,
+## #   wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;, wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;,
+## #   wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;,
+## #   wk43 &lt;dbl&gt;, wk44 &lt;dbl&gt;, wk45 &lt;dbl&gt;, wk46 &lt;dbl&gt;, wk47 &lt;dbl&gt;, wk48 &lt;dbl&gt;, …
+```
+
+Si notan, esta canción estuvo en los top 100 solamente hasta la semana 7.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+billboard |&gt; 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank" 
+  ) |&gt; 
+  filter(track == "Baby Don't Cry (Keep...")
+```
+
+```
+## # A tibble: 76 × 5
+##    artist track                   date.entered week   rank
+##    &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk1      87
+##  2 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk2      82
+##  3 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk3      72
+##  4 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk4      77
+##  5 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk5      87
+##  6 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk6      94
+##  7 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk7      99
+##  8 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk8      NA
+##  9 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk9      NA
+## 10 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk10     NA
+## # ℹ 66 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+billboard |&gt; 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE 
+  ) |&gt; 
+  filter(track == "Baby Don't Cry (Keep...")
+```
+
+```
+## # A tibble: 7 × 5
+##   artist track                   date.entered week   rank
+##   &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+## 1 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk1      87
+## 2 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk2      82
+## 3 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk3      72
+## 4 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk4      77
+## 5 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk5      87
+## 6 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk6      94
+## 7 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk7      99
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+Para finalizar de hacer esta base *tidy* podríamos también dejar la columna 
+`week` como númerica utilizando la función `parse_number()` de la librería 
+`readr`.
+
+
+``` r
+billboard_longer &lt;- billboard |&gt; 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) |&gt; 
+  mutate(
+    week = parse_number(week)
+  )
+
+billboard_longer
+```
+
+```
+## # A tibble: 5,307 × 5
+##    artist  track                   date.entered  week  rank
+##    &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1 2 Pac   Baby Don't Cry (Keep... 2000-02-26       1    87
+##  2 2 Pac   Baby Don't Cry (Keep... 2000-02-26       2    82
+##  3 2 Pac   Baby Don't Cry (Keep... 2000-02-26       3    72
+##  4 2 Pac   Baby Don't Cry (Keep... 2000-02-26       4    77
+##  5 2 Pac   Baby Don't Cry (Keep... 2000-02-26       5    87
+##  6 2 Pac   Baby Don't Cry (Keep... 2000-02-26       6    94
+##  7 2 Pac   Baby Don't Cry (Keep... 2000-02-26       7    99
+##  8 2Ge+her The Hardest Part Of ... 2000-09-02       1    91
+##  9 2Ge+her The Hardest Part Of ... 2000-09-02       2    87
+## 10 2Ge+her The Hardest Part Of ... 2000-09-02       3    92
+## # ℹ 5,297 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+Veamos un ejemplo más complejo:
+
+
+``` r
+who2
+```
+
+```
+## # A tibble: 7,240 × 58
+##    country      year sp_m_014 sp_m_1524 sp_m_2534 sp_m_3544 sp_m_4554 sp_m_5564
+##    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan  1980       NA        NA        NA        NA        NA        NA
+##  2 Afghanistan  1981       NA        NA        NA        NA        NA        NA
+##  3 Afghanistan  1982       NA        NA        NA        NA        NA        NA
+##  4 Afghanistan  1983       NA        NA        NA        NA        NA        NA
+##  5 Afghanistan  1984       NA        NA        NA        NA        NA        NA
+##  6 Afghanistan  1985       NA        NA        NA        NA        NA        NA
+##  7 Afghanistan  1986       NA        NA        NA        NA        NA        NA
+##  8 Afghanistan  1987       NA        NA        NA        NA        NA        NA
+##  9 Afghanistan  1988       NA        NA        NA        NA        NA        NA
+## 10 Afghanistan  1989       NA        NA        NA        NA        NA        NA
+## # ℹ 7,230 more rows
+## # ℹ 50 more variables: sp_m_65 &lt;dbl&gt;, sp_f_014 &lt;dbl&gt;, sp_f_1524 &lt;dbl&gt;,
+## #   sp_f_2534 &lt;dbl&gt;, sp_f_3544 &lt;dbl&gt;, sp_f_4554 &lt;dbl&gt;, sp_f_5564 &lt;dbl&gt;,
+## #   sp_f_65 &lt;dbl&gt;, sn_m_014 &lt;dbl&gt;, sn_m_1524 &lt;dbl&gt;, sn_m_2534 &lt;dbl&gt;,
+## #   sn_m_3544 &lt;dbl&gt;, sn_m_4554 &lt;dbl&gt;, sn_m_5564 &lt;dbl&gt;, sn_m_65 &lt;dbl&gt;,
+## #   sn_f_014 &lt;dbl&gt;, sn_f_1524 &lt;dbl&gt;, sn_f_2534 &lt;dbl&gt;, sn_f_3544 &lt;dbl&gt;,
+## #   sn_f_4554 &lt;dbl&gt;, sn_f_5564 &lt;dbl&gt;, sn_f_65 &lt;dbl&gt;, ep_m_014 &lt;dbl&gt;, …
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+Veamos un ejemplo más complejo:
+
+
+``` r
+who2 |&gt; 
+  pivot_longer(
+    cols = !(country:year),
+    names_to = c("diagnosis", "gender", "age"), 
+    names_sep = "_",
+    values_to = "count"
+  )
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+Veamos un ejemplo más complejo:
+
+
+``` r
+who2 |&gt; 
+  pivot_longer(
+    cols = !(country:year),
+    names_to = c("diagnosis", "gender", "age"), 
+    names_sep = "_",
+    values_to = "count"
+  )
+```
+
+```
+## # A tibble: 405,440 × 6
+##    country      year diagnosis gender age   count
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
+##  1 Afghanistan  1980 sp        m      014      NA
+##  2 Afghanistan  1980 sp        m      1524     NA
+##  3 Afghanistan  1980 sp        m      2534     NA
+##  4 Afghanistan  1980 sp        m      3544     NA
+##  5 Afghanistan  1980 sp        m      4554     NA
+##  6 Afghanistan  1980 sp        m      5564     NA
+##  7 Afghanistan  1980 sp        m      65       NA
+##  8 Afghanistan  1980 sp        f      014      NA
+##  9 Afghanistan  1980 sp        f      1524     NA
+## 10 Afghanistan  1980 sp        f      2534     NA
+## # ℹ 405,430 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+&lt;br/&gt;
+&lt;br/&gt;
+.center[&lt;img src="imagenes/tidy2.png"  /&gt;]
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+Ahora veremos la función `pivot_wider()`. Considere el siguiente ejemplo:
+
+
+``` r
+cms_patient_experience
+```
+
+```
+## # A tibble: 500 × 5
+##    org_pac_id org_nm                           measure_cd measure_title prf_rate
+##    &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;
+##  1 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       63
+##  2 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       87
+##  3 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       86
+##  4 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       57
+##  5 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       85
+##  6 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       24
+##  7 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       59
+##  8 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       85
+##  9 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       83
+## 10 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       63
+## # ℹ 490 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+cms_patient_experience |&gt; 
+  distinct(measure_cd, measure_title)
+```
+
+```
+## # A tibble: 6 × 2
+##   measure_cd   measure_title                                                    
+##   &lt;chr&gt;        &lt;chr&gt;                                                            
+## 1 CAHPS_GRP_1  CAHPS for MIPS SSM: Getting Timely Care, Appointments, and Infor…
+## 2 CAHPS_GRP_2  CAHPS for MIPS SSM: How Well Providers Communicate               
+## 3 CAHPS_GRP_3  CAHPS for MIPS SSM: Patient's Rating of Provider                 
+## 4 CAHPS_GRP_5  CAHPS for MIPS SSM: Health Promotion and Education               
+## 5 CAHPS_GRP_8  CAHPS for MIPS SSM: Courteous and Helpful Office Staff           
+## 6 CAHPS_GRP_12 CAHPS for MIPS SSM: Stewardship of Patient Resources
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+cms_patient_experience |&gt; 
+  pivot_wider(
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```
+
+```
+## # A tibble: 500 × 9
+##    org_pac_id org_nm           measure_title CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3
+##    &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 0446157747 USC CARE MEDICA… CAHPS for MI…          63          NA          NA
+##  2 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          87          NA
+##  3 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          86
+##  4 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          NA
+##  5 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          NA
+##  6 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          NA
+##  7 0446162697 ASSOCIATION OF … CAHPS for MI…          59          NA          NA
+##  8 0446162697 ASSOCIATION OF … CAHPS for MI…          NA          85          NA
+##  9 0446162697 ASSOCIATION OF … CAHPS for MI…          NA          NA          83
+## 10 0446162697 ASSOCIATION OF … CAHPS for MI…          NA          NA          NA
+## # ℹ 490 more rows
+## # ℹ 3 more variables: CAHPS_GRP_5 &lt;dbl&gt;, CAHPS_GRP_8 &lt;dbl&gt;, CAHPS_GRP_12 &lt;dbl&gt;
+```
+
+Mmmm... aún no funciona como queremos.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Tidy data
+
+
+``` r
+cms_patient_experience |&gt; 
+  pivot_wider(
+    id_cols = starts_with("org"),
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```
+
+```
+## # A tibble: 95 × 8
+##    org_pac_id org_nm CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
+##    &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 0446157747 USC C…          63          87          86          57          85
+##  2 0446162697 ASSOC…          59          85          83          63          88
+##  3 0547164295 BEAVE…          49          NA          75          44          73
+##  4 0749333730 CAPE …          67          84          85          65          82
+##  5 0840104360 ALLIA…          66          87          87          64          87
+##  6 0840109864 REX H…          73          87          84          67          91
+##  7 0840513552 SCL H…          58          83          76          58          78
+##  8 0941545784 GRITM…          46          86          81          54          NA
+##  9 1052612785 COMMU…          65          84          80          58          87
+## 10 1254237779 OUR L…          61          NA          NA          65          NA
+## # ℹ 85 more rows
+## # ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;
+```
+
+Ahora sí!
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
