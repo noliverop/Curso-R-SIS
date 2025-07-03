@@ -37,9 +37,19 @@ Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesio
 ### Tarea 3 (plazo 27 de junio)
 Enunciado de tarea 3 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_3_enunciado.html)
 
+### Soluciones Tarea 3 
+Enunciados y soluciones de la tarea 3 se pueden ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_3_solucion.html)
+
 ## Clase 5 (26 de junio)
 ### Bases de datos 3 (importación y herramientas de utilidad)
 Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesion_5_presentacion.html)
 
 ### Tarea 4 (plazo 4 de julio)
 Enunciado de tarea 4 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_4_enunciado.html)
+
+## Clase 6 (3 de julio)
+### Bases de datos 4 (Unión y transformación de Bases de Datos)
+Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesion_6_presentacion.html)
+
+### Tarea 5 (plazo 11 de julio)
+Enunciado de tarea 5 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_5_enunciado.html)
