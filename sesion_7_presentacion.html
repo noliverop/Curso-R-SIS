@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-08-11" />
+    <script src="sesion_7_presentacion_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="sesion_7_presentacion_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="sesion_7_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="sesion_7_presentacion_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="sesion_7_presentacion_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="sesion_7_presentacion_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="sesion_7_presentacion_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="sesion_7_presentacion_files/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Curso Capacitación en R 
+
+## Sesión 7 
+
+## Funciones e iteraciones
+
+### Julio 2025
+
+
+
+
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+nombre &lt;- function(argumentos) {
+  cuerpo
+}
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+area_cuad &lt;- function(lado1, lado2) {
+  print(paste("Lado 1 corresponde a:",lado1))
+  print(paste("Lado 2 corresponde a:",lado2))
+  lado1 * lado2
+}
+```
+
+--
+
+Identifique el nombres, argumentos y cuerpo de la función.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+area_cuad(lado1 = 4, lado2 = 6)
+```
+
+```
+## [1] "Lado 1 corresponde a: 4"
+## [1] "Lado 2 corresponde a: 6"
+```
+
+```
+## [1] 24
+```
+
+--
+
+
+``` r
+area_cuad(4, 6)
+```
+
+```
+## [1] "Lado 1 corresponde a: 4"
+## [1] "Lado 2 corresponde a: 6"
+```
+
+```
+## [1] 24
+```
+
+--
+
+
+``` r
+area_cuad(lado2 = 4, lado1 = 6)
+```
+
+```
+## [1] "Lado 1 corresponde a: 6"
+## [1] "Lado 2 corresponde a: 4"
+```
+
+```
+## [1] 24
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+area_cuad(6, 4)
+```
+
+```
+## [1] "Lado 1 corresponde a: 6"
+## [1] "Lado 2 corresponde a: 4"
+```
+
+```
+## [1] 24
+```
+
+--
+
+
+``` r
+area_cuad(lado1 = 14)
+```
+
+```
+## [1] "Lado 1 corresponde a: 14"
+```
+
+```
+## Error in area_cuad(lado1 = 14): argument "lado2" is missing, with no default
+```
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+hipotenusa_pitagoras &lt;- function(cateto1, cateto2) {
+  cateto_1_cuadrado &lt;- cateto1*cateto1
+  cateto_2_cuadrado &lt;- cateto2*cateto2
+  sqrt(cateto_1_cuadrado + cateto_2_cuadrado)
+}
+
+hipotenusa_pitagoras(3,4)
+```
+
+```
+## [1] 5
+```
+
+
+``` r
+cateto_1_cuadrado
+```
+
+```
+## Error: object 'cateto_1_cuadrado' not found
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Para explicitar lo que la función entregará se puede utilizar la función `return()`.
+
+
+``` r
+hipotenusa_pitagoras &lt;- function(cateto1, cateto2) {
+  cateto_1_cuadrado &lt;- cateto1*cateto1
+  cateto_2_cuadrado &lt;- cateto2*cateto2
+  return(sqrt(cateto_1_cuadrado + cateto_2_cuadrado))
+}
+
+hipotenusa_pitagoras(3,4)
+```
+
+```
+## [1] 5
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+
+``` r
+library(stringr)
+library(dplyr)
+first_upper &lt;- function(x) {
+  str_sub(x, 1, 1) &lt;- str_to_upper(str_sub(x, 1, 1))
+  x
+}
+
+first_upper("hello")
+```
+
+```
+## [1] "Hello"
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+
+``` r
+clean_number &lt;- function(x) {
+  is_pct &lt;- str_detect(x, "%")
+  num &lt;- x |&gt; 
+    str_remove_all("%") |&gt; 
+    str_remove_all(",") |&gt; 
+    str_remove_all(fixed("$")) |&gt; 
+    as.numeric()
+  if_else(is_pct, num / 100, num)
+}
+
+clean_number("$12,300")
+```
+
+```
+## [1] 12300
+```
+
+``` r
+clean_number("45%")
+```
+
+```
+## [1] 0.45
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+
+``` r
+fix_na &lt;- function(x) {
+  if_else(x %in% c(997, 998, 999), NA, x)
+}
+
+fix_na(c(1,1000,999,997,0))
+```
+
+```
+## [1]    1 1000   NA   NA    0
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+
+``` r
+n_missing &lt;- function(x) {
+  sum(is.na(x))
+} 
+
+ej_vector &lt;- c(1,1000,999,997,0)
+
+vect_limpio &lt;- fix_na(ej_vector)
+
+nas_vector_n &lt;- n_missing(vect_limpio)
+
+nas_vector_n
+```
+
+```
+## [1] 2
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+
+``` r
+if (!require('ggplot2')) install.packages('ggplot2'); library('ggplot2')
+diamonds
+```
+
+```
+## # A tibble: 53,940 × 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # ℹ 53,930 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+diamonds |&gt; summarise(
+  min = min(carat, na.rm = TRUE),
+  mean = mean(carat, na.rm = TRUE),
+  median = median(carat, na.rm = TRUE),
+  max = max(carat, na.rm = TRUE),
+  n = n(),
+  n_miss = sum(is.na(carat))
+)
+```
+
+```
+## # A tibble: 1 × 6
+##     min  mean median   max     n n_miss
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;
+## 1   0.2 0.798    0.7  5.01 53940      0
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+summary_general &lt;- function(data, var) {
+  data |&gt; summarise(
+    min = min({{ var }}, na.rm = TRUE),
+    mean = mean({{ var }}, na.rm = TRUE),
+    median = median({{ var }}, na.rm = TRUE),
+    max = max({{ var }}, na.rm = TRUE),
+    n = n(),
+    n_miss = sum(is.na({{ var }}))
+  )
+}
+
+diamonds |&gt; summary_general(carat)
+```
+
+```
+## # A tibble: 1 × 6
+##     min  mean median   max     n n_miss
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;
+## 1   0.2 0.798    0.7  5.01 53940      0
+```
+
+``` r
+diamonds |&gt; summary_general(price)
+```
+
+```
+## # A tibble: 1 × 6
+##     min  mean median   max     n n_miss
+##   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;
+## 1   326 3933.   2401 18823 53940      0
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+count_prop &lt;- function(df, var, sort = FALSE) {
+  df |&gt;
+    count({{ var }}, sort = sort) |&gt;
+    mutate(prop = n / sum(n))
+}
+
+diamonds |&gt; count_prop(clarity)
+```
+
+```
+## # A tibble: 8 × 3
+##   clarity     n   prop
+##   &lt;ord&gt;   &lt;int&gt;  &lt;dbl&gt;
+## 1 I1        741 0.0137
+## 2 SI2      9194 0.170 
+## 3 SI1     13065 0.242 
+## 4 VS2     12258 0.227 
+## 5 VS1      8171 0.151 
+## 6 VVS2     5066 0.0939
+## 7 VVS1     3655 0.0678
+## 8 IF       1790 0.0332
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+nycflights13::flights
+```
+
+```
+## # A tibble: 336,776 × 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # ℹ 336,766 more rows
+## # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+``` r
+unique_where &lt;- function(df, condition, var) {
+  df |&gt; 
+    filter({{ condition }}) |&gt; 
+    distinct({{ var }}) |&gt; 
+    arrange({{ var }})
+}
+
+# Encontrar todos los destinos del mes de diciembre
+nycflights13::flights |&gt; unique_where(month == 12, dest)
+```
+
+```
+## # A tibble: 96 × 1
+##    dest 
+##    &lt;chr&gt;
+##  1 ABQ  
+##  2 ALB  
+##  3 ATL  
+##  4 AUS  
+##  5 AVL  
+##  6 BDL  
+##  7 BGR  
+##  8 BHM  
+##  9 BNA  
+## 10 BOS  
+## # ℹ 86 more rows
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+La iteración en R suele ser bastante diferente a la de otros lenguajes de programación porque gran parte de ella es implícita y gratuita. Por ejemplo, si se desea duplicar un vector numérico x en R, basta con escribir 2 * x. En la mayoría de los demás lenguajes, se necesitaría duplicar explícitamente cada elemento de x mediante algún tipo de bucle for.
+
+
+``` r
+ej_vector &lt;- c(1,2,3,4)
+```
+
+--
+
+
+``` r
+vector_nuevo &lt;- c()
+for (i in ej_vector){
+  vector_nuevo &lt;- append(vector_nuevo,i*2)
+}
+vector_nuevo
+```
+
+```
+## [1] 2 4 6 8
+```
+
+--
+
+
+``` r
+ej_vector*2
+```
+
+```
+## [1] 2 4 6 8
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df &lt;- tibble(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+df
+```
+
+```
+## # A tibble: 10 × 4
+##         a       b        c       d
+##     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1 -0.289 -1.04    0.210   -0.282 
+##  2  1.77   2.06   -0.581    1.06  
+##  3  0.791  1.40   -0.963   -0.283 
+##  4 -0.149  0.0242 -0.0961   0.700 
+##  5  0.558  1.62    0.334    1.52  
+##  6  0.268 -0.338  -0.0110   0.118 
+##  7 -0.599  0.0414 -0.183   -0.0670
+##  8  1.24   1.97   -0.00571  0.325 
+##  9 -0.571  0.182  -0.336   -1.18  
+## 10 -0.514 -0.379   0.0358   0.447
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df |&gt; summarise(
+  a = median(a),
+  b = median(b),
+  c = median(c),
+  d = median(d),
+)
+```
+
+```
+## # A tibble: 1 × 4
+##        a     b       c     d
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.0596 0.112 -0.0535 0.221
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+if (!require('tidyverse')) install.packages('tidyverse'); library('tidyverse')
+
+df |&gt; summarise(
+  across(a:d, median),
+)
+```
+
+```
+## # A tibble: 1 × 4
+##        a     b       c     d
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.0596 0.112 -0.0535 0.221
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df |&gt; summarise(
+  across(everything(), median),
+)
+```
+
+```
+## # A tibble: 1 × 4
+##        a     b       c     d
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.0596 0.112 -0.0535 0.221
+```
+
+**OJO:** Cuando se debe entregar una función como argumento, esta debe ir **sin paréntesis**.
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df &lt;- tibble(
+  letras = c("A","B","A","C","D"),
+  numeros = c(1,5,3,6,7),
+  logico = c(FALSE,TRUE,TRUE,FALSE,FALSE)
+)
+df
+```
+
+```
+## # A tibble: 5 × 3
+##   letras numeros logico
+##   &lt;chr&gt;    &lt;dbl&gt; &lt;lgl&gt; 
+## 1 A            1 FALSE 
+## 2 B            5 TRUE  
+## 3 A            3 TRUE  
+## 4 C            6 FALSE 
+## 5 D            7 FALSE
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df |&gt; summarise(
+  across(where(is.character), n_distinct),
+)
+```
+
+```
+## # A tibble: 1 × 1
+##   letras
+##    &lt;int&gt;
+## 1      4
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df |&gt; summarise(
+  across(where(is.numeric), mean),
+)
+```
+
+```
+## # A tibble: 1 × 1
+##   numeros
+##     &lt;dbl&gt;
+## 1     4.4
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df |&gt;
+  summarise(
+  across(where(is.logical), all),
+)
+```
+
+```
+## # A tibble: 1 × 1
+##   logico
+##   &lt;lgl&gt; 
+## 1 FALSE
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+rnorm_na &lt;- function(n, n_na, mean = 0, sd = 1) {
+  sample(c(rnorm(n - n_na, mean = mean, sd = sd), rep(NA, n_na)))
+}
+
+df_miss &lt;- tibble(
+  a = rnorm_na(5, 1),
+  b = rnorm_na(5, 1),
+  c = rnorm_na(5, 2),
+  d = rnorm(5)
+)
+df_miss
+```
+
+```
+## # A tibble: 5 × 4
+##        a      b       c      d
+##    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1  0.861 -0.980 NA      -0.633
+## 2 -0.430 -1.47  -0.0531  1.89 
+## 3 NA     NA     NA       0.684
+## 4 -1.38   0.422 -2.05    1.89 
+## 5 -1.61  -1.43  -0.823  -0.398
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df_miss |&gt; 
+  summarize(
+    across(a:d, median),
+    n = n()
+  )
+```
+
+```
+## # A tibble: 1 × 5
+##       a     b     c     d     n
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1    NA    NA    NA 0.684     5
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df_miss |&gt; 
+  summarize(
+    across(a:d, median(na.rm = TRUE)),
+    n = n()
+  )
+```
+
+```
+## Error in `summarize()`:
+## ℹ In argument: `across(a:d, median(na.rm = TRUE))`.
+## Caused by error in `median.default()`:
+## ! argument "x" is missing, with no default
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df_miss |&gt; 
+  summarize(
+    across(a:d, \(x) median(x, na.rm = TRUE)),
+    n = n()
+  )
+```
+
+```
+## # A tibble: 1 × 5
+##        a     b      c     d     n
+##    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 -0.907 -1.20 -0.823 0.684     5
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df_miss |&gt; 
+  summarize(
+    across(a:d, list(
+      median = \(x) median(x, na.rm = TRUE),
+      n_miss = \(x) sum(is.na(x))
+    )),
+    n = n()
+  )
+```
+
+```
+## # A tibble: 1 × 9
+##   a_median a_n_miss b_median b_n_miss c_median c_n_miss d_median d_n_miss     n
+##      &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt; &lt;int&gt;
+## 1   -0.907        1    -1.20        1   -0.823        2    0.684        0     5
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df_miss
+```
+
+```
+## # A tibble: 5 × 4
+##        a      b       c      d
+##    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1  0.861 -0.980 NA      -0.633
+## 2 -0.430 -1.47  -0.0531  1.89 
+## 3 NA     NA     NA       0.684
+## 4 -1.38   0.422 -2.05    1.89 
+## 5 -1.61  -1.43  -0.823  -0.398
+```
+
+``` r
+df_miss |&gt; filter(if_any(a:d, is.na))
+```
+
+```
+## # A tibble: 2 × 4
+##        a      b     c      d
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  0.861 -0.980    NA -0.633
+## 2 NA     NA        NA  0.684
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+df_miss
+```
+
+```
+## # A tibble: 5 × 4
+##        a      b       c      d
+##    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1  0.861 -0.980 NA      -0.633
+## 2 -0.430 -1.47  -0.0531  1.89 
+## 3 NA     NA     NA       0.684
+## 4 -1.38   0.422 -2.05    1.89 
+## 5 -1.61  -1.43  -0.823  -0.398
+```
+
+``` r
+df_miss |&gt; filter(if_all(a:d, is.na))
+```
+
+```
+## # A tibble: 0 × 4
+## # ℹ 4 variables: a &lt;dbl&gt;, b &lt;dbl&gt;, c &lt;dbl&gt;, d &lt;dbl&gt;
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+diamonds
+```
+
+```
+## # A tibble: 53,940 × 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # ℹ 53,930 more rows
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+summarize_means &lt;- function(df, summary_vars = where(is.numeric)) {
+  df |&gt; 
+    summarize(
+      across({{ summary_vars }}, \(x) mean(x, na.rm = TRUE)),
+      n = n()
+    )
+}
+diamonds |&gt; 
+  group_by(cut) |&gt; 
+  summarize_means()
+```
+
+```
+## # A tibble: 5 × 9
+##   cut       carat depth table price     x     y     z     n
+##   &lt;ord&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 Fair      1.05   64.0  59.1 4359.  6.25  6.18  3.98  1610
+## 2 Good      0.849  62.4  58.7 3929.  5.84  5.85  3.64  4906
+## 3 Very Good 0.806  61.8  58.0 3982.  5.74  5.77  3.56 12082
+## 4 Premium   0.892  61.3  58.7 4584.  5.97  5.94  3.65 13791
+## 5 Ideal     0.703  61.7  56.0 3458.  5.51  5.52  3.40 21551
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+
+``` r
+diamonds |&gt; 
+  group_by(cut) |&gt; 
+  summarize_means(c(carat, x:z))
+```
+
+```
+## # A tibble: 5 × 6
+##   cut       carat     x     y     z     n
+##   &lt;ord&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 Fair      1.05   6.25  6.18  3.98  1610
+## 2 Good      0.849  5.84  5.85  3.64  4906
+## 3 Very Good 0.806  5.74  5.77  3.56 12082
+## 4 Premium   0.892  5.97  5.94  3.65 13791
+## 5 Ideal     0.703  5.51  5.52  3.40 21551
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+.center[&lt;img src="imagenes/ozzy.png"  /&gt;]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

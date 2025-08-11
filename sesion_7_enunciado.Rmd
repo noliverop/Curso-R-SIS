@@ -1,0 +1,664 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Sesión 7"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Curso Capacitación en R 
+
+## Sesión 7 
+
+## Funciones, IF's e iteraciones
+
+### Julio 2025
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Veamos algunos ejemplos:
+
+```{r eval=FALSE}
+nombre <- function(argumentos) {
+  cuerpo
+}
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+area_cuad <- function(lado1, lado2) {
+  print(paste("Lado 1 corresponde a:",lado1))
+  print(paste("Lado 2 corresponde a:",lado2))
+  lado1 * lado2
+}
+```
+
+--
+
+Identifique el nombres, argumentos y cuerpo de la función.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+area_cuad(lado1 = 4, lado2 = 6)
+area_cuad(4, 6)
+area_cuad(lado2 = 4, lado1 = 6)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+area_cuad(lado1 = 4, lado2 = 6)
+area_cuad(4, 6)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r error=TRUE}
+area_cuad(lado2 = 4, lado1 = 6)
+area_cuad(6, 4)
+area_cuad(lado1 = 14)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r error=TRUE}
+hipotenusa_pitagoras <- function(cateto1, cateto2) {
+  cateto_1_cuadrado <- cateto1*cateto1
+  cateto_2_cuadrado <- cateto2*cateto2
+  sqrt(cateto_1_cuadrado + cateto_2_cuadrado)
+}
+
+hipotenusa_pitagoras(3,4)
+```
+
+```{r error=TRUE}
+cateto_1_cuadrado
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Para explicitar lo que la función entregará se puede utilizar la función `return()`.
+
+```{r error=TRUE}
+hipotenusa_pitagoras <- function(cateto1, cateto2) {
+  cateto_1_cuadrado <- cateto1*cateto1
+  cateto_2_cuadrado <- cateto2*cateto2
+  return(sqrt(cateto_1_cuadrado + cateto_2_cuadrado))
+}
+
+hipotenusa_pitagoras(3,4)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+```{r }
+library(stringr)
+library(dplyr)
+first_upper <- function(x) {
+  str_sub(x, 1, 1) <- str_to_upper(str_sub(x, 1, 1))
+  x
+}
+
+first_upper("hello")
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+```{r }
+clean_number <- function(x) {
+  is_pct <- str_detect(x, "%")
+  num <- x |> 
+    str_remove_all("%") |> 
+    str_remove_all(",") |> 
+    str_remove_all(fixed("$")) |> 
+    as.numeric()
+  if_else(is_pct, num / 100, num)
+}
+
+clean_number("$12,300")
+
+clean_number("45%")
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+```{r }
+fix_na <- function(x) {
+  if_else(x %in% c(997, 998, 999), NA, x)
+}
+
+fix_na(c(1,1000,999,997,0))
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+Ejemplos:
+
+```{r }
+
+n_missing <- function(x) {
+  sum(is.na(x))
+} 
+
+ej_vector <- c(1,1000,999,997,0)
+
+vect_limpio <- fix_na(ej_vector)
+
+nas_vector_n <- n_missing(vect_limpio)
+
+nas_vector_n
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+
+```{r }
+library(ggplot2)
+diamonds
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+diamonds |> summarise(
+  min = min(carat, na.rm = TRUE),
+  mean = mean(carat, na.rm = TRUE),
+  median = median(carat, na.rm = TRUE),
+  max = max(carat, na.rm = TRUE),
+  n = n(),
+  n_miss = sum(is.na(carat))
+)
+
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+summary_general <- function(data, var) {
+  data |> summarise(
+    min = min({{ var }}, na.rm = TRUE),
+    mean = mean({{ var }}, na.rm = TRUE),
+    median = median({{ var }}, na.rm = TRUE),
+    max = max({{ var }}, na.rm = TRUE),
+    n = n(),
+    n_miss = sum(is.na({{ var }}))
+  )
+}
+
+diamonds |> summary_general(carat)
+
+diamonds |> summary_general(price)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+count_prop <- function(df, var, sort = FALSE) {
+  df |>
+    count({{ var }}, sort = sort) |>
+    mutate(prop = n / sum(n))
+}
+
+diamonds |> count_prop(clarity)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+nycflights13::flights
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Funciones
+
+```{r }
+unique_where <- function(df, condition, var) {
+  df |> 
+    filter({{ condition }}) |> 
+    distinct({{ var }}) |> 
+    arrange({{ var }})
+}
+
+# Encontrar todos los destinos del mes de diciembre
+nycflights13::flights |> unique_where(month == 12, dest)
+```
+
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+Iteration in R generally tends to look rather different from other programming languages because so much of it is implicit and we get it for free. For example, if you want to double a numeric vector x in R, you can just write 2 * x. In most other languages, you’d need to explicitly double each element of x using some sort of for loop.
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df <- tibble(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+df
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df |> summarise(
+  a = median(a),
+  b = median(b),
+  c = median(c),
+  d = median(d),
+)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+library(tidyverse)
+
+df |> summarise(
+  across(a:d, median),
+)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+library(tidyverse)
+
+df |> summarise(
+  across(everything(), median),
+)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df <- tibble(
+  letras = c("A","B","A","C","D"),
+  numeros = c(1,5,3,6,7),
+  logico = c(FALSE,TRUE,TRUE,FALSE,FALSE)
+)
+df
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df |> summarise(
+  across(where(is.character), n_distinct),
+)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df |> summarise(
+  across(where(is.numeric), mean),
+)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df |>
+  summarise(
+  across(where(is.logical), all),
+)
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+rnorm_na <- function(n, n_na, mean = 0, sd = 1) {
+  sample(c(rnorm(n - n_na, mean = mean, sd = sd), rep(NA, n_na)))
+}
+
+df_miss <- tibble(
+  a = rnorm_na(5, 1),
+  b = rnorm_na(5, 1),
+  c = rnorm_na(5, 2),
+  d = rnorm(5)
+)
+df_miss
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df_miss |> 
+  summarize(
+    across(a:d, median),
+    n = n()
+  )
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r error=TRUE}
+df_miss |> 
+  summarize(
+    across(a:d, median(na.rm = TRUE)),
+    n = n()
+  )
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df_miss |> 
+  summarize(
+    across(a:d, \(x) median(x, na.rm = TRUE)),
+    n = n()
+  )
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df_miss |> 
+  summarize(
+    across(a:d, list(
+      median = \(x) median(x, na.rm = TRUE),
+      n_miss = \(x) sum(is.na(x))
+    )),
+    n = n()
+  )
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df_miss
+df_miss |> filter(if_any(a:d, is.na))
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+df_miss
+df_miss |> filter(if_all(a:d, is.na))
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+diamonds
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+summarize_means <- function(df, summary_vars = where(is.numeric)) {
+  df |> 
+    summarize(
+      across({{ summary_vars }}, \(x) mean(x, na.rm = TRUE)),
+      n = n()
+    )
+}
+diamonds |> 
+  group_by(cut) |> 
+  summarize_means()
+```
+
+---
+
+background-image: url("imagenes/background.png")
+background-size: contain;
+background-position: 50% 0%
+
+# Iteraciones
+
+```{r }
+diamonds |> 
+  group_by(cut) |> 
+  summarize_means(c(carat, x:z))
+```
+
+

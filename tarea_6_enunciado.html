@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-08-11" />
+    <script src="tarea_6_enunciado_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="tarea_6_enunciado_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="tarea_6_enunciado_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="tarea_6_enunciado_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="tarea_6_enunciado_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="tarea_6_enunciado_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="tarea_6_enunciado_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="tarea_6_enunciado_files/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Tarea 6
+
+## Plazo: 20 de agosto con puntaje extra o 22 de agosto sin extra
+
+
+
+
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Preámbulo 
+
+Esta tarea, al igual que las anteriores deberán crear
+de cero su script. Por favor sea ordenado y utilice tantos comentarios sean
+necesarios para que se acostumbren a que su trabajo sea autoexplicativo.
+
+Recuerde que antes de escribir la respuesta a cada pregunta, debe escribir como comentario
+en la línea anterior, el numeral que está respondiendo. Por ejemplo:
+
+
+``` r
+# Pregunta 2.1 o Pregunta 2: 1, o como usted prefiera
+hola &lt;- "hola"
+```
+
+Si entregan una respuesta sin antes haber puesto como comentario el numeral en 
+la línea anterior tendrán una penalización de **1 décima**.
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1 (función simple)
+
+Como primer ejercicio deberá implementar la famosa ecuación de energía propuesta por
+Albert Enstein: 
+
+`$$E = m*c^{2}$$`
+Donde `\(E\)` es la cantidad de energía, `\(m\)` es la masa de un objeto y `\(c\)` es 
+una **constante** física que representa la velocidad a la que la luz viaja en el 
+vacío, siendo aproximadamente `\(299.792.458\)` metros por segundo. 
+
+1.- Usted debe crear una función (llámela como usted prefiera) que reciba como
+argumento un valor de masa y retorne la energía asociada a esta. El resultado debe estar redondeado a 
+dos decimales.
+
+2.- Modifique la función para que en caso de que no se entregue el valor de la 
+masa esta utilice una masa por defecto con valor `\(5\)`.
+
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+En este ejericio tendrán que utilizar la base de datos `diamonds` incluida en la 
+librería `tidyverse`. Dado lo anterior, recuerden instalar este paquete (solamente 
+si aún no lo han instalado) y abrirlo. 
+
+
+``` r
+if (!require('tidyverse')) install.packages('tidyverse'); library('tidyverse')
+```
+
+Luego, generen un objeto llamado diamantes con esta base de datos de la 
+siguiente forma:
+
+
+``` r
+diamantes &lt;- diamonds
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+Recuerde que la base `diamantes` debiese verse de la siguiente forma:
+
+
+``` r
+diamantes
+```
+
+```
+## # A tibble: 53,940 × 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # ℹ 53,930 more rows
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+1.- Utilizando la base `diamantes`, los verbos de `dplyr`, la función `across` y la función 
+`round`, aplique la función `round` a todas las columnas que son *numéricas*.
+Llame a esta base `diamantes_sin_decimales`.
+
+La base `diamantes_sin_decimales` debiese verse de la siguiente forma:
+
+```
+## # A tibble: 53,940 × 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     0 Ideal     E     SI2        62    55   326     4     4     2
+##  2     0 Premium   E     SI1        60    61   326     4     4     2
+##  3     0 Good      E     VS1        57    65   327     4     4     2
+##  4     0 Premium   I     VS2        62    58   334     4     4     3
+##  5     0 Good      J     SI2        63    58   335     4     4     3
+##  6     0 Very Good J     VVS2       63    57   336     4     4     2
+##  7     0 Very Good I     VVS1       62    57   336     4     4     2
+##  8     0 Very Good H     SI1        62    55   337     4     4     3
+##  9     0 Fair      E     VS2        65    61   337     4     4     2
+## 10     0 Very Good H     VS1        59    61   338     4     4     2
+## # ℹ 53,930 more rows
+```
+
+**Note que la función `round` al no recibir argumento se implementó sin decimales o** 
+**en otras palabras, considerando `\(0\)` decimales.**
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+2.- Utilizando los verbos de `dplyr`, la función `across`, y basándose en la base `diamantes_sin_decimales`, 
+genere una tabla que muestre el promedio de todas las columnas que son *numéricas*.
+Llame a esta nueva base `diamantes_sin_decimales_promedio`.
+
+Esta base de promedios (`diamantes_sin_decimales_promedio`) debiese verse de la siguiente forma:
+
+```
+## # A tibble: 1 × 7
+##   carat depth table price     x     y     z
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.767  61.8  57.5 3933.  5.69  5.69  3.61
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+3.- Utilizando nuevamente como punto de inicio la base `diamantes`, los verbos de `dplyr`, 
+la función `across` y la función `round`, aplique la función `round` a todas las
+columnas que son *numéricas* pero ahora **especifique que esta función se implemente considerando sólo 1 decimal**.
+Llame a esta base `diamantes_un_decimal`.
+
+Ahora la base `diamantes_un_decimal` debiese verse de la siguiente forma:
+
+```
+## # A tibble: 53,940 × 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1   0.2 Ideal     E     SI2      61.5    55   326   4     4     2.4
+##  2   0.2 Premium   E     SI1      59.8    61   326   3.9   3.8   2.3
+##  3   0.2 Good      E     VS1      56.9    65   327   4     4.1   2.3
+##  4   0.3 Premium   I     VS2      62.4    58   334   4.2   4.2   2.6
+##  5   0.3 Good      J     SI2      63.3    58   335   4.3   4.3   2.8
+##  6   0.2 Very Good J     VVS2     62.8    57   336   3.9   4     2.5
+##  7   0.2 Very Good I     VVS1     62.3    57   336   4     4     2.5
+##  8   0.3 Very Good H     SI1      61.9    55   337   4.1   4.1   2.5
+##  9   0.2 Fair      E     VS2      65.1    61   337   3.9   3.8   2.5
+## 10   0.2 Very Good H     VS1      59.4    61   338   4     4     2.4
+## # ℹ 53,930 more rows
+```
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+4.- Utilizando los verbos de `dplyr`, la función `across`, y basándose en la base `diamantes_un_decimal`, 
+genere una tabla que muestre el promedio de todas las columnas que son *numéricas*.
+Llame a esta nueva base `diamantes_un_decimal_promedio`.
+
+Esta base de promedios (`diamantes_un_decimal_promedio`) debiese verse de la siguiente forma:
+
+```
+## # A tibble: 1 × 7
+##   carat depth table price     x     y     z
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.791  61.7  57.5 3933.  5.73  5.73  3.54
+```
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (funciones e iteraciones)
+
+Con los conocimientos adquiridos en la última clase, genere una función llamada `funcion_estadistica` que 
+por *default* utilice las columnas numéricas de una base de datos y entregue 
+las siguientes estadísticas descriptivas: media, mediana, máximo y mínimo. De 
+acuerdo a lo anterior, su función debe poseer 2 argumentos: una base de datos y las 
+columnas a analizar. Pruebe esta función en la base de datos `diamantes`. Revise que 
+implementó correctamente su función de las siguientes dos maneras:
+
+
+
+1.- El resultado de su función al entregar como argumento solo la base `diamantes` debiese verse
+de la siguiente forma (1 fila y 28 columnas). *No todas las columnas se ven por un* 
+*tema de espacio*.
+
+
+``` r
+funcion_estadistica(diamantes)
+```
+
+```
+## # A tibble: 1 × 28
+##   carat_media carat_mediana carat_max carat_min depth_media depth_mediana
+##         &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+## 1       0.798           0.7      5.01       0.2        61.7          61.8
+## # ℹ 22 more variables: depth_max &lt;dbl&gt;, depth_min &lt;dbl&gt;, table_media &lt;dbl&gt;,
+## #   table_mediana &lt;dbl&gt;, table_max &lt;dbl&gt;, table_min &lt;dbl&gt;, price_media &lt;dbl&gt;,
+## #   price_mediana &lt;dbl&gt;, price_max &lt;int&gt;, price_min &lt;int&gt;, x_media &lt;dbl&gt;,
+## #   x_mediana &lt;dbl&gt;, x_max &lt;dbl&gt;, x_min &lt;dbl&gt;, y_media &lt;dbl&gt;, y_mediana &lt;dbl&gt;,
+## #   y_max &lt;dbl&gt;, y_min &lt;dbl&gt;, z_media &lt;dbl&gt;, z_mediana &lt;dbl&gt;, z_max &lt;dbl&gt;,
+## #   z_min &lt;dbl&gt;
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (funciones e iteraciones)
+
+2.- El resultado de su función al entregar como argumentos la base de diamantes y 
+las columnas *carat* y *depth* debiese verse de la siguiente forma:
+
+
+``` r
+funcion_estadistica(diamantes, c(carat,depth))
+```
+
+```
+## # A tibble: 1 × 8
+##   carat_media carat_mediana carat_max carat_min depth_media depth_mediana
+##         &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+## 1       0.798           0.7      5.01       0.2        61.7          61.8
+## # ℹ 2 more variables: depth_max &lt;dbl&gt;, depth_min &lt;dbl&gt;
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
