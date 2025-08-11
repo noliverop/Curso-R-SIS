@@ -53,3 +53,13 @@ Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesio
 
 ### Tarea 5 (plazo 11 de julio)
 Enunciado de tarea 5 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_5_enunciado.html)
+
+### Soluciones Tarea 5
+Enunciados y soluciones de la tarea 5 se pueden ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_5_solucion.html)
+
+## Clase 7 (24 de julio y 8 de agosto)
+### Funciones e iteraciones
+Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesion_7_presentacion.html)
+
+### Tarea 6 (plazo 20 de agosto)
+Enunciado de tarea 6 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_6_enunciado.html)
