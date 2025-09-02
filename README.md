@@ -63,3 +63,6 @@ Material disponible en este [link](https://noliverop.github.io/Curso-R-SIS/sesio
 
 ### Tarea 6 (plazo 20 de agosto)
 Enunciado de tarea 6 se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_6_enunciado.html)
+
+### Tarea Recuperativa (plazo 12 de septiembre)
+Enunciado de la tarea recuperativa se puede ver en este [link](https://noliverop.github.io/Curso-R-SIS/tarea_recuperativa_enunciado.html)
