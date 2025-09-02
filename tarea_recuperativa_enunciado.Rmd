@@ -1,0 +1,318 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Tarea Recuperativa"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Tarea Recuperativa
+
+## Plazo: viernes 12 de septiembre
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Preámbulo 
+
+Esta tarea, al igual que las anteriores deberán crear
+de cero su script. Por favor sea ordenado y utilice tantos comentarios sean
+necesarios para que se acostumbren a que su trabajo sea autoexplicativo.
+
+Recuerde que antes de escribir la respuesta a cada pregunta, debe escribir como comentario
+en la línea anterior, el numeral que está respondiendo. Por ejemplo:
+
+```{r }
+# Pregunta 2.1 o Pregunta 2: 1, o como usted prefiera
+hola <- "hola"
+```
+
+Si entregan una respuesta sin antes haber puesto como comentario el numeral en 
+la línea anterior tendrán una penalización de **1 décima**.
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1 (Vectores)
+
+Como primer ejercicio tengan en consideración los siguientes vectores (córralos 
+en su consola para tenerlos disponibles en su ambiente):
+
+```{r include=TRUE}
+vector_numerico_1 <- c(1,2,3,4,5)
+vector_numerico_1
+```
+
+```{r include=TRUE}
+vector_numerico_2 <- c(2,3,5,7,11)
+vector_numerico_2
+```
+
+```{r include=TRUE}
+vector_letras <- c("a","f","h","b","e","v","l","p","u")
+vector_letras
+```
+
+```{r include=FALSE}
+# hola
+```
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1 (Vectores)
+
+1.- Genere un nuevo vector llamado `vector_numerico_3` que sea la suma del 
+`vector_numerico_2` más el **doble** del vector númerico 1. Sea lo más sucinto
+posible en su cálculo 
+
+```{r include=FALSE}
+vector_numerico_3 <- vector_numerico_2 + 2*vector_numerico_1
+vector_numerico_3
+```
+2.- Cree un vector llamada `vector_letras_vocales` que extraiga solamente las 
+vocales del `vector_letras`. **HINT:** Primero genere un vector llamado `vocales` que
+contenga todas las vocales posibles, luego ocupe este vector sobre el `vector_letras`
+para extraer las vocales presentes en este último. Utilice el operador `%in%`. Recuerde
+también indexar para que el resultado sean efectivamente las vocales presentes y no 
+un vector de TRUE's y FALSE's.
+
+```{r include=FALSE}
+vocales <- c("a","e","i","o","u")
+vector_letras_vocales <- vector_letras[vector_letras %in% vocales]
+vector_letras_vocales
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+En este ejericio tendrán que utilizar la base de datos `starwars` incluida en la 
+librería `tidyverse`. Dado lo anterior, recuerden instalar este paquete (solamente 
+si aún no lo han instalado) y abrirlo. 
+
+```{r include=TRUE}
+if (!require('tidyverse')) install.packages('tidyverse'); library('tidyverse')
+```
+
+Luego, generen un objeto llamado `guerra_galaxias` con esta base de datos de la 
+siguiente forma:
+
+```{r include=TRUE}
+guerra_galaxias <- starwars 
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+Recuerde que la base `guerra_galaxias` debiese verse de la siguiente forma:
+
+```{r include=TRUE}
+guerra_galaxias
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+1.- Genere una función que reciba una base de datos, que tome por defecto las columnas que son `character` y
+que transforme todas las columnas de este tipo a mayúsculas. Llame a esta función `columnas_character_mayusculas`.
+Utilice la función en la misma base `guerra_galaxias` (sobrescribiendola) y así tener la base con mayúsculas.
+
+```{r include=FALSE}
+columnas_character_mayusculas <- function(base, var_chr = where(is.character)){
+  base |>
+    mutate(across({{ var_chr }}, str_to_upper))
+}
+
+```
+Su resultado debiese verse de la siguiente forma:
+
+```{r include=TRUE, echo=TRUE}
+guerra_galaxias <- columnas_character_mayusculas(guerra_galaxias)
+guerra_galaxias
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+2.- Genere una función que reciba una base de datos y  
+que entregue un `summarise` de la cantidad de `NA's` presentes en cada columna. Llame a esta función `n_nas`.
+Como ayuda se le entrega la creación de una función que calcula los `NA's` de un elemento. Use esta función 
+para crear la función general a todas las columnas.
+
+```{r include=TRUE}
+n_nas_un_elemento <- function(x){
+  sum(is.na(x))
+}
+
+```
+
+```{r include=FALSE}
+n_nas <- function(base){
+  base |>
+    summarise(
+    across(everything(), n_nas_un_elemento)
+    )
+  }
+
+n_nas(guerra_galaxias)
+
+```
+Pruebe su función en la base `guerra_galaxias` de la siguiente manera: 
+```{r include=TRUE, echo=TRUE, eval=FALSE}
+n_nas(guerra_galaxias)
+```
+
+**¿Qué columna de la base `guerra_galaxias` contiene mayor cantidad de `NA's`?**
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (análisis de datos)
+
+Todas las preguntas del Ejercicio 3 utilizarán la base `guerra_galaxias` ya utilizada
+en los ejercicios anteriores.
+
+1.- Utilizando los verbos de la librería `dplyr` genere una base llamada 
+`guerra_galaxias_humanos` en base a `guerra_galaxias`. En esta base usted debe a) crear 
+una columna que se llame `es_humano` que tome el valor $1$ si el personajes es humano y $0$ si 
+no lo es; b) luego seleccione solo las columnas `name`,`height`, `mass`, `homeworld` y `es_humano`; c) filtre 
+por la variable `es_humano` solo aquellas observaciones que sean $1$; finalmente ordene de mayor a menor según la 
+columna `mass`. ¿Qué personaje de star wars que es humano tiene la mayor masa? ¿Cuantas filas y columnas 
+tiene la base `guerra_galaxias_humanos`?
+
+```{r include=FALSE}
+guerra_galaxias_humanos <- guerra_galaxias |>
+  mutate(es_humano = if_else(species == "HUMAN",1,0)) |>
+  select(name,height,mass,homeworld,es_humano) |>
+  filter(es_humano == 1) |>
+  arrange(desc(mass))
+
+guerra_galaxias_humanos
+```
+2.- Utilizando los verbos de la librería `dplyr` genere una base llamada 
+`guerra_galaxias_altura_especifica` en base a `guerra_galaxias`. En esta base usted debe a) seleccionar 
+las columnas `name` y `height`; b) filtrar por aquellos personajes que tienen una altura mayor o igual 
+a $80$ y menor o igual a $150$; c) finalmente ordene esta base de menor a mayor altura.
+¿Qué personajes de star wars tienen una altura de $150$? ¿Cuantas filas y columnas 
+tiene la base `guerra_galaxias_altura_especifica`?
+
+```{r include=FALSE}
+guerra_galaxias_altura_especifica <- guerra_galaxias |>
+  select(name,height) |>
+  filter(height >= 80 & height <= 150) |>
+  arrange(height)
+
+guerra_galaxias_altura_especifica
+```
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (análisis de datos)
+
+3.- Utilizando los verbos de la librería `dplyr` genere una base llamada 
+`guerra_galaxias_summarise` en base a `guerra_galaxias`. En esta base usted debe a) seleccionar 
+las columnas `name`,`height`, `mass`, `birth_year` y `species`; b) agrupar por `species`; c)
+hacer un summarise donde se calcule el promedio (media) de la altura por especie, el promedio de 
+la masa por especie, el mínimo del `birth_year` y el número de observaciones por especie; d) finalmente 
+ordene esta base de mayor a menor según la cantidad de observaciones por especie. 
+Observación: No se preocupe si muchas columnas tienen `NA's`.
+¿Qué especie tiene la mayor cantidad de observaciones? ¿Cuantas filas y columnas 
+tiene la base `guerra_galaxias_summarise`?
+
+```{r include=FALSE}
+guerra_galaxias_summarise <- guerra_galaxias |>
+  select(name,height, mass, birth_year, species) |>
+  group_by(species) |>
+  summarise(
+    media_height = mean(height),
+    media_mass = mean(mass),
+    min_birth = min(birth_year),
+    n = n()
+  ) |>
+  arrange(desc(n))
+
+guerra_galaxias_summarise
+```
+4.- Haga exactamente lo mismo que en la pregunta anterior pero ahora corrija su código 
+para que al calcular la media de la altura, masa y el mínimo del año de nacimiento se excluyan los 
+valores `NA's` del cálculo. Observación: no se preocupe si aún se mantienen `NA's` o aparecen valores `Inf`, esto sucederá 
+por que existen observaciones con sólo un valor y este es `NA`.
+
+```{r include=FALSE}
+guerra_galaxias_summarise <- guerra_galaxias |>
+  select(name,height, mass, birth_year, species) |>
+  group_by(species) |>
+  summarise(
+    media_height = mean(height, na.rm = TRUE),
+    media_mass = mean(mass, na.rm = TRUE),
+    min_birth = min(birth_year, na.rm = TRUE),
+    n = n()
+  ) |>
+  arrange(desc(n))
+
+guerra_galaxias_summarise
+```

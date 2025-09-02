@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Curso Capacitación en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2025-09-02" />
+    <script src="tarea_recuperativa_enunciado_files/header-attrs-2.29/header-attrs.js"></script>
+    <script src="tarea_recuperativa_enunciado_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="tarea_recuperativa_enunciado_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="tarea_recuperativa_enunciado_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaringanExtra-editable-demo-1","expires":1}</script>
+    <script src="tarea_recuperativa_enunciado_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="tarea_recuperativa_enunciado_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="tarea_recuperativa_enunciado_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="tarea_recuperativa_enunciado_files/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+&lt;img src="imagenes/logo_super_portada.png" width="180" /&gt;
+
+
+# Tarea Recuperativa
+
+## Plazo: viernes 12 de septiembre
+
+
+
+
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Preámbulo 
+
+Esta tarea, al igual que las anteriores deberán crear
+de cero su script. Por favor sea ordenado y utilice tantos comentarios sean
+necesarios para que se acostumbren a que su trabajo sea autoexplicativo.
+
+Recuerde que antes de escribir la respuesta a cada pregunta, debe escribir como comentario
+en la línea anterior, el numeral que está respondiendo. Por ejemplo:
+
+
+``` r
+# Pregunta 2.1 o Pregunta 2: 1, o como usted prefiera
+hola &lt;- "hola"
+```
+
+Si entregan una respuesta sin antes haber puesto como comentario el numeral en 
+la línea anterior tendrán una penalización de **1 décima**.
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1 (Vectores)
+
+Como primer ejercicio tengan en consideración los siguientes vectores (córralos 
+en su consola para tenerlos disponibles en su ambiente):
+
+
+``` r
+vector_numerico_1 &lt;- c(1,2,3,4,5)
+vector_numerico_1
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+
+``` r
+vector_numerico_2 &lt;- c(2,3,5,7,11)
+vector_numerico_2
+```
+
+```
+## [1]  2  3  5  7 11
+```
+
+
+``` r
+vector_letras &lt;- c("a","f","h","b","e","v","l","p","u")
+vector_letras
+```
+
+```
+## [1] "a" "f" "h" "b" "e" "v" "l" "p" "u"
+```
+
+
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1 (Vectores)
+
+1.- Genere un nuevo vector llamado `vector_numerico_3` que sea la suma del 
+`vector_numerico_2` más el **doble** del vector númerico 1. Sea lo más sucinto
+posible en su cálculo 
+
+
+2.- Cree un vector llamada `vector_letras_vocales` que extraiga solamente las 
+vocales del `vector_letras`. **HINT:** Primero genere un vector llamado `vocales` que
+contenga todas las vocales posibles, luego ocupe este vector sobre el `vector_letras`
+para extraer las vocales presentes en este último. Utilice el operador `%in%`. Recuerde
+también indexar para que el resultado sean efectivamente las vocales presentes y no 
+un vector de TRUE's y FALSE's.
+
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+En este ejericio tendrán que utilizar la base de datos `starwars` incluida en la 
+librería `tidyverse`. Dado lo anterior, recuerden instalar este paquete (solamente 
+si aún no lo han instalado) y abrirlo. 
+
+
+``` r
+if (!require('tidyverse')) install.packages('tidyverse'); library('tidyverse')
+```
+
+Luego, generen un objeto llamado `guerra_galaxias` con esta base de datos de la 
+siguiente forma:
+
+
+``` r
+guerra_galaxias &lt;- starwars 
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+Recuerde que la base `guerra_galaxias` debiese verse de la siguiente forma:
+
+
+``` r
+guerra_galaxias
+```
+
+```
+## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+##  2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+##  3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+##  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+##  6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+##  8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+##  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+## 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+1.- Genere una función que reciba una base de datos, que tome por defecto las columnas que son `character` y
+que transforme todas las columnas de este tipo a mayúsculas. Llame a esta función `columnas_character_mayusculas`.
+Utilice la función en la misma base `guerra_galaxias` (sobrescribiendola) y así tener la base con mayúsculas.
+
+
+Su resultado debiese verse de la siguiente forma:
+
+
+``` r
+guerra_galaxias &lt;- columnas_character_mayusculas(guerra_galaxias)
+guerra_galaxias
+```
+
+```
+## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 LUKE SK…    172    77 BLOND      FAIR       BLUE            19   MALE  MASCU…
+##  2 C-3PO       167    75 &lt;NA&gt;       GOLD       YELLOW         112   NONE  MASCU…
+##  3 R2-D2        96    32 &lt;NA&gt;       WHITE, BL… RED             33   NONE  MASCU…
+##  4 DARTH V…    202   136 NONE       WHITE      YELLOW          41.9 MALE  MASCU…
+##  5 LEIA OR…    150    49 BROWN      LIGHT      BROWN           19   FEMA… FEMIN…
+##  6 OWEN LA…    178   120 BROWN, GR… LIGHT      BLUE            52   MALE  MASCU…
+##  7 BERU WH…    165    75 BROWN      LIGHT      BLUE            47   FEMA… FEMIN…
+##  8 R5-D4        97    32 &lt;NA&gt;       WHITE, RED RED             NA   NONE  MASCU…
+##  9 BIGGS D…    183    84 BLACK      LIGHT      BROWN           24   MALE  MASCU…
+## 10 OBI-WAN…    182    77 AUBURN, W… FAIR       BLUE-GRAY       57   MALE  MASCU…
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (funciones e iteraciones)
+
+2.- Genere una función que reciba una base de datos y  
+que entregue un `summarise` de la cantidad de `NA's` presentes en cada columna. Llame a esta función `n_nas`.
+Como ayuda se le entrega la creación de una función que calcula los `NA's` de un elemento. Use esta función 
+para crear la función general a todas las columnas.
+
+
+``` r
+n_nas_un_elemento &lt;- function(x){
+  sum(is.na(x))
+}
+```
+
+
+Pruebe su función en la base `guerra_galaxias` de la siguiente manera: 
+
+``` r
+n_nas(guerra_galaxias)
+```
+
+**¿Qué columna de la base `guerra_galaxias` contiene mayor cantidad de `NA's`?**
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (análisis de datos)
+
+Todas las preguntas del Ejercicio 3 utilizarán la base `guerra_galaxias` ya utilizada
+en los ejercicios anteriores.
+
+1.- Utilizando los verbos de la librería `dplyr` genere una base llamada 
+`guerra_galaxias_humanos` en base a `guerra_galaxias`. En esta base usted debe a) crear 
+una columna que se llame `es_humano` que tome el valor `\(1\)` si el personajes es humano y `\(0\)` si 
+no lo es; b) luego seleccione solo las columnas `name`,`height`, `mass`, `homeworld` y `es_humano`; c) filtre 
+por la variable `es_humano` solo aquellas observaciones que sean `\(1\)`; finalmente ordene de mayor a menor según la 
+columna `mass`. ¿Qué personaje de star wars que es humano tiene la mayor masa? ¿Cuantas filas y columnas 
+tiene la base `guerra_galaxias_humanos`?
+
+
+2.- Utilizando los verbos de la librería `dplyr` genere una base llamada 
+`guerra_galaxias_altura_especifica` en base a `guerra_galaxias`. En esta base usted debe a) seleccionar 
+las columnas `name` y `height`; b) filtrar por aquellos personajes que tienen una altura mayor o igual 
+a `\(80\)` y menor o igual a `\(150\)`; c) finalmente ordene esta base de menor a mayor altura.
+¿Qué personajes de star wars tienen una altura de `\(150\)`? ¿Cuantas filas y columnas 
+tiene la base `guerra_galaxias_altura_especifica`?
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (análisis de datos)
+
+3.- Utilizando los verbos de la librería `dplyr` genere una base llamada 
+`guerra_galaxias_summarise` en base a `guerra_galaxias`. En esta base usted debe a) seleccionar 
+las columnas `name`,`height`, `mass`, `birth_year` y `species`; b) agrupar por `species`; c)
+hacer un summarise donde se calcule el promedio (media) de la altura por especie, el promedio de 
+la masa por especie, el mínimo del `birth_year` y el número de observaciones por especie; d) finalmente 
+ordene esta base de mayor a menor según la cantidad de observaciones por especie. 
+Observación: No se preocupe si muchas columnas tienen `NA's`.
+¿Qué especie tiene la mayor cantidad de observaciones? ¿Cuantas filas y columnas 
+tiene la base `guerra_galaxias_summarise`?
+
+
+4.- Haga exactamente lo mismo que en la pregunta anterior pero ahora corrija su código 
+para que al calcular la media de la altura, masa y el mínimo del año de nacimiento se excluyan los 
+valores `NA's` del cálculo. Observación: no se preocupe si aún se mantienen `NA's` o aparecen valores `Inf`, esto sucederá 
+por que existen observaciones con sólo un valor y este es `NA`.
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
