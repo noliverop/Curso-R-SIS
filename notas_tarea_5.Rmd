@@ -1,5 +1,5 @@
 ---
-title: "Notas Tarea 1"
+title: "Notas Tarea 5"
 output: html_document
 ---
 
@@ -18,20 +18,20 @@ library(tidyr)
 
 nombres <- c("Rodrigo Gonzalez", "Cecilia Carmona", "Benedicto Romero",
              "Hermman Bauer", "Leontina Quiñones", "Nelson Hermosilla",
-             "Felipe Hernandez", "Cristina Dubournais", "Maria Luisa Ubeda",
+             "Felipe Hernandez", "Cristina Dubournais", "Maria Luisa Ubeda", 
              "Amanda Vergara")
 
-pregunta_1 <- c(1.5,2,2,2,2,1.8,1.8,1.2,2,NA)
+pregunta_1 <- c(2,2,2,NA,2,0.5,0.5,0.5,NA,1.5)
 
 
-pregunta_2 <- c(0.7,1.5,1.5,2,1.5,1.5,1.5,1.5,2,NA)
+pregunta_2 <- c(2,2,2,NA,1.9,1.9,2,1.5,NA,1.9)
 
 
-pregunta_3 <- c(1,1.5,1.5,1.5,2,2,2,1.5,1.5,NA)
+pregunta_3 <- c(2,1,1.8,NA,2,2,2,2,NA,2)
 
-tarea_1_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
+tarea_5_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
 
-tarea_1_df <- tarea_1_df |>
+tarea_5_df <- tarea_5_df |>
   mutate(total_puntaje = pregunta_1 + pregunta_2 + pregunta_3) |>
   mutate(nota = total_puntaje + 1) |>
   arrange(nombres)
@@ -44,7 +44,7 @@ tarea_1_df <- tarea_1_df |>
 ```{r message=FALSE, warning=FALSE}
 library(kableExtra)
 
-tarea_1_df |>
+tarea_5_df |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
@@ -52,7 +52,7 @@ tarea_1_df |>
 ## Estadística
 
 ```{r message=FALSE, warning=FALSE}
-tarea_1_df |>
+tarea_5_df |>
   summarise(
     promedio = mean(nota, na.rm = T),
     max = max(nota, na.rm = T),

@@ -1,0 +1,295 @@
+---
+title: "Curso Capacitación en R "
+subtitle: "Tarea 6 Soluciones"  
+author: 
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: False
+---
+
+class: center, middle
+
+.linea-superior[]
+.linea-inferior[]
+
+
+<img src="imagenes/logo_super_portada.png" width="180" />
+
+
+# Tarea 6 Soluciones
+
+## Plazo: 20 de agosto con puntaje extra o 22 de agosto sin extra
+
+```{r setup, include=FALSE} 
+options(htmltools.dir.version = TRUE)
+knitr::opts_chunk$set(message = FALSE) 
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer) # gfonts
+xaringanExtra::use_clipboard()
+xaringanExtra::use_editable(id = "xaringanExtra-editable-demo-1", expires = 1)
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Preámbulo 
+
+Esta tarea, al igual que las anteriores deberán crear
+de cero su script. Por favor sea ordenado y utilice tantos comentarios sean
+necesarios para que se acostumbren a que su trabajo sea autoexplicativo.
+
+Recuerde que antes de escribir la respuesta a cada pregunta, debe escribir como comentario
+en la línea anterior, el numeral que está respondiendo. Por ejemplo:
+
+```{r }
+# Pregunta 2.1 o Pregunta 2: 1, o como usted prefiera
+hola <- "hola"
+```
+
+Si entregan una respuesta sin antes haber puesto como comentario el numeral en 
+la línea anterior tendrán una penalización de **1 décima**.
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1 (función simple)
+
+Como primer ejercicio deberá implementar la famosa ecuación de energía propuesta por
+Albert Enstein: 
+
+$$E = m*c^{2}$$
+Donde $E$ es la cantidad de energía, $m$ es la masa de un objeto y $c$ es 
+una **constante** física que representa la velocidad a la que la luz viaja en el 
+vacío, siendo aproximadamente $299.792.458$ metros por segundo. 
+
+1.- Usted debe crear una función (llámela como usted prefiera) que reciba como
+argumento un valor de masa y retorne la energía asociada a esta. El resultado debe estar redondeado a 
+dos decimales.
+
+```{r }
+funcion_energia <- function(masa){
+  round(masa*299792458^2,2)
+}
+
+funcion_energia(10)
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 1 (función simple)
+
+2.- Modifique la función para que en caso de que no se entregue el valor de la 
+masa esta utilice una masa por defecto con valor $5$.
+
+```{r }
+funcion_energia <- function(masa = 5){
+  round(masa*299792458^2,2)
+}
+
+funcion_energia()
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+En este ejericio tendrán que utilizar la base de datos `diamonds` incluida en la 
+librería `tidyverse`. Dado lo anterior, recuerden instalar este paquete (solamente 
+si aún no lo han instalado) y abrirlo. 
+
+```{r include=TRUE}
+if (!require('tidyverse')) install.packages('tidyverse'); library('tidyverse')
+```
+
+Luego, generen un objeto llamado diamantes con esta base de datos de la 
+siguiente forma:
+
+```{r include=TRUE}
+diamantes <- diamonds
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+Recuerde que la base `diamantes` debiese verse de la siguiente forma:
+
+```{r include=TRUE}
+diamantes
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+1.- Utilizando la base `diamantes`, los verbos de `dplyr`, la función `across` y la función 
+`round`, aplique la función `round` a todas las columnas que son *numéricas*.
+Llame a esta base `diamantes_sin_decimales`.
+
+La base `diamantes_sin_decimales` debiese verse de la siguiente forma:
+```{r }
+diamantes_sin_decimales <- diamantes |>
+  mutate(across(where(is.numeric),round))
+
+diamantes_sin_decimales
+```
+
+**Note que la función `round` al no recibir argumento se implementó sin decimales o** 
+**en otras palabras, considerando $0$ decimales.**
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+2.- Utilizando los verbos de `dplyr`, la función `across`, y basándose en la base `diamantes_sin_decimales`, 
+genere una tabla que muestre el promedio de todas las columnas que son *numéricas*.
+Llame a esta nueva base `diamantes_sin_decimales_promedio`.
+
+Esta base de promedios (`diamantes_sin_decimales_promedio`) debiese verse de la siguiente forma:
+```{r include=TRUE, echo=TRUE}
+diamantes_sin_decimales_promedio <- diamantes_sin_decimales |>
+  summarise(
+    across(where(is.numeric), mean)
+  )
+
+diamantes_sin_decimales_promedio
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+3.- Utilizando nuevamente como punto de inicio la base `diamantes`, los verbos de `dplyr`, 
+la función `across` y la función `round`, aplique la función `round` a todas las
+columnas que son *numéricas* pero ahora **especifique que esta función se implemente considerando sólo 1 decimal**.
+Llame a esta base `diamantes_un_decimal`.
+
+Ahora la base `diamantes_un_decimal` debiese verse de la siguiente forma:
+
+```{r include=TRUE, echo=TRUE}
+diamantes_un_decimal <- diamantes |>
+  mutate(across(where(is.numeric),\(x) round(x,1)))
+
+diamantes_un_decimal
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 2 (iteraciones)
+
+4.- Utilizando los verbos de `dplyr`, la función `across`, y basándose en la base `diamantes_un_decimal`, 
+genere una tabla que muestre el promedio de todas las columnas que son *numéricas*.
+Llame a esta nueva base `diamantes_un_decimal_promedio`.
+
+Esta base de promedios (`diamantes_un_decimal_promedio`) debiese verse de la siguiente forma:
+```{r include=TRUE, echo=TRUE}
+diamantes_un_decimal_promedio <- diamantes_un_decimal |>
+  summarise(
+    across(where(is.numeric), mean)
+  )
+
+diamantes_un_decimal_promedio
+```
+
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (funciones e iteraciones)
+
+Con los conocimientos adquiridos en la última clase, genere una función llamada `funcion_estadistica` que 
+por *default* utilice las columnas numéricas de una base de datos y entregue 
+las siguientes estadísticas descriptivas: media, mediana, máximo y mínimo. De 
+acuerdo a lo anterior, su función debe poseer 2 argumentos: una base de datos y las 
+columnas a analizar. Pruebe esta función en la base de datos `diamantes`. Revise que 
+implementó correctamente su función de las siguientes dos maneras:
+
+```{r include=TRUE, echo=TRUE}
+funcion_estadistica <- function(df, summary_vars = where(is.numeric)){
+  df |>
+    summarise(
+      across({{ summary_vars }}, list(
+        media = mean,
+        mediana = median,
+        max = max,
+        min = min
+      ))
+      )
+}
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (funciones e iteraciones)
+
+1.- El resultado de su función al entregar como argumento solo la base `diamantes` debiese verse
+de la siguiente forma (1 fila y 28 columnas). *No todas las columnas se ven por un* 
+*tema de espacio*.
+
+```{r include=TRUE}
+funcion_estadistica(diamantes)
+```
+
+---
+
+background-image: url("imagenes/background.PNG")
+background-size: contain;
+background-position: 50% 0%
+
+# Ejercicio 3 (funciones e iteraciones)
+
+2.- El resultado de su función al entregar como argumentos la base de diamantes y 
+las columnas *carat* y *depth* debiese verse de la siguiente forma:
+
+```{r include=TRUE}
+funcion_estadistica(diamantes, c(carat,depth))
+```

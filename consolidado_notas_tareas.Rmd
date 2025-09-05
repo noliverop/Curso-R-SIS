@@ -1,0 +1,181 @@
+---
+title: "Notas Tareas Consolidado"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+```{r message=FALSE, include=FALSE}
+
+library(dplyr)
+library(tidyr)
+
+nombres <- c("Rodrigo Gonzalez", "Cecilia Carmona", "Benedicto Romero",
+             "Hermman Bauer", "Leontina Quiñones", "Nelson Hermosilla",
+             "Felipe Hernandez", "Cristina Dubournais", "Maria Luisa Ubeda",
+             "Amanda Vergara")
+
+# Tarea 1
+
+pregunta_1 <- c(1.5,2,2,2,2,1.8,1.8,1.2,2,NA)
+
+
+pregunta_2 <- c(0.7,1.5,1.5,2,1.5,1.5,1.5,1.5,2,NA)
+
+
+pregunta_3 <- c(1,1.5,1.5,1.5,2,2,2,1.5,1.5,NA)
+
+tarea_1_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
+
+tarea_1_df <- tarea_1_df |>
+  mutate(total_puntaje = pregunta_1 + pregunta_2 + pregunta_3) |>
+  mutate(nota_1 = total_puntaje + 1) |>
+  arrange(nombres)
+
+tarea_1_df <- tarea_1_df |>
+  select(nombres,nota_1)
+
+# Tarea 2
+
+pregunta_1 <- c(2,2,2,2,2,2,2,1,2,2)
+
+
+pregunta_2 <- c(2,2,2,2,2,1.5,2,2,2,2)
+
+
+pregunta_3 <- c(2,1,1.8,2,2,1,2,2,2,2)
+
+tarea_2_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
+
+tarea_2_df <- tarea_2_df |>
+  mutate(total_puntaje = pregunta_1 + pregunta_2 + pregunta_3) |>
+  mutate(nota_2 = total_puntaje + 1) |>
+  arrange(nombres)
+
+tarea_2_df <- tarea_2_df |>
+  select(nombres,nota_2)
+
+# Tarea 3
+
+pregunta_1 <- c(2,2,2,2,2,NA,2,2,2,2)
+
+
+pregunta_2 <- c(2,1.5,1.5,2,2,NA,2,1.5,2,2)
+
+
+pregunta_3 <- c(2,2,2,2,2,NA,2,2,2,2)
+
+tarea_3_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
+
+tarea_3_df <- tarea_3_df |>
+  mutate(total_puntaje = pregunta_1 + pregunta_2 + pregunta_3) |>
+  mutate(nota_3 = total_puntaje + 1) |>
+  arrange(nombres)
+
+tarea_3_df <- tarea_3_df |>
+  select(nombres,nota_3)
+
+# Tarea 4
+
+pregunta_1 <- c(6,5.5,5.5,4.5,6,5,6,5.5,4.5,6)
+
+
+tarea_4_df <- data.frame(nombres,pregunta_1)
+
+tarea_4_df <- tarea_4_df |>
+  mutate(total_puntaje = pregunta_1) |>
+  mutate(nota_4 = total_puntaje + 1) |>
+  arrange(nombres)
+
+tarea_4_df <- tarea_4_df |>
+  select(nombres,nota_4)
+
+# Tarea 5
+
+pregunta_1 <- c(2,2,2,NA,2,0.5,0.5,0.5,NA,1.5)
+
+
+pregunta_2 <- c(2,2,2,NA,1.9,1.9,2,1.5,NA,1.9)
+
+
+pregunta_3 <- c(2,1,1.8,NA,2,2,2,2,NA,2)
+
+tarea_5_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
+
+tarea_5_df <- tarea_5_df |>
+  mutate(total_puntaje = pregunta_1 + pregunta_2 + pregunta_3) |>
+  mutate(nota_5 = total_puntaje + 1) |>
+  arrange(nombres)
+
+tarea_5_df <- tarea_5_df |>
+  select(nombres,nota_5)
+
+# Tarea 6
+
+pregunta_1 <- c(1,0.5,0.5,2,1.9,2,2,0.5,2,0.5)
+
+
+pregunta_2 <- c(1.5,2,2,1.5,1.5,1.5,1.5,2,1.5,2)
+
+
+pregunta_3 <- c(0.3,2,2,0.5,1.5,0.5,0.5,2,0.5,2)
+
+tarea_6_df <- data.frame(nombres,pregunta_1,pregunta_2,pregunta_3)
+
+tarea_6_df <- tarea_6_df |>
+  mutate(total_puntaje = pregunta_1 + pregunta_2 + pregunta_3) |>
+  mutate(nota_6 = total_puntaje + 1) |>
+  arrange(nombres)
+
+tarea_6_df <- tarea_6_df |>
+  select(nombres,nota_6)
+
+# Union de tareas
+
+nota_tareas <- tarea_1_df |>
+  inner_join(tarea_2_df) |>
+  inner_join(tarea_3_df) |>
+  inner_join(tarea_4_df) |>
+  inner_join(tarea_5_df) |>
+  inner_join(tarea_6_df)
+
+nota_tareas <- nota_tareas |>
+  rowwise() |>
+  mutate(promedio_tareas = mean(c(nota_1,nota_2,nota_3,nota_4,nota_5,nota_6))) |>
+  mutate(promedio_tareas = round(promedio_tareas,2))
+
+```
+
+## Tabla Consolidada de Notas de Tareas
+
+### Actualizado al 5 de septiembre de 2025
+```{r message=FALSE, warning=FALSE}
+library(kableExtra)
+
+nota_tareas |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Estadística
+
+```{r message=FALSE, warning=FALSE}
+nota_tareas |>
+  ungroup() |>
+  summarise(
+    promedio = mean(promedio_tareas, na.rm = T),
+    max = max(promedio_tareas, na.rm = T),
+    min = min(promedio_tareas, na.rm = T)
+  ) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "Estadística",
+    values_to = "Valor"
+  ) |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
